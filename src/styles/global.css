@@ -1027,6 +1027,54 @@ ul, ol { list-style: none; padding: 0; }
   letter-spacing: 0.04em;
 }
 
+.about-page .issue-head { margin-bottom: var(--sp-8); }
+.about-letter { max-width: 36em; }
+.about-quote {
+  font-family: var(--serif);
+  font-size: var(--f-h3);
+  font-weight: 700;
+  line-height: var(--lh-lead);
+  color: var(--t0);
+  margin: var(--sp-8) 0 0;
+  padding: var(--sp-6) 0 0;
+  border-top: var(--rule) solid var(--line);
+  max-width: 28em;
+  text-wrap: pretty;
+}
+.about-stack {
+  margin: var(--sp-10) 0 0;
+  padding: 0;
+}
+.about-stack-row {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+  gap: var(--sp-4);
+  align-items: baseline;
+  padding: var(--sp-3) 0;
+  border-top: var(--rule) solid var(--line);
+  min-height: var(--hit);
+}
+.about-stack-row:last-child { border-bottom: var(--rule) solid var(--line); }
+.about-stack dt {
+  font-family: var(--sans);
+  font-size: var(--f-kicker);
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  color: var(--t3);
+}
+.about-stack dd {
+  margin: 0;
+  font-family: var(--text);
+  font-size: var(--f-open);
+  line-height: var(--lh-open);
+  color: var(--t1);
+}
+.about-sep {
+  color: var(--t3);
+  font-weight: 400;
+}
+.about-page .about-stats { margin-top: var(--sp-8); }
+
 .lost-note {
   display: flex;
   flex-direction: column;
@@ -1165,9 +1213,8 @@ ul, ol { list-style: none; padding: 0; }
   overflow-wrap: anywhere;
 }
 
-/* Footer is the mast inverted: same wrap, same wordmark, same nav metrics,
-   green ground instead of paper. Motto and years sit on a quiet second row.
-   Hover and focus stay on-photo so they remain visible on --ume-deep. */
+/* Footer is a colophon, not an inverted mast: brand + motto, hairline,
+   then copyright and theme. Hover/focus stay on-photo on --ume-deep. */
 
 .site-foot {
   margin-top: auto;
@@ -1175,7 +1222,7 @@ ul, ol { list-style: none; padding: 0; }
   color: rgb(255 255 255 / 0.82);
   font-size: var(--f-meta);
   letter-spacing: 0.04em;
-  padding: var(--sp-8) 0;
+  padding: var(--sp-10) 0 var(--sp-8);
 }
 .site-foot a:hover { color: var(--on-photo); }
 .site-foot a:focus-visible {
@@ -1186,15 +1233,21 @@ ul, ol { list-style: none; padding: 0; }
 .foot-inner {
   display: flex;
   flex-direction: column;
-  gap: var(--sp-3);
+  gap: var(--sp-6);
 }
 
-.foot-row {
+.foot-head {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--sp-6);
-  min-height: var(--mast-h);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-5);
+}
+
+.foot-brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  min-width: 0;
 }
 
 .foot-mark {
@@ -1204,13 +1257,25 @@ ul, ol { list-style: none; padding: 0; }
   line-height: 1;
   color: var(--on-photo);
   letter-spacing: 0.06em;
+  width: fit-content;
 }
 .foot-mark:hover { color: var(--on-photo); }
+
+.foot-motto {
+  font-family: var(--text);
+  font-size: var(--f-open);
+  font-weight: var(--fw-body);
+  line-height: var(--lh-open);
+  letter-spacing: 0;
+  color: rgb(255 255 255 / 0.86);
+  max-width: 22em;
+  text-wrap: pretty;
+}
 
 .foot-nav {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: flex-start;
   gap: var(--sp-2) var(--sp-3);
   font-size: var(--f-nav);
   letter-spacing: 0.06em;
@@ -1229,37 +1294,72 @@ ul, ol { list-style: none; padding: 0; }
   box-shadow: inset 0 calc(var(--rule) * -2) 0 var(--on-photo);
 }
 
-.foot-meta {
+.foot-rule {
+  display: block;
+  width: 100%;
+  height: 0;
+  margin: 0;
+  border: 0;
+  border-top: var(--rule) solid rgb(255 255 255 / 0.22);
+}
+
+.foot-colophon {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: var(--sp-4);
-}
-
-.foot-motto {
-  line-height: var(--lh-open);
-  /* 0.80 over --ume-deep composites to ~4.8:1, AA for 13px meta. */
-  color: rgb(255 255 255 / 0.80);
-  max-width: 28em;
-}
-
-.foot-copy {
+  gap: var(--sp-3) var(--sp-8);
+  flex-wrap: wrap;
   color: rgb(255 255 255 / 0.78);
   font-variant-numeric: tabular-nums;
-  white-space: nowrap;
+  line-height: var(--lh-open);
 }
 
+.foot-copy { color: inherit; }
+
+.foot-theme {
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0 0.4em;
+  color: inherit;
+}
+
+.foot-theme-lab,
+.foot-theme a,
+.foot-theme-name {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+.foot-theme a,
+.foot-theme-name {
+  position: relative;
+  color: var(--on-photo);
+}
+
+.foot-theme a::before {
+  content: "";
+  position: absolute;
+  left: -0.35em;
+  right: -0.35em;
+  top: 50%;
+  height: var(--hit);
+  transform: translateY(-50%);
+}
+
+.foot-theme a:hover { color: var(--on-photo); }
+
 @media (max-width: 639px) {
-  .foot-row {
+  .site-foot { padding: var(--sp-8) 0 var(--sp-6); }
+  .foot-inner { gap: var(--sp-5); }
+  .foot-colophon {
     flex-direction: column;
     align-items: flex-start;
-    gap: var(--sp-2);
-    min-height: 0;
-  }
-  .foot-nav { justify-content: flex-start; }
-  .foot-meta {
-    flex-direction: column;
-    gap: var(--sp-2);
+    gap: 0;
   }
 }
 
@@ -1443,6 +1543,11 @@ ul, ol { list-style: none; padding: 0; }
 
   .tag-flow { column-gap: var(--sp-4); }
   .browse { grid-template-columns: 1fr; gap: var(--sp-8); }
+  .about-stack-row {
+    grid-template-columns: 1fr;
+    gap: var(--sp-2);
+    padding: var(--sp-4) 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

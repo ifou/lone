@@ -1,10 +1,13 @@
 ---
 import { categories as catsCopy, home, site, ui } from 'plum/config';
-import { hrefOf, formatDate, opening, coverOf, galleryOf, categoryOf, langOf, readMinutes, type Post } from '../lib/posts';
+import { hrefOf, formatDate, opening, coverOf, galleryOf, categoryOf, langOf, readMinutes, leadOf, slugOf, type Post } from '../lib/posts';
 import { srcsetOf, measure } from '../lib/images';
 
 const { posts } = Astro.props as { posts: Post[] };
-const lead = posts[0] ?? null;
+const pin = (home.pin || '').trim();
+const lead = leadOf(posts, pin);
+const isPinned = Boolean(pin && lead && slugOf(lead) === pin);
+const leadLabel = isPinned ? ui.pinLabel : ui.leadLabel;
 const leadThumb = lead ? coverOf(lead) : '';
 const heroSrc = home.hero || '/images/hero.jpg';
 const heroSize = await measure(heroSrc);
@@ -36,10 +39,10 @@ const leadPhotos = lead ? galleryOf(lead).length : 0;
 
 {lead && (
   <div class="wrap">
-    <section class="lead-note" aria-label={ui.leadLabel}>
+    <section class="lead-note" aria-label={leadLabel}>
       <a class={`lead${leadThumb ? '' : ' no-thumb'}`} href={hrefOf(lead)}>
         <span class="lead-left">
-          <span class="lead-eyebrow">{ui.leadLabel}</span>
+          <span class="lead-eyebrow">{leadLabel}</span>
           <span class="lead-date"><time datetime={lead.data.date.toISOString()}>{formatDate(lead.data.date)}</time></span>
         </span>
         <span class="lead-body">

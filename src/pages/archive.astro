@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import IssueHead from '../components/IssueHead.astro';
-import { archive, categories as catsCopy, tags, ui } from 'plum/config';
+import { archive, tags, ui } from 'plum/config';
 import { published, hrefOf, formatDate, yearGroups } from '../lib/posts';
 
 const groups = yearGroups(await published());
@@ -10,7 +10,6 @@ const groups = yearGroups(await published());
   <div class="page">
     <IssueHead title={archive.title} lede={archive.lede}>
       <p class="about-links">
-        <a href="/categories/">{catsCopy.title}</a>
         <a href="/tags/">{tags.title}</a>
       </p>
     </IssueHead>

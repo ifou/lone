@@ -5,10 +5,10 @@ import NoteStream from '../components/NoteStream.astro';
 import Pager from '../components/Pager.astro';
 import HomeBrowse from '../components/HomeBrowse.astro';
 import { home, ui } from 'plum/config';
-import { published, pageSizeOf, pageCount, pageOf, streamOf } from '../lib/posts';
+import { published, pageSizeOf, pageCount, pageOf, streamOf, leadOf } from '../lib/posts';
 
 const posts = await published();
-const stream = streamOf(posts);
+const stream = streamOf(posts, leadOf(posts, home.pin));
 const size = pageSizeOf(home.pageSize);
 const pages = pageCount(stream.length, size);
 const slice = pageOf(stream, 1, size);

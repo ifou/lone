@@ -21,8 +21,8 @@ const label = catsCopy.labels[category] || category;
       <IssueHead
         title={label}
         lede={ui.noteCount(posts.length)}
-        backHref="/categories/"
-        backLabel={ui.backToKinds}
+        backHref="/"
+        backLabel={ui.backToNotes}
       />
       {posts.length === 0
         ? <p class="empty">{ui.emptyStream}</p>

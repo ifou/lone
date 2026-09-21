@@ -55,7 +55,7 @@ Edit [`plum.config.ts`](plum.config.ts):
 |---|---|
 | `site` | name, motto, url, email, github, favicon, years |
 | `nav` | primary links |
-| `home` | title, lede, hero, streamLabel, pageSize |
+| `home` | title, lede, hero, streamLabel, pageSize, pin (slug; empty = newest) |
 | `archive` / `tags` / `categories` | page titles |
 | `about` | about page |
 | `notFound` | 404 copy |

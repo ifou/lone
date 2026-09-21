@@ -76,9 +76,20 @@ export async function published(): Promise<Post[]> {
     .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 }
 
-/** Home stream excludes the lead note. Pagination runs on this list only. */
-export function streamOf(posts: Post[]) {
-  return posts.slice(1);
+/** Featured note on home: `home.pin` slug, else the newest. Unknown pin falls back. */
+export function leadOf(posts: Post[], pin?: string) {
+  const want = (pin || '').trim();
+  if (want) {
+    const hit = posts.find((p) => slugOf(p) === want);
+    if (hit) return hit;
+  }
+  return posts[0] ?? null;
+}
+
+/** Home stream excludes the featured note. Pagination runs on this list only. */
+export function streamOf(posts: Post[], lead?: Post | null) {
+  if (!lead) return posts;
+  return posts.filter((p) => p.id !== lead.id);
 }
 
 export function coverOf(p: Post) {

@@ -7,7 +7,10 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 ### Changed
 
 - Home browse: By subject first (wide column), By kind on the right.
-- Chinese language mark in chrome: `zh` (was 中).
+- Language marks in chrome: `en` / `zh`.
+- About: letter, pull-quote, and stack rows instead of one undifferentiated dump.
+- Home feature: `home.pin` slug, else the newest. Stream omits that note. Eyebrow is Recommended when pinned.
+- Footer: colophon — brand and motto, then a hairline, then copyright and theme credit.
 
 ### Added
 

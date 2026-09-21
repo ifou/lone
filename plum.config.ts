@@ -33,6 +33,8 @@ export const home = {
   streamLabel: 'Latest',
   pageSize: 10,
   tagPreview: 12,
+  /** Featured note slug. Empty = newest. */
+  pin: '',
 };
 
 export const archive = {
@@ -87,12 +89,13 @@ export const ui = {
   /** The teaser shows `home.tagPreview`; this names what is behind the door. */
   allTagsCount: (n: number) => `All ${n} tags →`,
   leadLabel: 'Latest note',
+  pinLabel: 'Recommended',
   leadRead: 'Read →',
   issueMeta: (year: number, count: number) => `${year} · ${count} notes`,
   pagerPage: (n: number) => `Page ${n}`,
   byKind: 'By kind',
   bySubject: 'By subject',
-  langEn: 'EN',
+  langEn: 'en',
   langZh: 'zh',
   readMin: (n: number) => (n === 1 ? '1 min' : `${n} min`),
   photoCount: (n: number) => (n === 1 ? '1 photo' : `${n} photos`),
@@ -118,4 +121,8 @@ export const ui = {
   ariaYears: 'Years',
   bookLabel: (n: string) => `Vol. ${n}`,
   poemCount: (n: number) => (n === 1 ? '1 poem' : `${n} poems`),
+  footCopyright: (years: string, name: string) => `© ${years} ${name}`,
+  footThemeLabel: 'Theme',
+  footTheme: 'plum',
+  footThemeHref: 'https://github.com/hareai/plum',
 };

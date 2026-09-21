@@ -4,12 +4,16 @@ import { site, nav, ui } from 'plum/config';
 const path = Astro.url.pathname;
 const doors = nav.filter((item) => item.href !== '/rss.xml');
 const notesCurrent = path === '/' || path.startsWith('/page/') || path.startsWith('/notes/');
+const themeName = ui.footTheme || 'plum';
 ---
 
 <footer class="site-foot">
   <div class="wrap foot-inner">
-    <div class="foot-row">
-      <a class="foot-mark" href="/">{site.wordmark}</a>
+    <div class="foot-head">
+      <div class="foot-brand">
+        <a class="foot-mark" href="/">{site.wordmark}</a>
+        {site.motto && <p class="foot-motto">{site.motto}</p>}
+      </div>
       <nav class="foot-nav" aria-label={ui.ariaFoot}>
         {doors.map((item) => (
           <a
@@ -24,9 +28,15 @@ const notesCurrent = path === '/' || path.startsWith('/page/') || path.startsWit
         <a href="/rss.xml">{ui.linkRss}</a>
       </nav>
     </div>
-    <div class="foot-meta">
-      <p class="foot-motto">{site.motto}</p>
-      <p class="foot-copy">{site.years} · {site.name}</p>
+    <hr class="foot-rule" />
+    <div class="foot-colophon">
+      <p class="foot-copy">{ui.footCopyright(site.years, site.author || site.name)}</p>
+      <p class="foot-theme">
+        {ui.footThemeLabel && <span class="foot-theme-lab">{ui.footThemeLabel}</span>}
+        {ui.footThemeHref
+          ? <a href={ui.footThemeHref}>{themeName}</a>
+          : <span class="foot-theme-name">{themeName}</span>}
+      </p>
     </div>
   </div>
 </footer>

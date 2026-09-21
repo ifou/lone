@@ -53,7 +53,7 @@ Node 22+。
 |---|---|
 | `site` | 站名、网址、邮箱、GitHub、favicon、年份 |
 | `nav` | 顶栏 |
-| `home` | 标题、导语、头图、流标题、每页条数 |
+| `home` | 标题、导语、头图、流标题、每页条数、pin（slug；空则最新一篇） |
 | `archive` / `tags` / `categories` | 归档、标签、分类 |
 | `about` | 关于页 |
 | `notFound` | 404 |

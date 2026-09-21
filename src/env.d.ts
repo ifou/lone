@@ -26,6 +26,8 @@ declare module 'plum/config' {
     streamLabel: string;
     pageSize: number;
     tagPreview: number;
+    /** Note slug for the home feature. Empty = newest. */
+    pin?: string;
   };
 
   export const archive: { title: string; lede: string };
@@ -36,7 +38,13 @@ declare module 'plum/config' {
     labels: Record<string, string>;
   };
   export const poems: { title: string; lede: string };
-  export const about: { title: string; lede: string; body: string[] };
+  export const about: {
+    title: string;
+    lede: string;
+    body: string[];
+    quote?: string;
+    stack?: { label: string; items: string[] }[];
+  };
   export const notFound: { title: string; lede: string };
 
   export const ui: {
@@ -50,6 +58,7 @@ declare module 'plum/config' {
     allNotes: string;
     allTagsCount: (n: number) => string;
     leadLabel: string;
+    pinLabel: string;
     leadRead: string;
     issueMeta: (year: number, count: number) => string;
     pagerPage: (n: number) => string;
@@ -80,5 +89,9 @@ declare module 'plum/config' {
     ariaYears: string;
     bookLabel: (n: string) => string;
     poemCount: (n: number) => string;
+    footCopyright: (years: string, name: string) => string;
+    footThemeLabel: string;
+    footTheme: string;
+    footThemeHref: string;
   };
 }
