@@ -93,7 +93,7 @@ export const ui = {
   byKind: 'By kind',
   bySubject: 'By subject',
   langEn: 'EN',
-  langZh: '中',
+  langZh: 'zh',
   readMin: (n: number) => (n === 1 ? '1 min' : `${n} min`),
   photoCount: (n: number) => (n === 1 ? '1 photo' : `${n} photos`),
   aboutStats: (notes: number, tags: number, years: string) =>

@@ -15,6 +15,17 @@ const labels = catsCopy.labels;
 
 {(shelves.length > 0 || tags.length > 0) && (
   <section class="browse">
+    {tags.length > 0 && (
+      <div class="browse-col">
+        <h2 class="browse-head">{ui.bySubject}</h2>
+        <TagFlow tags={tags} />
+        {all.length > tags.length && (
+          <p class="tag-more">
+            <a href="/tags/">{ui.allTagsCount(all.length)}</a>
+          </p>
+        )}
+      </div>
+    )}
     {shelves.length > 0 && (
       <div class="browse-col">
         <h2 class="browse-head">{ui.byKind}</h2>
@@ -28,17 +39,6 @@ const labels = catsCopy.labels;
             </li>
           ))}
         </ul>
-      </div>
-    )}
-    {tags.length > 0 && (
-      <div class="browse-col">
-        <h2 class="browse-head">{ui.bySubject}</h2>
-        <TagFlow tags={tags} />
-        {all.length > tags.length && (
-          <p class="tag-more">
-            <a href="/tags/">{ui.allTagsCount(all.length)}</a>
-          </p>
-        )}
       </div>
     )}
   </section>

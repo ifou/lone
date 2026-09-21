@@ -1265,7 +1265,7 @@ ul, ol { list-style: none; padding: 0; }
 
 .browse {
   display: grid;
-  grid-template-columns: 11rem minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) 11rem;
   gap: var(--sp-8) var(--sp-10);
   margin: 0;
   padding: var(--sp-12) 0;

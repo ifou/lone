@@ -4,6 +4,11 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 
 ## [Unreleased]
 
+### Changed
+
+- Home browse: By subject first (wide column), By kind on the right.
+- Chinese language mark in chrome: `zh` (was 中).
+
 ### Added
 
 - First public cut: Astro blog theme. Mincho titles, gothic body, ume green (`#00865b`), light only.
