@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import IssueHead from '../../components/IssueHead.astro';
+import { categories as catsCopy, ui } from 'plum/config';
+import { published, byCategory, categoryHref, hrefOf, formatDate } from '../../lib/posts';
+
+const shelves = byCategory(await published());
+const labels = catsCopy.labels;
+---
+<BaseLayout title={catsCopy.title} description={catsCopy.lede}>
+  <div class="page">
+    <IssueHead title={catsCopy.title} lede={catsCopy.lede} />
+    {shelves.length === 0
+      ? <p class="empty">{ui.emptyStream}</p>
+      : shelves.map(({ category, posts }) => (
+        <section class="year-block">
+          <h2 class="year-title">
+            <a href={categoryHref(category)}>{labels[category] || category}</a>
+            <span class="book-count">{posts.length}</span>
+          </h2>
+          <ol class="year-list">
+            {posts.slice(0, 4).map((p) => (
+              <li>
+                <a href={hrefOf(p)}>
+                  <time datetime={p.data.date.toISOString()}>{formatDate(p.data.date)}</time>
+                  <span lang={p.data.lang || undefined}>{p.data.title}</span>
+                </a>
+              </li>
+            ))}
+          </ol>
+          {posts.length > 4 && (
+            <p class="tag-more"><a href={categoryHref(category)}>{ui.shelfMore(posts.length)}</a></p>
+          )}
+        </section>
+      ))}
+  </div>
+</BaseLayout>

@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import IssueHead from '../components/IssueHead.astro';
+import { about, site, ui } from 'plum/config';
+import { published, tagsOf } from '../lib/posts';
+
+const posts = await published();
+const tagN = tagsOf(posts).length;
+---
+<BaseLayout title={about.title} description={about.lede}>
+  <div class="page">
+    <article class="note">
+      <IssueHead title={about.title} lede={about.lede} />
+      <div class="prose">
+        {about.body.map((p) => <p>{p}</p>)}
+      </div>
+      <p class="about-stats">{ui.aboutStats(posts.length, tagN, site.years)}</p>
+      <p class="about-links">
+        {site.email && <a href={`mailto:${site.email}`}>{ui.linkEmail}</a>}
+        {site.github && <a href={site.github}>{ui.linkGithub}</a>}
+        <a href="/rss.xml">{ui.linkRss}</a>
+        <a href="/archive/">{ui.allNotes}</a>
+      </p>
+    </article>
+  </div>
+</BaseLayout>

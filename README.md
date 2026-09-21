@@ -1,0 +1,79 @@
+# plum
+
+A magazine-style Astro blog theme. Mincho titles, gothic body, ume green. Light only.
+
+[简体中文](README.zh-CN.md)
+
+![Home](docs/screenshot.jpg)
+
+Use this repository as a GitHub template, or add it as a dependency and keep your own `plum.config.ts` at the site root.
+
+## Features
+
+- Markdown posts (`src/content/blog/`)
+- Home: one landscape, then a lead note and a date-rail stream (thumb only when the note has a cover)
+- Notes at `/notes/<slug>/`
+- Archive by year, kinds (`/categories/`), tags, pagination
+- About, RSS, 404, sitemap
+- Optional poems page (`src/content/poems/`) — not linked from the mast
+- One config file: `plum.config.ts`
+- Light theme
+
+## Quick start
+
+```bash
+git clone https://github.com/hareai/plum.git
+cd plum
+npm install
+npm run dev
+```
+
+Node 22+.
+
+## Project structure
+
+```text
+/
+├── plum.config.ts        # site, home, about, archive
+├── src/
+│   ├── content/blog/     # posts
+│   ├── content/poems/    # optional poems
+│   ├── pages/
+│   ├── layouts/
+│   ├── components/
+│   └── styles/global.css # colors
+└── public/
+```
+
+Posts use `title`, `date`, `description`, `category` (`note` | `travel`), optional `tags`, `lang`, `cover`, `images`.
+
+## Configuration
+
+Edit [`plum.config.ts`](plum.config.ts):
+
+| Key | |
+|---|---|
+| `site` | name, motto, url, email, github, favicon, years |
+| `nav` | primary links |
+| `home` | title, lede, hero, streamLabel, pageSize |
+| `archive` / `tags` / `categories` | page titles |
+| `about` | about page |
+| `notFound` | 404 copy |
+| `ui` | fixed UI strings |
+
+Put photos in the site `public/` directory and point the config at those URLs. Do not patch theme source files.
+
+Colors: `src/styles/global.css`.
+
+## Commands
+
+| Command | |
+|---|---|
+| `npm run dev` | local server |
+| `npm run build` | production build |
+| `npm run check` | type check |
+| `npm run preview` | preview `dist/` |
+
+## License
+
+[MIT](LICENSE)

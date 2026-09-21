@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HomeHead from '../../components/HomeHead.astro';
+import NoteStream from '../../components/NoteStream.astro';
+import Pager from '../../components/Pager.astro';
+import { home, ui } from 'plum/config';
+import { published, pageSizeOf, pageCount, pageOf, streamOf } from '../../lib/posts';
+
+export async function getStaticPaths() {
+  const posts = await published();
+  const stream = streamOf(posts);
+  const size = pageSizeOf(home.pageSize);
+  const pages = pageCount(stream.length, size);
+  const nums = [1, ...Array.from({ length: Math.max(0, pages - 1) }, (_, i) => i + 2)];
+  return [...new Set(nums)].map((n) => ({ params: { n: String(n) } }));
+}
+
+const posts = await published();
+const stream = streamOf(posts);
+const size = pageSizeOf(home.pageSize);
+const pages = pageCount(stream.length, size);
+const n = Number(Astro.params.n);
+if (!Number.isInteger(n) || n < 1) return Astro.redirect('/404/');
+if (n === 1) return Astro.redirect('/', 301);
+if (n > pages) return Astro.redirect('/404/');
+const slice = pageOf(stream, n, size);
+const heroSrc = home.hero || '/images/hero.jpg';
+const label = home.streamLabel;
+---
+<BaseLayout title={`${label} · ${n}`} description={home.lede} image={heroSrc}>
+  <HomeHead posts={posts} />
+
+  <div class="wrap">
+    <section class="news">
+      <h2 class="block-title">{label}</h2>
+      {slice.length === 0
+        ? <p class="empty">{ui.emptyStream}</p>
+        : <NoteStream posts={slice} />}
+      <Pager page={n} pages={pages} />
+    </section>
+  </div>
+</BaseLayout>

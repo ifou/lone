@@ -1,0 +1,156 @@
+/* Latin files in /fonts. Inlined into <head> (not Vite) so @font-face
+   exists in the same document as the preloads, before first paint.
+   font-display: optional — miss the first paint, keep the metric-matched
+   fallback for the whole page. CJK is not in these faces; it stays on
+   the next family in --text / --serif / --sans. */
+
+@font-face {
+  font-family: "Source Serif Fallback";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Iowan Old Style"), local("Palatino Linotype"), local("Palatino"), local("Liberation Serif"), local("Times New Roman");
+  size-adjust: 108.12%;
+  ascent-override: 96.19%;
+  descent-override: 31.45%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Source Serif Fallback";
+  font-style: italic;
+  font-weight: 400;
+  src: local("Liberation Serif Italic"), local("Palatino Linotype"), local("Liberation Serif");
+  size-adjust: 108.12%;
+  ascent-override: 96.19%;
+  descent-override: 31.45%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Source Serif Fallback";
+  font-style: normal;
+  font-weight: 600;
+  src: local("Liberation Serif"), local("Times New Roman");
+  size-adjust: 104.43%;
+  ascent-override: 99.59%;
+  descent-override: 32.56%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Mincho Fallback";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Liberation Serif"), local("Times New Roman");
+  size-adjust: 112.17%;
+  ascent-override: 103.42%;
+  descent-override: 25.85%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Mincho Fallback";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Liberation Serif"), local("Times New Roman");
+  size-adjust: 112.99%;
+  ascent-override: 102.66%;
+  descent-override: 25.67%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Gothic Fallback";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Liberation Sans"), local("Arial");
+  size-adjust: 93.38%;
+  ascent-override: 124.22%;
+  descent-override: 31.06%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Gothic Fallback";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Liberation Sans"), local("Arial");
+  size-adjust: 90.68%;
+  ascent-override: 127.93%;
+  descent-override: 31.98%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: "Shippori Mincho";
+  font-style: normal;
+  font-weight: 400;
+  font-display: optional;
+  src: url("/fonts/shippori-mincho-latin-400.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Shippori Mincho";
+  font-style: normal;
+  font-weight: 700;
+  font-display: optional;
+  src: url("/fonts/shippori-mincho-latin-700.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Zen Kaku Gothic New";
+  font-style: normal;
+  font-weight: 400;
+  font-display: optional;
+  src: url("/fonts/zen-kaku-latin-400.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Zen Kaku Gothic New";
+  font-style: normal;
+  font-weight: 700;
+  font-display: optional;
+  src: url("/fonts/zen-kaku-latin-700.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Source Serif 4";
+  font-style: normal;
+  font-weight: 400;
+  font-display: optional;
+  src: url("/fonts/source-serif-4-latin-400.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Source Serif 4";
+  font-style: italic;
+  font-weight: 400;
+  font-display: optional;
+  src: url("/fonts/source-serif-4-latin-400-italic.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Source Serif 4";
+  font-style: normal;
+  font-weight: 600;
+  font-display: optional;
+  src: url("/fonts/source-serif-4-latin-600.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Critical stacks — same families as :root. In the head so first paint
+   does not wait on Vite's global.css. CJK glyphs skip the latin faces
+   (unicode-range) and land on the system Songti / Gothic. */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
+  font-synthesis: none;
+}
+body {
+  font-family: "Zen Kaku Gothic New", "Gothic Fallback", "PingFang SC",
+    "Hiragino Sans", "Noto Sans SC", ui-sans-serif, system-ui, sans-serif;
+}
+.wordmark, h1, h2, h3, h4,
+.lead-title, .entry-title, .note-title, .hero-title {
+  font-family: "Shippori Mincho", "Mincho Fallback", "Noto Serif CJK SC",
+    "Source Han Serif SC", "Songti SC", "Hiragino Mincho ProN", serif;
+}
+.prose, .lede, .lead-open, .entry-open, .hero-lede {
+  font-family: "Source Serif 4", "Source Serif Fallback", "Noto Serif CJK SC",
+    "Source Han Serif SC", "Songti SC", "Hiragino Mincho ProN", serif;
+}

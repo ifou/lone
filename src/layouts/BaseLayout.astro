@@ -1,0 +1,85 @@
+---
+import '../styles/global.css';
+import fontsCss from '../styles/fonts.css?raw';
+import SiteFoot from '../components/SiteFoot.astro';
+import { site, nav, ui } from 'plum/config';
+
+const path = Astro.url.pathname;
+const title = Astro.props.title ? `${Astro.props.title} · ${site.name}` : `${site.name} — ${site.motto}`;
+const desc = Astro.props.description || site.description;
+const origin = site.url.replace(/\/$/, '');
+const canonPath = path.endsWith('/') ? path : `${path}/`;
+const url = `${origin}${canonPath}`;
+const rawImage = Astro.props.image || site.ogImage;
+const image = rawImage
+  ? (String(rawImage).startsWith('http') ? String(rawImage) : `${origin}${rawImage}`)
+  : undefined;
+const notesCurrent = path === '/' || path.startsWith('/page/') || path.startsWith('/notes/');
+const noindex = Boolean(Astro.props.noindex) || path.startsWith('/poems');
+const type = Astro.props.type || 'website';
+const favicon = site.favicon || '/favicon.svg';
+const rssTitle = site.rssTitle || `${site.name} — ${site.motto}`;
+---
+<!doctype html>
+<html lang={site.lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={desc} />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="color-scheme" content="light" />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="icon" href={favicon} />
+    <link rel="preload" href="/fonts/source-serif-4-latin-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/shippori-mincho-latin-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/zen-kaku-latin-400.woff2" as="font" type="font/woff2" crossorigin />
+    <Fragment set:html={`<style>${fontsCss}</style>`} />
+    <title>{title}</title>
+    <link rel="canonical" href={url} />
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:url" content={url} />
+    {image && <meta property="og:image" content={image} />}
+    <meta name="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={desc} />
+    {image && <meta name="twitter:image" content={image} />}
+    <link rel="alternate" type="application/rss+xml" title={rssTitle} href="/rss.xml" />
+  </head>
+  <body>
+    <!--
+      THESIS: One full-bleed landscape, then a readable note stream with a right-hand thumb. Refuses a split hero, shop, player.
+      OWN-WORLD: #fff / #00865b / #333. Mincho titles, gothic body.
+      STORY: Arrive in one picture, then read. Nav is notes / archive / about / rss.
+      FIRST VIEWPORT: White mast, one landscape, title and lede on it.
+      FORM: ume green + a single reading column. Not a halved magazine.
+      FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+    -->
+    <a class="skip-link" href="#main">{ui.skipToContent}</a>
+    <div class="shell">
+      <header class="mast">
+        <div class="wrap mast-inner">
+          <a class="wordmark" href="/">{site.wordmark}</a>
+          <nav class="topnav" aria-label={ui.ariaNav}>
+            {nav.map((item) => (
+              <a
+                href={item.href}
+                aria-current={
+                  item.href === '/'
+                    ? notesCurrent ? 'page' : undefined
+                    : item.href !== '/rss.xml' && path.startsWith(item.href.replace(/\/$/, '')) ? 'page' : undefined
+                }
+              >{item.label}</a>
+            ))}
+          </nav>
+        </div>
+      </header>
+      <main id="main">
+        <slot />
+      </main>
+      <SiteFoot />
+    </div>
+  </body>
+</html>

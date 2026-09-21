@@ -1,0 +1,12 @@
+---
+import { tagHref } from '../lib/posts';
+
+const { tags } = Astro.props as { tags: { tag: string }[] };
+---
+<ul class="tag-flow">
+  {tags.map(({ tag }) => (
+    <li>
+      <a href={tagHref(tag)}>{tag}</a>
+    </li>
+  ))}
+</ul>

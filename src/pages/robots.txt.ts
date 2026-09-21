@@ -1,0 +1,12 @@
+import type { APIRoute } from 'astro';
+import { site } from 'plum/config';
+
+export const prerender = true;
+
+export const GET: APIRoute = () => {
+  const origin = site.url.replace(/\/$/, '');
+  const body = `User-agent: *\nAllow: /\nDisallow: /poems/\n\nSitemap: ${origin}/sitemap-index.xml\n`;
+  return new Response(body, {
+    headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+  });
+};

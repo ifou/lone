@@ -1,0 +1,32 @@
+---
+import { site, nav, ui } from 'plum/config';
+
+const path = Astro.url.pathname;
+const doors = nav.filter((item) => item.href !== '/rss.xml');
+const notesCurrent = path === '/' || path.startsWith('/page/') || path.startsWith('/notes/');
+---
+
+<footer class="site-foot">
+  <div class="wrap foot-inner">
+    <div class="foot-row">
+      <a class="foot-mark" href="/">{site.wordmark}</a>
+      <nav class="foot-nav" aria-label={ui.ariaFoot}>
+        {doors.map((item) => (
+          <a
+            href={item.href}
+            aria-current={
+              item.href === '/'
+                ? notesCurrent ? 'page' : undefined
+                : path.startsWith(item.href.replace(/\/$/, '')) ? 'page' : undefined
+            }
+          >{item.label}</a>
+        ))}
+        <a href="/rss.xml">{ui.linkRss}</a>
+      </nav>
+    </div>
+    <div class="foot-meta">
+      <p class="foot-motto">{site.motto}</p>
+      <p class="foot-copy">{site.years} · {site.name}</p>
+    </div>
+  </div>
+</footer>
