@@ -4,6 +4,7 @@ import { categories as catsCopy, ui } from 'plum/config';
 import { hrefOf, formatDate, tagHref, galleryOf, categoryOf, langOf, readMinutes, type Post } from '../lib/posts';
 import { srcsetOf, measure } from '../lib/images';
 import Gallery from './Gallery.astro';
+import Toc from './Toc.astro';
 
 const { post, older, newer } = Astro.props as {
   post: Post;
@@ -16,7 +17,6 @@ const shots = galleryOf(post);
 const cover = shots[0] || '';
 const gallery = cover ? shots.slice(1) : shots;
 const tags = (post.data.tags ?? []).map((t) => t.trim()).filter(Boolean);
-const toc = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
 const hasBody = Boolean((post.body ?? '').trim());
 const kind = catsCopy.labels[categoryOf(post)] || '';
 const lang = langOf(post);
@@ -24,12 +24,6 @@ const mins = readMinutes(post);
 const photos = shots.length;
 const coverSize = cover ? await measure(cover) : { width: 1920, height: 1280 };
 
-let h2Seen = 0;
-const tocNums = new Map<string, string>();
-for (const h of toc) {
-  if (h.depth === 2) { h2Seen += 1; tocNums.set(h.slug, String(h2Seen)); }
-}
-const tocTop = h2Seen > 0 ? 2 : 3;
 ---
 
 <article class="note" lang={post.data.lang || undefined}>
@@ -58,18 +52,7 @@ const tocTop = h2Seen > 0 ? 2 : 3;
         ))}
       </ul>
     )}
-    {toc.length >= 2 && (
-      <nav class="toc" aria-label={ui.ariaContents}>
-        <ol>
-          {toc.map((h) => (
-            <li class={h.depth > tocTop ? 'is-h3' : undefined}>
-              {tocNums.has(h.slug) && <span class="toc-num">{tocNums.get(h.slug)}</span>}
-              <a href={`#${h.slug}`}>{h.text}</a>
-            </li>
-          ))}
-        </ol>
-      </nav>
-    )}
+    <Toc headings={headings} />
     {hasBody && <div class="prose"><Content /></div>}
     {gallery.length > 0 && <Gallery images={gallery} />}
     <nav class="post-nav" aria-label={ui.ariaAdjacent}>

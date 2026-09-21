@@ -12,3 +12,7 @@ The theme is light only. Titles in Mincho, body in gothic. One landscape, then t
 ## A heading
 
 Keep the prose short. Colors live in `src/styles/global.css`.
+
+## The page
+
+Title on the cover, then the note. The table of contents sits above the body when there are two headings.

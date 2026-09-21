@@ -106,6 +106,7 @@ export const ui = {
   pagerPrev: 'Previous page',
   pagerNext: 'Next page',
   galleryLabel: 'Photos',
+  tocLabel: 'Contents',
   morePhotos: (n: number) => `+${n}`,
   postNavOlder: 'Older',
   postNavNewer: 'Newer',

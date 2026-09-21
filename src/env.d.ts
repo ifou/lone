@@ -74,6 +74,8 @@ declare module 'plum/config' {
     pagerPrev: string;
     pagerNext: string;
     galleryLabel: string;
+    /** Visible TOC heading. Falls back to ariaContents. */
+    tocLabel?: string;
     morePhotos: (n: number) => string;
     postNavOlder: string;
     postNavNewer: string;

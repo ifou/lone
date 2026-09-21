@@ -6,6 +6,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 
 ### Changed
 
+- Article table of contents: gothic chrome with a Contents label, so it no longer reads as the start of the body.
 - Home browse: By subject first (wide column), By kind on the right.
 - Language marks in chrome: `en` / `zh`.
 - About: letter, pull-quote, and stack rows instead of one undifferentiated dump.
