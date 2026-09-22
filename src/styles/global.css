@@ -344,7 +344,7 @@ ul, ol { list-style: none; padding: 0; }
 }
 .hero-issue {
   font-size: var(--f-kicker);
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   color: var(--on-photo);
   text-shadow: 0 1px 18px rgb(0 20 14 / 0.55);
   margin-bottom: var(--sp-4);
@@ -1306,12 +1306,12 @@ ul, ol { list-style: none; padding: 0; }
 }
 
 .foot-mark {
-  font-family: var(--serif);
+  font-family: var(--display);
   font-size: var(--f-wordmark);
-  font-weight: 700;
+  font-weight: var(--display-weight);
   line-height: 1;
   color: var(--ume);
-  letter-spacing: 0.06em;
+  letter-spacing: var(--display-tracking);
   width: fit-content;
 }
 .foot-mark:hover { color: var(--ume-hot); }
@@ -1404,7 +1404,7 @@ ul, ol { list-style: none; padding: 0; }
   font-family: var(--sans);
   font-size: var(--f-kicker);
   font-weight: 400;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   color: var(--t3);
 }
 .shelf a {
@@ -1555,6 +1555,9 @@ ul, ol { list-style: none; padding: 0; }
      block. Step it back to --dash (#ddd) at this width: it still closes the
      mast, it just stops pressing on the page. Desktop keeps #c8c8c8. */
   .mast { border-bottom-color: var(--dash); }
+  /* The footer closes with the same rule the mast does. On the phone that
+     rule is --dash, so the footer's top edge steps back with it. */
+  .site-foot { border-top-color: var(--dash); }
   .wordmark {
     max-width: 100%;
     font-size: clamp(1.0625rem, calc(var(--f-wordmark) - 0.35vw), var(--f-wordmark));

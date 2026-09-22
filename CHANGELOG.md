@@ -43,7 +43,9 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 - Home feature: `home.pin` slug, else the newest. Stream omits that note. Eyebrow is Recommended when pinned. No rule under the hero — the eyebrow and the title mark the note.
 - Kind and tag pages keep the wide column (the rows carry thumbs) and get the same bottom air as the reading pages, `--sp-12`.
 - Hero and lead titles get `text-wrap: balance`.
-- Kicker tracking tightened from 0.2em to 0.16em (2.4px reads as scattered at 12px).
+- Small labels share one tracking, 0.14em. The hero issue line and the browse heads were the last two at 0.16em.
+- The footer wordmark uses the display role, the same face, weight, and tracking as the mast. A site that sets `displayFont` no longer leaves the footer on the old face.
+- On a phone the footer's closing rule steps back to `--dash` with the mast's, so the two ends of the page use one line.
 - Stack rows use 16px of padding, so each hairline reads as a shelf instead of cutting the row.
 - Article cover: back-link and date on one line (`← Notes · 2025.05.09`) with a dot between them; the title keeps its own line.
 - Anchor scrolling is smooth, with a reduced-motion guard; heading `scroll-margin-top` 12px → 32px.
