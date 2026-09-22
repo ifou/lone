@@ -4,19 +4,13 @@ Astro 博客主题。标题明朝、正文角哥、青梅绿。只有白天。
 
 [English](README.md)
 
-<img src="docs/screenshot.jpg" alt="桌面端首页" width="100%">
-
-<img src="docs/screenshot-mobile.jpg" alt="移动端首页" width="220">
-
-*截图来自一个用本主题搭建的站点，所以显示的是那个站自己的名字和文章。你的内容与配置写在 `ume.config.ts` 里。*
-
-用这个仓库当 GitHub 模板，或作为依赖，在站点根目录放自己的 `ume.config.ts`。
+用这个仓库当 GitHub 模板，或作为依赖安装，在站点根目录放自己的 `ume.config.ts`。
 
 ## 功能
 
-- Markdown 文章（`src/content/blog/`）
+- Markdown 文章，放在 `src/content/blog/`
 - 首页一张全幅风景，下面是头条和带日期纵列的笔记流（有封面才出缩略图）
-- 笔记在 `/notes/<slug>/`
+- 笔记在 `/notes/<slug>/`，带照片、目录、上一篇 / 下一篇
 - 按年归档、分类（`/categories/`）、标签、分页
 - About、RSS、404、sitemap
 - 一份配置：`ume.config.ts`
@@ -33,6 +27,18 @@ npm run dev
 
 Node 22+。
 
+## 作为依赖
+
+```json
+{
+  "dependencies": {
+    "ume": "github:fennlee/ume"
+  }
+}
+```
+
+在 `astro.config` 里从 `ume`（或 `ume/src`）引入。站点根目录放 `ume.config.ts`，主题以 `ume/config` 读取。文章写在站点自己的 `src/content/blog/`，照片放在站点自己的 `public/`。
+
 ## 目录
 
 ```text
@@ -45,7 +51,7 @@ Node 22+。
 └── public/
 ```
 
-文章头：`title`、`date`、`description`、`category`（`note` | `travel`），可选 `tags`、`lang`、`cover`、`images`。
+文章头需要 `title`、`date`、`description`、`category`（`note` 或 `travel`）。可选 `tags`、`lang`、`cover`、`images`。
 
 ## 配置
 
@@ -53,17 +59,18 @@ Node 22+。
 
 | 键 | |
 |---|---|
-| `site` | 站名、网址、邮箱、GitHub、favicon、年份 |
+| `site` | 站名、字标、网址、作者、邮箱、GitHub、favicon、年份 |
 | `nav` | 顶栏 |
 | `home` | 标题、导语、头图、流标题、每页条数、pin（slug；空则最新一篇） |
 | `archive` / `tags` / `categories` | 归档、标签、分类 |
 | `about` | 关于页 |
 | `notFound` | 404 |
 | `ui` | 固定界面文案 |
+| `social` | 页脚链接，默认空 |
 
-照片放站点 `public/`，用配置指向它们。不要改主题源码。
+`home.hero` 和文章封面指向 `public/` 里的文件。换站点不要改主题源码。
 
-颜色在 `src/styles/global.css`。
+颜色和字号在 `src/styles/global.css`。
 
 ## 命令
 

@@ -4,20 +4,14 @@ A magazine-style Astro blog theme. Mincho titles, gothic body, ume green. Light 
 
 [简体中文](README.zh-CN.md)
 
-<img src="docs/screenshot.jpg" alt="Home on desktop" width="100%">
-
-<img src="docs/screenshot-mobile.jpg" alt="Home on a phone" width="220">
-
-*Screenshots show a live site built on this theme, so they carry that site's own name and posts. Your content and config go in `ume.config.ts`.*
-
-Use this repository as a GitHub template, or add it as a dependency and keep your own `ume.config.ts` at the site root.
+Use this repository as a GitHub template, or install it as a dependency and keep your own `ume.config.ts` at the site root.
 
 ## Features
 
-- Markdown posts (`src/content/blog/`)
-- Home: one landscape, then a lead note and a date-rail stream (thumb only when the note has a cover)
-- Notes at `/notes/<slug>/`
-- Archive by year, kinds (`/categories/`), tags, pagination
+- Markdown posts in `src/content/blog/`
+- Home: one landscape, then a lead note and a date-rail stream (a thumb only when the note has a cover)
+- Notes at `/notes/<slug>/`, with photos, a contents list, and older/newer links
+- Archive by year, kinds (`/categories/`), tags, and pagination
 - About, RSS, 404, sitemap
 - One config file: `ume.config.ts`
 - Light theme
@@ -33,21 +27,33 @@ npm run dev
 
 Node 22+.
 
+## As a dependency
+
+```json
+{
+  "dependencies": {
+    "ume": "github:fennlee/ume"
+  }
+}
+```
+
+Import `ume` from `ume` (or `ume/src`) in `astro.config`. Put `ume.config.ts` at the site root — the theme reads it as `ume/config`. Write posts in the site's `src/content/blog/`, and put photos in the site's `public/`.
+
 ## Project structure
 
 ```text
 /
 ├── ume.config.ts        # site, home, about, archive
 ├── src/
-│   ├── content/blog/     # posts
+│   ├── content/blog/    # posts
 │   ├── pages/
 │   ├── layouts/
 │   ├── components/
-│   └── styles/global.css # colors
+│   └── styles/global.css
 └── public/
 ```
 
-Posts use `title`, `date`, `description`, `category` (`note` | `travel`), optional `tags`, `lang`, `cover`, `images`.
+A post needs `title`, `date`, `description`, and `category` (`note` or `travel`). Optional: `tags`, `lang`, `cover`, `images`.
 
 ## Configuration
 
@@ -55,17 +61,18 @@ Edit [`ume.config.ts`](ume.config.ts):
 
 | Key | |
 |---|---|
-| `site` | name, motto, url, email, github, favicon, years |
+| `site` | name, wordmark, motto, url, author, email, github, favicon, years |
 | `nav` | primary links |
-| `home` | title, lede, hero, streamLabel, pageSize, pin (slug; empty = newest) |
-| `archive` / `tags` / `categories` | page titles |
+| `home` | title, lede, hero, streamLabel, pageSize, pin (a slug; empty means the newest) |
+| `archive` / `tags` / `categories` | page titles and kind labels |
 | `about` | about page |
 | `notFound` | 404 copy |
 | `ui` | fixed UI strings |
+| `social` | footer links; empty by default |
 
-Put photos in the site `public/` directory and point the config at those URLs. Do not patch theme source files.
+Point `home.hero` and post covers at files in `public/`. Do not patch theme source to change a site.
 
-Colors: `src/styles/global.css`.
+Colors and type sizes live in `src/styles/global.css`.
 
 ## Commands
 
