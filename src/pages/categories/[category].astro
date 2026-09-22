@@ -16,7 +16,7 @@ const posts = all.filter((p) => categoryOf(p) === category);
 const label = catsCopy.labels[category] || category;
 ---
 <BaseLayout title={label} description={`${catsCopy.title}: ${label}`}>
-  <div class="wrap">
+  <div class="wrap list-page">
     <section class="news">
       <IssueHead
         title={label}

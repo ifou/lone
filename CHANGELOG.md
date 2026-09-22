@@ -31,8 +31,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 
 - Palette: the ume ramp is re-cut for contrast, not hue. `--ume` `#00865b` → `#00734e` (4.60:1 → 5.90:1), `--ume-hot` → `#00563a`, `--ume-deep` `#006b49` → `#065c43` (8.02:1, AAA). The old `ume` was legal for large type but thin for an 18px link; body-size text now uses `deep`.
 - Mast: taller and heavier. `--mast-h` 3.5rem → 4.75rem, nav 13px → 14px, and a dedicated `--mast-rule` (#c8c8c8) for the floor line — 30 grey steps past `--line`, where `--line` → `--dash` is only 9. At 639 the floor steps to `--dash` so a 119px phone header stops reading as a black seam.
-- Footer: a tinted paper band (`--ume-soft`) with a hairline, replacing both the deep-green inversion and the plain-paper version that lost the bottom of the page entirely.
-- Footer layout: brand — mark and motto on one baseline row — then a door row, a social row, hairline, colophon. One composition for desktop and phone instead of a two-column desktop grid that collapsed into a stacked phone block. On the phone the colophon is one row, copyright left and theme credit right.
+- Footer matches the mast: white paper, the same floor rule, wordmark and motto on the left, copyright and theme on the right. The tinted band, the second nav, and the social row are gone — those doors already live in the mast and on About.
 - Display role is configurable: `site.displayFont` / `displayWeight` / `displayTracking`. The wordmark and `h1` consume `--display`; `--serif` keeps h2–h4. Unset, the theme looks exactly as before.
 - Headings: `--f-h4` 19px → 20px (desktop) and 17px → 19px (phone, where it was *below* the 18px body); `--f-h3` 20px → 21px.
 - Reading measure `--read` 40rem → 37rem (71ch → 66ch on the live corpus); Latin leading 1.62, CJK 1.9 with a hair of tracking; Chinese paragraph gap 1.15em → 1.35em; link underline offset 0.18em → 2px.
@@ -40,12 +39,12 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 - Article table of contents: gothic chrome with a Contents label, so it no longer reads as the start of the body.
 - Home browse: By subject first (wide column), By kind on the right.
 - Language marks in chrome: `en` / `zh`.
-- About: letter, pull-quote, and stack rows instead of one undifferentiated dump.
-- Home feature: `home.pin` slug, else the newest. Stream omits that note. Eyebrow is Recommended when pinned.
-- Footer: colophon — brand and motto, then a hairline, then copyright and theme credit.
+- About: letter, then the quote set by size, then stack rows separated by hairlines. The quote is not boxed, and the stats line does not draw a second rule under the stack.
+- Home feature: `home.pin` slug, else the newest. Stream omits that note. Eyebrow is Recommended when pinned. No rule under the hero — the eyebrow and the title mark the note.
+- Kind and tag pages keep the wide column (the rows carry thumbs) and get the same bottom air as the reading pages, `--sp-12`.
 - Hero and lead titles get `text-wrap: balance`.
 - Kicker tracking tightened from 0.2em to 0.16em (2.4px reads as scattered at 12px).
-- About pull-quote gets a bottom rule and real air below, so it stops colliding with the stack. Stack rows 12px → 16px padding, so the hairline works as a shelf. Stats gets its own rule.
+- Stack rows use 16px of padding, so each hairline reads as a shelf instead of cutting the row.
 - Article cover: back-link and date on one line (`← Notes · 2025.05.09`) with a dot between them; the title keeps its own line.
 - Anchor scrolling is smooth, with a reduced-motion guard; heading `scroll-margin-top` 12px → 32px.
 - `sharp` is a declared dependency. `src/lib/images.ts` imports it to read intrinsic sizes, and it previously resolved only through Astro's optional-dependency hoisting — one npm layout away from a build failure on a fresh install.

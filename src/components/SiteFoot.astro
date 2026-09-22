@@ -1,11 +1,7 @@
 ---
-import { site, nav, ui, social } from 'ume/config';
+import { site, ui } from 'ume/config';
 
-const path = Astro.url.pathname;
-const doors = nav.filter((item) => item.href !== '/rss.xml');
-const notesCurrent = path === '/' || path.startsWith('/page/') || path.startsWith('/notes/');
 const themeName = ui.footTheme || 'ume';
-const socials = social ?? [];
 ---
 
 <footer class="site-foot">
@@ -14,28 +10,6 @@ const socials = social ?? [];
       <a class="foot-mark" href="/">{site.wordmark}</a>
       {site.motto && <p class="foot-motto">{site.motto}</p>}
     </div>
-    <nav class="foot-nav" aria-label={ui.ariaFoot}>
-      {doors.map((item) => (
-        <a
-          href={item.href}
-          aria-current={
-            item.href === '/'
-              ? notesCurrent ? 'page' : undefined
-              : path.startsWith(item.href.replace(/\/$/, '')) ? 'page' : undefined
-          }
-        >{item.label}</a>
-      ))}
-      {/* RSS already sits in the social row below; a second copy here made
-          the same door appear twice in one footer. */}
-    </nav>
-    {socials.length > 0 && (
-      <ul class="foot-social">
-        {socials.map((item) => (
-          <li><a href={item.href}>{item.label}</a></li>
-        ))}
-      </ul>
-    )}
-    <hr class="foot-rule" />
     <div class="foot-colophon">
       <p class="foot-copy">{ui.footCopyright(site.years, site.wordmark)}</p>
       <p class="foot-theme">

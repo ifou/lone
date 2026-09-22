@@ -376,12 +376,10 @@ ul, ol { list-style: none; padding: 0; }
   margin: var(--sp-10) 0 var(--sp-4);
 }
 
-/* One ume rule across the whole feature row, above the eyebrow. It used to
-   stop at the rail (136px) and read as a truncated fragment; the rule belongs
-   to the row, not to the date column inside it. */
+/* The feature is marked by the eyebrow and the larger title. A green rule
+   under the hero doubled that mark and cut the photo off. */
 .lead-note {
   padding: var(--sp-10) 0 var(--sp-2);
-  border-top: calc(var(--rule) * 2) solid var(--ume);
 }
 .lead {
   display: grid;
@@ -456,6 +454,10 @@ ul, ol { list-style: none; padding: 0; }
 .lead.no-thumb .lead-open { max-width: 40em; }
 
 .news { padding: var(--sp-2) 0 0; }
+/* Kind and tag pages have no browse band under the stream, so the last row
+   sat flush on the footer. Same bottom air as .page, without taking .page's
+   narrower measure — these rows carry thumbs. */
+.list-page { padding-bottom: var(--sp-12); }
 .stream { display: flex; flex-direction: column; }
 .stream > li + li { border-top: var(--rule) solid var(--line); }
 
@@ -1166,9 +1168,8 @@ ul, ol { list-style: none; padding: 0; }
 
 .about-page .issue-head { margin-bottom: var(--sp-8); }
 .about-letter { max-width: 36em; }
-/* The quote needed a bottom edge: above it a rule, below it air, then the
-   stack. Without the lower breathing room it read as a stray line jammed
-   against the first table row. */
+/* The quote is set off by size and weight, not by a ruled box. Rules belong
+   between the stack rows, where they separate items of the same kind. */
 .about-quote {
   font-family: var(--serif);
   font-size: var(--f-h3);
@@ -1176,9 +1177,6 @@ ul, ol { list-style: none; padding: 0; }
   line-height: var(--lh-lead);
   color: var(--t0);
   margin: var(--sp-10) 0 var(--sp-8);
-  padding: var(--sp-6) 0 var(--sp-6);
-  border-top: var(--rule) solid var(--line);
-  border-bottom: var(--rule) solid var(--line);
   max-width: 28em;
   text-wrap: pretty;
 }
@@ -1197,7 +1195,7 @@ ul, ol { list-style: none; padding: 0; }
   border-top: var(--rule) solid var(--line);
   min-height: var(--hit);
 }
-.about-stack-row:last-child { border-bottom: var(--rule) solid var(--line); }
+
 .about-stack dt {
   font-family: var(--sans);
   font-size: var(--f-kicker);
@@ -1216,12 +1214,10 @@ ul, ol { list-style: none; padding: 0; }
   color: var(--t3);
   font-weight: 400;
 }
-/* Stats was glued to the stack's last hairline. Give it its own rule and a
-   real gap so the three groups — letter, quote, stack, stats — read apart. */
+/* Stats sits under the stack's last hairline. Space separates it; another
+   rule would double the one the stack already drew. */
 .about-page .about-stats {
   margin-top: var(--sp-8);
-  padding-top: var(--sp-5);
-  border-top: var(--rule) solid var(--line);
 }
 
 .lost-note {
@@ -1269,49 +1265,43 @@ ul, ol { list-style: none; padding: 0; }
   letter-spacing: 0.06em;
 }
 
-/* Footer is a colophon, not an inverted mast: brand + motto, hairline,
-   then copyright and theme. Hover/focus stay on-photo on --ume-deep. */
-
+/* The footer is the mast's other end: the same white paper, closed by a rule
+   of the same weight. A tinted band made the bottom a different object from
+   the top, and a second nav repeated doors the mast already holds. */
 .site-foot {
   margin-top: auto;
-  /* A tinted paper band, not a slab and not another sheet of white. The
-     deep-green inversion was rejected as too loud; plain paper lost the
-     bottom of the page entirely — the reader had nothing to say "this is
-     where it ends". Soft tinted paper keeps the footer inside the document's
-     palette while shading it enough to read as a closed edge. */
-  border-top: var(--rule) solid var(--line);
-  background: var(--ume-soft);
-  color: var(--t2);
+  border-top: var(--rule) solid var(--mast-rule);
+  background: var(--paper);
+  color: var(--t3);
   font-size: var(--f-meta);
   letter-spacing: 0.04em;
-  padding: var(--sp-10) 0 var(--sp-8);
+  padding: var(--sp-5) 0;
 }
-/* --ume on --ume-soft measures 4.13:1, under AA. Accents in here use the
-   darker steps that clear it (hot 5.28, deep 5.88). */
 .site-foot a:hover { color: var(--ume-hot); }
 .site-foot a:focus-visible {
   outline: var(--rule) solid var(--ume-deep);
   outline-offset: 3px;
 }
 
+/* Desktop: one row. Brand on the left, the colophon on the right — the same
+   two ends the mast uses for the wordmark and the nav. */
 .foot-inner {
   display: flex;
-  flex-direction: column;
-  gap: var(--sp-6);
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  row-gap: var(--sp-3);
+  column-gap: var(--sp-8);
 }
 
-/* Desktop: brand sits as one row — mark on the left, motto beside it — with
-   the door links and the social row stacked underneath, all left-aligned so
-   the phone layout is the same composition with less room rather than a
-   different one. */
 .foot-brand {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: baseline;
-  /* Longhand, not `gap: var() var()` — see .foot-nav. */
   row-gap: var(--sp-2);
-  column-gap: var(--sp-5);
+  column-gap: var(--sp-4);
   min-width: 0;
 }
 
@@ -1320,109 +1310,30 @@ ul, ol { list-style: none; padding: 0; }
   font-size: var(--f-wordmark);
   font-weight: 700;
   line-height: 1;
-  color: var(--t0);
+  color: var(--ume);
   letter-spacing: 0.06em;
   width: fit-content;
 }
 .foot-mark:hover { color: var(--ume-hot); }
 
 .foot-motto {
-  font-family: var(--text);
-  font-size: var(--f-open);
+  font-family: var(--sans);
+  font-size: var(--f-meta);
   font-weight: var(--fw-body);
   line-height: var(--lh-open);
-  letter-spacing: 0;
-  color: var(--t2);
-  max-width: 22em;
+  letter-spacing: 0.04em;
+  color: var(--t3);
+  max-width: 28em;
   text-wrap: pretty;
-}
-
-/* Social row: small caps, hairline-separated. */
-.foot-social {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0;
-  margin: var(--sp-1) 0 0;
-  padding: 0;
-  list-style: none;
-  font-size: var(--f-kicker);
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-}
-.foot-social li {
-  display: flex;
-  align-items: center;
-}
-.foot-social li + li::before {
-  content: "";
-  width: 1.4em;
-  height: var(--rule);
-  background: var(--dash);
-}
-.foot-social a {
-  color: var(--t2);
-  display: inline-flex;
-  align-items: center;
-  min-height: var(--hit);
-}
-.foot-social a:hover { color: var(--ume-deep); }
-
-/* Door links as one horizontal row, left-aligned under the brand. The row
-   reads as a sentence of doors instead of a column pushed to the right
-   edge — the phone layout is the same row with the same rhythm. */
-.foot-nav {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  /* Split, not shorthand: a flex `gap` written as `var() var()` computes to
-     `normal` in Chrome, which is zero. The longhand form keeps the room
-     between doors. */
-  row-gap: var(--sp-2);
-  column-gap: var(--sp-5);
-  font-size: var(--f-open);
-  letter-spacing: 0.05em;
-  text-align: left;
-}
-.foot-nav a {
-  color: var(--t2);
-  display: inline-flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 0.55em;
-  min-height: 2.25rem;
-  padding: 0;
-}
-.foot-nav a[aria-current="page"] {
-  color: var(--t0);
-}
-.foot-nav a[aria-current="page"]::after {
-  content: "";
-  width: 0.3em;
-  height: 0.3em;
-  border-radius: 50%;
-  background: currentColor;
-}
-
-.foot-rule {
-  display: block;
-  width: 100%;
-  height: 0;
-  margin: 0;
-  border: 0;
-  border-top: var(--rule) solid var(--line);
 }
 
 .foot-colophon {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
   flex-wrap: wrap;
-  /* Longhand, not shorthand: see .foot-nav. */
-  row-gap: var(--sp-3);
-  column-gap: var(--sp-8);
-  color: var(--t2);
+  row-gap: var(--sp-2);
+  column-gap: var(--sp-5);
+  color: var(--t3);
   font-variant-numeric: tabular-nums;
   line-height: var(--lh-open);
 }
@@ -1464,41 +1375,19 @@ ul, ol { list-style: none; padding: 0; }
   transform: translateY(-50%);
 }
 
-.foot-theme a:hover { color: var(--on-photo); }
+.foot-theme a:hover { color: var(--ume-hot); }
 
 @media (max-width: 639px) {
-  .site-foot { padding: var(--sp-8) 0 var(--sp-6); }
-  /* The footer is the same four left-aligned rows as on desktop, only with
-     less air between them. Nothing moves to the right and nothing switches
-     to a column, so the phone keeps one straight edge down the page. */
-  .foot-inner { gap: var(--sp-5); }
-  .foot-brand {
-    /* Longhand, and it must beat the base rule: a shorthand here would
-       compute to `normal` in Chrome and erase the base column-gap. */
+  .site-foot { padding: var(--sp-4) 0; }
+  /* Two rows, both left-aligned: brand, then the colophon. Same paper, same
+     rule — not a tinted slab with its own nav. */
+  .foot-inner {
+    flex-direction: column;
+    align-items: flex-start;
     row-gap: var(--sp-2);
-    column-gap: var(--sp-4);
   }
-  .foot-motto { max-width: 24em; }
-  .foot-nav {
-    /* Longhand, not the shorthand — see .foot-nav in the base rules. */
-    row-gap: var(--sp-1);
-    column-gap: var(--sp-4);
-    font-size: var(--f-nav);
-  }
-  .foot-nav a { min-height: var(--hit); }
-  .foot-social a { min-height: var(--hit); }
-  /* One colophon row on the phone: copyright left, theme credit right, the
-     same two ends as desktop. At 390 the pair measures 181px inside a 350px
-     row, so it holds on one line — and the credit stays a trailing note
-     beside the copyright rather than a second orphaned row under it. */
-  .foot-colophon {
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: baseline;
-    justify-content: space-between;
-    row-gap: var(--sp-1);
-    column-gap: var(--sp-4);
-  }
+  .foot-brand { column-gap: var(--sp-3); }
+  .foot-colophon { column-gap: var(--sp-4); }
 }
 
 .browse {
