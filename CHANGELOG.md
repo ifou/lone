@@ -6,6 +6,10 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 
 ### Changed
 
+- The phone mast is one row. A menu button opens a drawer from the right;
+  the links are no longer a second row. On a wide screen, Day / Night sits
+  apart from the nav, in its own outline.
+
 - `toc`: a note can set `toc: false` to drop its table of contents. It
   defaults to on. The automatic number in front of a heading is gone; the
   contents list keeps its own.

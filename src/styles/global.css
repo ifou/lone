@@ -286,6 +286,89 @@ ul, ol { list-style: none; padding: 0; }
 }
 .mast-desk { display: flex; }
 .mast-phone { display: none; pointer-events: none; }
+
+.menu-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--hit);
+  height: var(--hit);
+  margin-left: auto;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.menu-bars,
+.menu-bars::before,
+.menu-bars::after {
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background: var(--t1);
+  border-radius: 1px;
+}
+.menu-bars { position: relative; }
+.menu-bars::before,
+.menu-bars::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+.menu-bars::before { top: -6px; }
+.menu-bars::after { top: 6px; }
+
+.drawer[hidden] { display: none; }
+.drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+}
+.drawer-veil {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  padding: 0;
+  background: rgb(0 0 0 / 0.4);
+  cursor: pointer;
+}
+.drawer-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  width: min(18rem, 84vw);
+  height: 100%;
+  padding: var(--sp-6) var(--sp-5);
+  background: var(--paper);
+  box-shadow: -12px 0 32px rgb(0 0 0 / 0.08);
+}
+.drawer-close {
+  align-self: flex-end;
+  min-height: var(--hit);
+  padding: 0 var(--sp-2);
+  border: 0;
+  background: none;
+  color: var(--t2);
+  cursor: pointer;
+  font-family: var(--sans);
+  font-size: var(--f-nav);
+  letter-spacing: 0.06em;
+}
+.drawer-panel a {
+  display: flex;
+  align-items: center;
+  min-height: var(--hit);
+  border-bottom: var(--rule) solid var(--line);
+  color: var(--t1);
+  font-size: var(--f-nav);
+  letter-spacing: 0.06em;
+}
+.drawer-panel a:hover,
+.drawer-panel a[aria-current="page"] { color: var(--ume); }
+html.menu-open { overflow: hidden; }
+
 .mast-row {
   display: flex;
   align-items: center;
@@ -336,6 +419,12 @@ ul, ol { list-style: none; padding: 0; }
   box-shadow: inset 0 calc(var(--rule) * -2) 0 var(--ume);
 }
 
+.mast-desk .theme-toggle {
+  margin-left: var(--sp-5);
+  padding: 0 var(--sp-3);
+  border: var(--rule) solid var(--line);
+  border-radius: 999px;
+}
 .theme-toggle {
   display: inline-flex;
   align-items: center;
@@ -1598,13 +1687,11 @@ ul, ol { list-style: none; padding: 0; }
      and there would be two places to look for one distance. */
   .mast-desk { display: none; pointer-events: none; }
   .mast-phone {
-    display: flex;
+    display: block;
     pointer-events: auto;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
     padding: var(--sp-6) 0;
   }
+  .menu-btn { display: inline-flex; }
   /* The mast's base rule was tuned for the 77px desktop bar. On a phone the
      header is 119px tall and the band already has the lighter --line above
      the nav, so --mast-rule lands as a heavy black seam under the whole
@@ -1643,30 +1730,6 @@ ul, ol { list-style: none; padding: 0; }
      of small text. Pushing it to the far right makes it a deliberate second
      layer under a sharp left corner, and at phone widths the room it leaves
      beside it is part of the composition instead of dead space. */
-  .topnav {
-    width: 100%;
-    justify-content: flex-end;
-    gap: var(--sp-2) var(--sp-4);
-    margin-top: var(--sp-4);
-    padding-top: var(--sp-3);
-    padding-bottom: 0;
-    border-top: var(--rule) solid var(--line);
-  }
-  .topnav a {
-    position: relative;
-    min-height: 0;
-    padding: 0;
-  }
-  /* The 44x44 hit area, decoupled from the line box the nav occupies. */
-  .topnav a::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    translate: -50% -50%;
-    width: var(--hit);
-    height: var(--hit);
-  }
 
   .lead {
     display: flex;

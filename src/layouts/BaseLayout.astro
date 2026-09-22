@@ -113,19 +113,26 @@ const displayCss = display.family
                 }
               >{item.label}</a>
             ))}
-            <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Switch to night">
-            <span class="theme-opt" data-day>Day</span><span class="theme-bar" aria-hidden="true"></span><span class="theme-opt" data-night>Night</span>
-            </button>
           </nav>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Switch to night">
+            <span class="theme-opt" data-day>Day</span><span class="theme-bar" aria-hidden="true"></span><span class="theme-opt" data-night>Night</span>
+          </button>
         </div>
         <div class="wrap mast-phone">
           <div class="mast-brand">
             <a class="wordmark" href="/">{site.wordmark}</a>
+            <button class="menu-btn" type="button" data-menu-open aria-expanded="false" aria-controls="site-drawer" aria-label="Open menu">
+              <span class="menu-bars" aria-hidden="true"></span>
+            </button>
             <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Switch to night">
             <span class="theme-opt" data-day>Day</span><span class="theme-bar" aria-hidden="true"></span><span class="theme-opt" data-night>Night</span>
           </button>
           </div>
-          <nav class="topnav" aria-label={ui.ariaNav}>
+        </div>
+        <div class="drawer" id="site-drawer" hidden>
+          <button class="drawer-veil" type="button" data-menu-close tabindex="-1" aria-label="Close menu"></button>
+          <nav class="drawer-panel" aria-label={ui.ariaNav}>
+            <button class="drawer-close" type="button" data-menu-close aria-label="Close menu">Close</button>
             {nav.map((item) => (
               <a
                 href={item.href}
@@ -165,6 +172,26 @@ const displayCss = display.family
       if (meta) meta.setAttribute('content', dark ? '#161616' : '#ffffff');
       paint();
     }); });
+  })();
+  </script>
+  <script is:inline>
+  (function () {
+    var drawer = document.getElementById('site-drawer');
+    var openBtn = document.querySelector('[data-menu-open]');
+    if (!drawer || !openBtn) return;
+    function set(open) {
+      drawer.hidden = !open;
+      openBtn.setAttribute('aria-expanded', String(open));
+      openBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      document.documentElement.classList.toggle('menu-open', open);
+    }
+    openBtn.addEventListener('click', function () { set(drawer.hidden); });
+    drawer.querySelectorAll('[data-menu-close]').forEach(function (el) {
+      el.addEventListener('click', function () { set(false); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !drawer.hidden) set(false);
+    });
   })();
   </script>
   </body>
