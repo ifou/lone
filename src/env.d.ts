@@ -23,6 +23,8 @@ declare module 'ume/config' {
     favicon: string;
     rssTitle: string;
     years: string;
+    /** Filing record. Leave href and text empty to hide it. */
+    icp?: { href: string; text: string };
   };
 
   export const nav: { href: string; label: string }[];

@@ -20,6 +20,8 @@ export const site = {
   favicon: '/favicon.svg',
   rssTitle: '',
   years: '2016–2026',
+  /** Filing record in the footer. Omit and the line is not rendered. */
+  icp: { href: '', text: '' },
 };
 
 /** Footer social row. Empty by default; override per site. */

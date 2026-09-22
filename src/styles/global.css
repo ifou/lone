@@ -3,7 +3,7 @@
 /* @font-face is inlined from src/styles/fonts.css into <head> so first
    paint already has the faces. Stacks: webfont, metric fallback, system CJK. */
 
-/* ume — white paper, ume, mincho titles, gothic body. Light only.
+/* ume — white paper, ume, mincho titles, gothic body.
    Desktop values live in :root. Phone values live in the 639 block.
    One role, one size. Components consume tokens; do not add stray px. */
 
@@ -131,6 +131,24 @@
   --rule: 1px;
   --h2-hang: 1.6em;
   --gallery: 3;
+}
+
+/* Night. Same structure, inverted paper. The ume green is lifted so it
+   still reads as the accent on a near-black sheet. */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --t0: #e8e8e8;
+  --t1: #d4d4d4;
+  --t2: #a8a8a8;
+  --t3: #8a8a8a;
+  --ume: #3dba8b;
+  --ume-hot: #7ed9b8;
+  --ume-deep: #8ee0c2;
+  --line: #2c2c2c;
+  --dash: #2a2a2a;
+  --mast-rule: #3a3a3a;
+  --paper: #161616;
+  --soft: #1e1e1e;
 }
 
 @media (max-width: 639px) {
@@ -266,7 +284,9 @@ ul, ol { list-style: none; padding: 0; }
      without competing with anything a reader is trying to read. */
   border-bottom: var(--rule) solid var(--mast-rule);
 }
-.mast-inner {
+.mast-desk { display: flex; }
+.mast-phone { display: none; pointer-events: none; }
+.mast-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -275,6 +295,13 @@ ul, ol { list-style: none; padding: 0; }
   padding: var(--sp-2) 0;
 }
 
+.mast-brand {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  min-width: 0;
+}
 .wordmark {
   font-family: var(--display);
   font-size: var(--f-wordmark);
@@ -289,7 +316,7 @@ ul, ol { list-style: none; padding: 0; }
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  gap: var(--sp-2) var(--sp-3);
+  gap: var(--sp-2) var(--sp-5);
   font-size: var(--f-nav);
   letter-spacing: 0.06em;
   color: var(--t1);
@@ -309,6 +336,35 @@ ul, ol { list-style: none; padding: 0; }
   box-shadow: inset 0 calc(var(--rule) * -2) 0 var(--ume);
 }
 
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--hit);
+  min-height: var(--hit);
+  margin-left: var(--sp-2);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--t2);
+  cursor: pointer;
+  font-family: var(--sans);
+  font-size: var(--f-nav);
+  letter-spacing: 0.06em;
+}
+.theme-toggle { gap: 0.7em; }
+.theme-bar {
+  width: var(--rule);
+  height: 0.85em;
+  background: var(--mast-rule);
+}
+.theme-opt { color: var(--t3); }
+.theme-opt[data-day] { color: var(--ume); }
+:root[data-theme='dark'] .theme-opt[data-day] { color: var(--t3); }
+:root[data-theme='dark'] .theme-opt[data-night] { color: var(--ume); }
+.theme-toggle:hover .theme-opt { color: var(--ume-hot); }
+.theme-toggle:hover .theme-opt[data-day],
+:root[data-theme='dark'] .theme-toggle:hover .theme-opt[data-night] { color: var(--ume); }
 .hero {
   position: relative;
   min-height: var(--hero-h);
@@ -888,6 +944,8 @@ ul, ol { list-style: none; padding: 0; }
 }
 .prose pre code { background: none; padding: 0; }
 .prose pre code span { color: var(--shiki-light, inherit); }
+:root[data-theme='dark'] .prose pre code span { color: var(--shiki-dark, inherit); }
+:root[data-theme='dark'] .prose pre code span { color: var(--shiki-dark, inherit); }
 .prose hr { border: 0; border-top: var(--rule) solid var(--line); margin: 2em 0; }
 .prose img {
   max-width: 100%;
@@ -1340,6 +1398,10 @@ ul, ol { list-style: none; padding: 0; }
 
 .foot-copy { color: inherit; }
 
+.foot-icp { color: inherit; }
+.foot-icp a { color: var(--ume-deep); }
+.foot-icp a:hover { color: var(--ume-hot); }
+
 .foot-theme {
   display: inline-flex;
   align-items: baseline;
@@ -1543,7 +1605,10 @@ ul, ol { list-style: none; padding: 0; }
   /* No gap on this container: it stacks two bands whose spacing is declared
      on the bands themselves. A flex gap would add to the nav's own margins
      and there would be two places to look for one distance. */
-  .mast-inner {
+  .mast-desk { display: none; pointer-events: none; }
+  .mast-phone {
+    display: flex;
+    pointer-events: auto;
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
@@ -1558,6 +1623,7 @@ ul, ol { list-style: none; padding: 0; }
   /* The footer closes with the same rule the mast does. On the phone that
      rule is --dash, so the footer's top edge steps back with it. */
   .site-foot { border-top-color: var(--dash); }
+  .mast-brand { width: 100%; }
   .wordmark {
     max-width: 100%;
     font-size: clamp(1.0625rem, calc(var(--f-wordmark) - 0.35vw), var(--f-wordmark));

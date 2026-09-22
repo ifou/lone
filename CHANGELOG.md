@@ -4,6 +4,15 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 
 ## [Unreleased]
 
+### Added
+
+- Night. The page follows the system until a choice is made, then keeps it.
+  The switch is a Day / Night pair in the mast: the current one in ume, the
+  other in grey, a hairline between them. Paper goes to `#161616` and the ume
+  ramp is lifted so it still reads on it.
+- `site.icp`: an optional filing line under the copyright. Empty, and the
+  footer does not render it.
+
 ### Renamed
 
 - The theme is `ume`, not `plum`. `plum` reads as the fruit and `green plum` in

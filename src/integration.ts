@@ -23,6 +23,7 @@ export default function ume(): AstroIntegration {
             shikiConfig: {
               themes: {
                 light: 'min-light',
+                dark: 'min-dark',
               },
               defaultColor: false,
               wrap: false,
