@@ -31,8 +31,11 @@ const coverSize = cover ? await measure(cover) : { width: 1920, height: 1280 };
     {cover && <img src={cover} srcset={srcsetOf(cover)} sizes="(max-width: 639px) 100vw, 900px" alt="" width={coverSize.width || 1920} height={coverSize.height || 1280} fetchpriority="high" decoding="async" />}
     {cover && <div class="cover-scrim" aria-hidden="true"></div>}
     <div class="cover-copy">
-      <a class="back is-on-photo" href="/">{ui.backToNotes}</a>
-      <time class="meta" datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+      <div class="cover-line">
+        <a class="back is-on-photo" href="/">{ui.backToNotes}</a>
+        <span class="cover-dot" aria-hidden="true">·</span>
+        <time class="meta" datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+      </div>
       <h1 class="note-title" lang={post.data.lang || undefined}>{post.data.title}</h1>
     </div>
   </header>

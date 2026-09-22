@@ -1,4 +1,4 @@
-# plum
+# ume
 
 Astro 博客主题。标题明朝、正文角哥、青梅绿。只有白天。
 
@@ -15,7 +15,6 @@ Astro 博客主题。标题明朝、正文角哥、青梅绿。只有白天。
 - 笔记在 `/notes/<slug>/`
 - 按年归档、分类（`/categories/`）、标签、分页
 - About、RSS、404、sitemap
-- 可选诗集页（`src/content/poems/`），不进顶栏
 - 一份配置：`plum.config.ts`
 - 浅色
 
@@ -37,7 +36,6 @@ Node 22+。
 ├── plum.config.ts
 ├── src/
 │   ├── content/blog/
-│   ├── content/poems/
 │   ├── pages/
 │   └── styles/global.css
 └── public/

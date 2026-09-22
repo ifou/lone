@@ -1,4 +1,4 @@
-# plum
+# ume
 
 A magazine-style Astro blog theme. Mincho titles, gothic body, ume green. Light only.
 
@@ -15,7 +15,6 @@ Use this repository as a GitHub template, or add it as a dependency and keep you
 - Notes at `/notes/<slug>/`
 - Archive by year, kinds (`/categories/`), tags, pagination
 - About, RSS, 404, sitemap
-- Optional poems page (`src/content/poems/`) — not linked from the mast
 - One config file: `plum.config.ts`
 - Light theme
 
@@ -37,7 +36,6 @@ Node 22+.
 ├── plum.config.ts        # site, home, about, archive
 ├── src/
 │   ├── content/blog/     # posts
-│   ├── content/poems/    # optional poems
 │   ├── pages/
 │   ├── layouts/
 │   ├── components/

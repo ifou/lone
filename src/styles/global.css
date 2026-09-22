@@ -55,7 +55,6 @@
   --f-h3: 1.25rem;
   --f-h4: 1.1875rem;
   --f-code: 0.875rem;
-  --f-verse: 1.0625rem;
   --f-pager: 1.125rem;
 
   --lh-display: 1.18;
@@ -64,7 +63,6 @@
   --lh-body: 1.7;
   --lh-cjk: 1.9;
   --lh-open: 1.65;
-  --lh-verse: 2.05;
   --lh-code: 1.6;
 
   --sp-2: 0.5rem;
@@ -114,7 +112,6 @@
     --f-h3: 1.1875rem;
     --f-h4: 1.0625rem;
     --f-code: 0.875rem;
-    --f-verse: 1.0625rem;
     --f-pager: 1.0625rem;
 
     --lh-body: 1.75;
@@ -125,7 +122,9 @@
     --hero-h: 16rem;
     --cover-h: 14rem;
     --mast-h: auto;
-    --rail: 3.5rem;
+    /* 3.5rem (56px) left 2px of the month string ("2026/01" measures 42px)
+       with 1px over. 4rem puts a full 12px of air inside the rail. */
+    --rail: 4rem;
     --lead-rail: 0;
     --thumb: 100%;
     --thumb-h: auto;
@@ -162,6 +161,9 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: geometricPrecision;
   font-synthesis: none;
+  /* Anchor jumps from the TOC should glide, not snap. Reduced motion turns
+     it back off further down. */
+  scroll-behavior: smooth;
 }
 
 body {
@@ -270,7 +272,11 @@ ul, ol { list-style: none; padding: 0; }
 .hero-scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgb(0 0 0 / 0.14) 0%, rgb(0 0 0 / 0.22) 36%, rgb(0 30 20 / 0.68) 100%);
+  /* The kicker sits at ~61% of the frame, where the photo is still bright
+     (blossom averages 146, peaks 236). A 0.14→0.22 wash measured 2.7:1 for
+     12px white text. Hold 0.48 through the kicker, then deepen into the
+     lede so the copy always sits on a dark ground. */
+  background: linear-gradient(180deg, rgb(0 0 0 / 0.18) 0%, rgb(0 20 14 / 0.48) 34%, rgb(0 20 14 / 0.62) 62%, rgb(0 30 20 / 0.74) 100%);
   pointer-events: none;
 }
 .hero-copy {
@@ -284,9 +290,9 @@ ul, ol { list-style: none; padding: 0; }
 }
 .hero-issue {
   font-size: var(--f-kicker);
-  letter-spacing: 0.2em;
+  letter-spacing: 0.16em;
   color: var(--on-photo);
-  text-shadow: 0 1px 18px rgb(0 30 20 / 0.45);
+  text-shadow: 0 1px 18px rgb(0 20 14 / 0.55);
   margin-bottom: var(--sp-4);
 }
 .hero-title {
@@ -295,8 +301,9 @@ ul, ol { list-style: none; padding: 0; }
   font-weight: 700;
   line-height: var(--lh-display);
   color: var(--on-photo);
-  text-shadow: 0 1px 18px rgb(0 30 20 / 0.45);
+  text-shadow: 0 1px 20px rgb(0 20 14 / 0.6), 0 0 34px rgb(0 20 14 / 0.32);
   max-width: 12em;
+  text-wrap: balance;
 }
 .hero-lede {
   margin-top: var(--sp-3);
@@ -315,13 +322,20 @@ ul, ol { list-style: none; padding: 0; }
   margin: var(--sp-10) 0 var(--sp-4);
 }
 
-.lead-note { padding: var(--sp-10) 0 var(--sp-2); }
+/* One ume rule across the whole feature row, above the eyebrow. It used to
+   stop at the rail (136px) and read as a truncated fragment; the rule belongs
+   to the row, not to the date column inside it. */
+.lead-note {
+  padding: var(--sp-10) 0 var(--sp-2);
+  border-top: calc(var(--rule) * 2) solid var(--ume);
+}
 .lead {
   display: grid;
   grid-template-columns: var(--lead-rail) 1fr var(--lead-thumb);
   gap: var(--sp-8);
   align-items: start;
   color: inherit;
+  padding-top: var(--sp-4);
 }
 .lead:hover { color: inherit; }
 .lead-left {
@@ -329,7 +343,6 @@ ul, ol { list-style: none; padding: 0; }
   flex-direction: column;
   gap: var(--sp-2);
   padding-top: var(--sp-3);
-  border-top: calc(var(--rule) * 2) solid var(--ume);
 }
 .lead-eyebrow {
   font-size: var(--f-kicker);
@@ -348,6 +361,7 @@ ul, ol { list-style: none; padding: 0; }
   font-weight: 700;
   line-height: var(--lh-lead);
   color: var(--t0);
+  text-wrap: balance;
 }
 .lead:hover .lead-title { color: var(--ume); }
 .lead-open {
@@ -443,6 +457,7 @@ ul, ol { list-style: none; padding: 0; }
   font-weight: 700;
   line-height: var(--lh-title);
   color: var(--t0);
+  text-wrap: balance;
 }
 .row:hover .entry-title { color: var(--ume); }
 .entry-open {
@@ -529,6 +544,26 @@ ul, ol { list-style: none; padding: 0; }
 
 .empty { color: var(--t3); padding: var(--sp-8) 0; }
 
+/* Deeper pages: a quiet masthead instead of a second hero. Label left, page
+   mark right, rule under both. */
+.paged-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  margin: var(--sp-10) 0 var(--sp-5);
+  padding-bottom: var(--sp-3);
+  border-bottom: var(--rule) solid var(--line);
+}
+.paged-head .block-title { margin: 0; }
+.paged-mark {
+  font-size: var(--f-kicker);
+  letter-spacing: 0.14em;
+  color: var(--t3);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
 .cover-hero {
   position: relative;
   color: var(--on-photo);
@@ -573,6 +608,18 @@ ul, ol { list-style: none; padding: 0; }
   text-shadow: 0 1px 14px rgb(0 20 16 / 0.55);
   margin-bottom: 0;
 }
+/* Back-link and date on one line: stacked, the date read as part of the link.
+   Inline keeps the 44px hit area and reads as one stamp. */
+.cover-line {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0 var(--sp-3);
+  margin-bottom: var(--sp-2);
+}
+.cover-line .back { margin-bottom: 0; }
+.cover-line .meta { display: inline; }
+.cover-dot { color: rgb(255 255 255 / 0.5); }
 .cover-copy .note-title {
   color: var(--on-photo);
   text-shadow: 0 1px 18px rgb(0 20 16 / 0.7), 0 0 28px rgb(0 20 16 / 0.35);
@@ -770,7 +817,7 @@ ul, ol { list-style: none; padding: 0; }
   outline: var(--rule) solid oklch(0 0 0 / 0.1);
   outline-offset: -1px;
 }
-.prose h2, .prose h3, .prose h4, .prose h5 { scroll-margin-top: var(--sp-3); }
+.prose h2, .prose h3, .prose h4, .prose h5 { scroll-margin-top: var(--sp-8); }
 .prose table {
   width: 100%;
   border-collapse: collapse;
@@ -1055,28 +1102,34 @@ ul, ol { list-style: none; padding: 0; }
 
 .about-page .issue-head { margin-bottom: var(--sp-8); }
 .about-letter { max-width: 36em; }
+/* The quote needed a bottom edge: above it a rule, below it air, then the
+   stack. Without the lower breathing room it read as a stray line jammed
+   against the first table row. */
 .about-quote {
   font-family: var(--serif);
   font-size: var(--f-h3);
   font-weight: 700;
   line-height: var(--lh-lead);
   color: var(--t0);
-  margin: var(--sp-8) 0 0;
-  padding: var(--sp-6) 0 0;
+  margin: var(--sp-10) 0 var(--sp-8);
+  padding: var(--sp-6) 0 var(--sp-6);
   border-top: var(--rule) solid var(--line);
+  border-bottom: var(--rule) solid var(--line);
   max-width: 28em;
   text-wrap: pretty;
 }
 .about-stack {
-  margin: var(--sp-10) 0 0;
+  margin: var(--sp-8) 0 0;
   padding: 0;
 }
+/* 12px of row padding made each hairline sit 4-6px off the text. 16px lets
+   the rule work as a shelf instead of cutting into the row. */
 .about-stack-row {
   display: grid;
   grid-template-columns: 7.5rem minmax(0, 1fr);
   gap: var(--sp-4);
   align-items: baseline;
-  padding: var(--sp-3) 0;
+  padding: var(--sp-4) 0;
   border-top: var(--rule) solid var(--line);
   min-height: var(--hit);
 }
@@ -1099,7 +1152,13 @@ ul, ol { list-style: none; padding: 0; }
   color: var(--t3);
   font-weight: 400;
 }
-.about-page .about-stats { margin-top: var(--sp-8); }
+/* Stats was glued to the stack's last hairline. Give it its own rule and a
+   real gap so the three groups — letter, quote, stack, stats — read apart. */
+.about-page .about-stats {
+  margin-top: var(--sp-8);
+  padding-top: var(--sp-5);
+  border-top: var(--rule) solid var(--line);
+}
 
 .lost-note {
   display: flex;
@@ -1137,61 +1196,7 @@ ul, ol { list-style: none; padding: 0; }
 }
 
 .page-wide { max-width: var(--col); }
-.book-index {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--sp-3);
-  margin: 0 0 var(--sp-10);
-}
-.book-index a {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.5em;
-  padding: var(--sp-2) var(--sp-4);
-  min-height: var(--hit);
-  border: var(--rule) solid var(--line);
-  font-family: var(--serif);
-  font-size: var(--f-stream);
-  font-weight: 700;
-  color: var(--t1);
-  font-variant-numeric: tabular-nums;
-  transition: border-color 0.15s ease, color 0.15s ease;
-}
-.book-index a:hover {
-  color: var(--ume-deep);
-  border-color: var(--ume);
-}
-.book-index-num {
-  font-size: var(--f-kicker);
-  color: var(--ume);
-  letter-spacing: 0.1em;
-}
-.book-index i {
-  font-style: normal;
-  font-family: var(--sans);
-  font-size: var(--f-meta);
-  font-weight: 400;
-  color: var(--t3);
-}
-.poem-book + .poem-book { margin-top: var(--sp-12); }
-.book-title {
-  display: flex;
-  align-items: baseline;
-  gap: var(--sp-3);
-  font-family: var(--serif);
-  font-size: var(--f-h3);
-  font-weight: 700;
-  color: var(--t0);
-  padding-bottom: var(--sp-3);
-  border-bottom: calc(var(--rule) * 2) solid var(--t0);
-  margin: 0 0 var(--sp-6);
-}
-.book-num {
-  font-size: var(--f-kicker);
-  font-weight: 700;
-  color: var(--ume);
-  letter-spacing: 0.12em;
-}
+/* Count in a year block header. Pushed to the row's trailing edge. */
 .book-count {
   margin-left: auto;
   font-family: var(--sans);
@@ -1199,44 +1204,6 @@ ul, ol { list-style: none; padding: 0; }
   font-weight: 400;
   color: var(--t3);
   letter-spacing: 0.06em;
-}
-.book-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--sp-6) var(--sp-10);
-  align-items: start;
-}
-.poem {
-  padding: var(--sp-6);
-  border: var(--rule) solid var(--line);
-  background: var(--paper);
-  transition: border-color 0.15s ease;
-}
-.poem:hover { border-color: var(--ume); }
-.poem-title {
-  font-family: var(--serif);
-  font-size: var(--f-stream);
-  font-weight: 700;
-  line-height: var(--lh-title);
-  color: var(--t0);
-}
-.poem-date {
-  display: block;
-  margin-top: var(--sp-2);
-  font-size: var(--f-meta);
-  color: var(--t3);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.04em;
-}
-.poem-body {
-  margin: var(--sp-3) 0 0;
-  font-family: var(--serif);
-  font-size: var(--f-verse);
-  line-height: var(--lh-verse);
-  letter-spacing: 0.03em;
-  color: var(--t1);
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
 }
 
 /* Footer is a colophon, not an inverted mast: brand + motto, hairline,
@@ -1262,17 +1229,20 @@ ul, ol { list-style: none; padding: 0; }
   gap: var(--sp-6);
 }
 
+/* Two columns on desktop: brand left, a vertical door column right.
+   The right column is a list, not a scatter of loose words. */
 .foot-head {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--sp-5);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) max-content;
+  align-items: center;
+  gap: var(--sp-8) var(--sp-12);
 }
 
 .foot-brand {
   display: flex;
   flex-direction: column;
-  gap: var(--sp-3);
+  align-items: flex-start;
+  gap: var(--sp-5);
   min-width: 0;
 }
 
@@ -1298,26 +1268,65 @@ ul, ol { list-style: none; padding: 0; }
   text-wrap: pretty;
 }
 
-.foot-nav {
+/* Social row: small caps, hairline-separated. */
+.foot-social {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: var(--sp-2) var(--sp-3);
-  font-size: var(--f-nav);
-  letter-spacing: 0.06em;
+  align-items: center;
+  gap: 0;
+  margin: var(--sp-1) 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--f-kicker);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
 }
-.foot-nav a {
-  color: rgb(255 255 255 / 0.88);
+.foot-social li {
+  display: flex;
+  align-items: center;
+}
+.foot-social li + li::before {
+  content: "";
+  width: 1.4em;
+  height: var(--rule);
+  background: rgb(255 255 255 / 0.28);
+}
+.foot-social a {
+  color: rgb(255 255 255 / 0.76);
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  min-width: var(--hit);
   min-height: var(--hit);
+}
+.foot-social a:hover { color: var(--on-photo); }
+
+/* Right column: one door per line, marker aligned to the label. */
+.foot-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0;
+  font-size: var(--f-open);
+  letter-spacing: 0.05em;
+  text-align: right;
+}
+.foot-nav a {
+  color: rgb(255 255 255 / 0.86);
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.55em;
+  min-height: 2.25rem;
   padding: 0 var(--sp-2);
 }
 .foot-nav a[aria-current="page"] {
   color: var(--on-photo);
-  box-shadow: inset 0 calc(var(--rule) * -2) 0 var(--on-photo);
+}
+.foot-nav a[aria-current="page"]::after {
+  content: "";
+  width: 0.3em;
+  height: 0.3em;
+  border-radius: 50%;
+  background: currentColor;
 }
 
 .foot-rule {
@@ -1382,6 +1391,29 @@ ul, ol { list-style: none; padding: 0; }
 @media (max-width: 639px) {
   .site-foot { padding: var(--sp-8) 0 var(--sp-6); }
   .foot-inner { gap: var(--sp-5); }
+  /* Phone: brand on top, the doors become one left-aligned row under it. */
+  .foot-head {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--sp-4);
+  }
+  .foot-brand { gap: var(--sp-4); }
+  .foot-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: var(--sp-2);
+    row-gap: 0;
+    margin-top: var(--sp-3);
+    font-size: var(--f-nav);
+    text-align: left;
+  }
+  .foot-nav a {
+    justify-content: flex-start;
+    min-height: var(--hit);
+    padding: 0;
+    gap: 0;
+  }
   .foot-colophon {
     flex-direction: column;
     align-items: flex-start;
@@ -1505,14 +1537,11 @@ ul, ol { list-style: none; padding: 0; }
   .lead-left { grid-column: 1 / -1; flex-direction: row; align-items: baseline; gap: var(--sp-4); }
 }
 
-@media (max-width: 720px) {
-  .book-grid { grid-template-columns: 1fr; }
-  .poem { padding: var(--sp-5); }
-}
-
 @media (max-width: 639px) {
   .mast-inner { flex-direction: column; align-items: flex-start; gap: var(--sp-2); }
-  .topnav { justify-content: flex-start; }
+  /* Four links at 11-13px apart read as one word on a phone. Widen to a
+     real gutter; the 44px hit area stays, it just stops looking crowded. */
+  .topnav { justify-content: flex-start; gap: var(--sp-2) var(--sp-4); }
 
   .lead {
     display: flex;
@@ -1553,6 +1582,8 @@ ul, ol { list-style: none; padding: 0; }
     margin-bottom: 0;
   }
   .back.is-on-photo:hover { color: var(--ume-hot); }
+  .cover-line { margin-bottom: var(--sp-3); }
+  .cover-dot { color: var(--dash); }
 
   .prose h2 { padding-inline-start: 0; }
   .prose h2::before {
@@ -1578,10 +1609,9 @@ ul, ol { list-style: none; padding: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
   .pager-n,
   .pager-dir,
-  .book-index a,
-  .poem,
   .tag-flow a {
     transition: none;
   }

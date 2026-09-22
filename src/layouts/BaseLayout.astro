@@ -15,7 +15,7 @@ const image = rawImage
   ? (String(rawImage).startsWith('http') ? String(rawImage) : `${origin}${rawImage}`)
   : undefined;
 const notesCurrent = path === '/' || path.startsWith('/page/') || path.startsWith('/notes/');
-const noindex = Boolean(Astro.props.noindex) || path.startsWith('/poems');
+const noindex = Boolean(Astro.props.noindex);
 const type = Astro.props.type || 'website';
 const favicon = site.favicon || '/favicon.svg';
 const rssTitle = site.rssTitle || `${site.name} — ${site.motto}`;

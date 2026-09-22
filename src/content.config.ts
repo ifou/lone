@@ -21,18 +21,4 @@ const blog = defineCollection({
   }),
 });
 
-const poems = defineCollection({
-  loader: glob({
-    pattern: '**/*.{md,mdx}',
-    base: path.join(process.cwd(), 'src/content/poems'),
-  }),
-  schema: z.object({
-    title: z.string(),
-    date: z.coerce.date(),
-    draft: z.boolean().optional().default(false),
-    slug: z.string().optional(),
-    lang: z.string().optional(),
-  }),
-});
-
-export const collections = { blog, poems };
+export const collections = { blog };

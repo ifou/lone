@@ -10,7 +10,6 @@ export default defineConfig({
     sitemap({
       filter: (page) =>
         !/\/page\/1\/?$/.test(page) &&
-        !/\/poems\/?$/.test(page) &&
         !/\/categories\/?$/.test(page),
     }),
     plum(),

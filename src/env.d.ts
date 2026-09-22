@@ -37,7 +37,6 @@ declare module 'plum/config' {
     lede: string;
     labels: Record<string, string>;
   };
-  export const poems: { title: string; lede: string };
   export const about: {
     title: string;
     lede: string;
@@ -51,7 +50,6 @@ declare module 'plum/config' {
     skipToContent: string;
     emptyStream: string;
     emptyTags: string;
-    emptyPoems: string;
     backToNotes: string;
     backToTags: string;
     backToKinds: string;
@@ -88,9 +86,6 @@ declare module 'plum/config' {
     ariaPager: string;
     ariaContents: string;
     ariaAdjacent: string;
-    ariaYears: string;
-    bookLabel: (n: string) => string;
-    poemCount: (n: number) => string;
     footCopyright: (years: string, name: string) => string;
     footThemeLabel: string;
     footTheme: string;

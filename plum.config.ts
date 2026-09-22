@@ -1,12 +1,12 @@
 /**
- * plum — site identity and copy.
+ * ume — site identity and copy.
  * Posts live in src/content/blog/. Colors live in src/styles/global.css.
  * Chrome is English. Article bodies keep their own lang.
  */
 export const site = {
-  name: 'plum',
-  wordmark: 'plum',
-  motto: 'Paper, green plum, and code.',
+  name: 'ume',
+  wordmark: 'ume',
+  motto: 'Paper, ume green, and code.',
   description: 'Notes on software and travel. English and Chinese.',
   url: 'https://example.com',
   lang: 'en',
@@ -19,6 +19,9 @@ export const site = {
   years: '2016–2026',
 };
 
+/** Footer social row. Empty by default; override per site. */
+export const social: { href: string; label: string }[] = [];
+
 export const nav = [
   { href: '/', label: 'Notes' },
   { href: '/archive/', label: 'Archive' },
@@ -27,7 +30,7 @@ export const nav = [
 ];
 
 export const home = {
-  title: 'plum',
+  title: 'ume',
   lede: 'A blank page, a touch of ume. Code, and walks.',
   hero: '/images/hero.jpg',
   streamLabel: 'Latest',
@@ -56,11 +59,6 @@ export const categories = {
   } as Record<string, string>,
 };
 
-export const poems = {
-  title: 'Poems',
-  lede: 'One page. Books by year, read top to bottom.',
-};
-
 export const about = {
   title: 'About',
   lede: 'Software and travel. English and Chinese.',
@@ -81,7 +79,6 @@ export const ui = {
   skipToContent: 'Skip to content',
   emptyStream: 'Nothing here yet.',
   emptyTags: 'No tags yet.',
-  emptyPoems: 'No poems yet.',
   backToNotes: '← Notes',
   backToTags: '← Tags',
   backToKinds: '← Kinds',
@@ -119,11 +116,8 @@ export const ui = {
   ariaPager: 'Pagination',
   ariaContents: 'Contents',
   ariaAdjacent: 'Adjacent notes',
-  ariaYears: 'Years',
-  bookLabel: (n: string) => `Vol. ${n}`,
-  poemCount: (n: number) => (n === 1 ? '1 poem' : `${n} poems`),
   footCopyright: (years: string, name: string) => `© ${years} ${name}`,
   footThemeLabel: 'Theme',
-  footTheme: 'plum',
+  footTheme: 'ume',
   footThemeHref: 'https://github.com/hareai/plum',
 };
