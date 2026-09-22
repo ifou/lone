@@ -4,6 +4,11 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 
 ## [Unreleased]
 
+### Changed
+
+- Chinese prose is set in the gothic, not the serif: tracking opened to
+  0.06em and leading brought in to 1.8. Latin notes are unchanged.
+
 ### Added
 
 - Night. The page follows the system until a choice is made, then keeps it.

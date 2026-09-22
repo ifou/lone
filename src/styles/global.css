@@ -839,8 +839,9 @@ ul, ol { list-style: none; padding: 0; }
   letter-spacing: -0.003em;
 }
 .note[lang="zh"] .prose {
-  line-height: var(--lh-cjk);
-  letter-spacing: 0.01em;
+  font-family: var(--sans);
+  line-height: 1.8;
+  letter-spacing: 0.06em;
 }
 .prose > * + * { margin-top: 1.15em; }
 /* Paragraph rhythm is the primary paragraph separator here — there is no
