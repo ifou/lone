@@ -81,7 +81,6 @@ export const ui = {
   emptyTags: 'No tags yet.',
   backToNotes: '← Notes',
   backToTags: '← Tags',
-  backToKinds: '← Kinds',
   allNotes: 'Archive →',
   /** The teaser shows `home.tagPreview`; this names what is behind the door. */
   allTagsCount: (n: number) => `All ${n} tags →`,
@@ -99,7 +98,6 @@ export const ui = {
   aboutStats: (notes: number, tags: number, years: string) =>
     `${notes} notes · ${tags} tags · ${years}`,
   noteCount: (n: number) => (n === 1 ? '1 note' : `${n} notes`),
-  shelfMore: (n: number) => `All ${n} →`,
   pagerPrev: 'Previous page',
   pagerNext: 'Next page',
   galleryLabel: 'Photos',

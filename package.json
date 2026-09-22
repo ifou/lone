@@ -29,6 +29,7 @@
     "@tailwindcss/vite": "^4.1.13",
     "astro": "^5.0.0 || ^7.0.0",
     "photoswipe": "^5.4.4",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4.1.13"
   },
   "devDependencies": {

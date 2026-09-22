@@ -22,6 +22,8 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 ### Removed
 
 - The poems page and its whole surface: `src/pages/poems.astro`, the `poems` content collection, every `book-*` / `poem-*` style block, the `--f-verse` / `--lh-verse` tokens, the `poems` config block, the `poems` / `emptyPoems` / `ariaYears` / `bookLabel` / `poemCount` UI strings, the robots `Disallow: /poems/`, the poems `noindex` rule, and the sitemap filter. `.book-count` stays — the archive year header uses it.
+- Dead UI keys `backToKinds` and `shelfMore` (defined in `ume.config.ts`, consumed nowhere) and the `.page-wide` rule that no markup carried.
+- `.prose .footnotes` / `.prose a[data-footnote-backref]`: no footnote plugin ships in this integration, so nothing could ever emit those nodes.
 
 ### Changed
 
@@ -31,6 +33,13 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 - About: letter, pull-quote, and stack rows instead of one undifferentiated dump.
 - Home feature: `home.pin` slug, else the newest. Stream omits that note. Eyebrow is Recommended when pinned.
 - Footer: colophon — brand and motto, then a hairline, then copyright and theme credit.
+- Hero and lead titles get `text-wrap: balance`.
+- Kicker tracking tightened from 0.2em to 0.16em (2.4px reads as scattered at 12px).
+- About pull-quote gets a bottom rule and real air below, so it stops colliding with the stack. Stack rows 12px → 16px padding, so the hairline works as a shelf. Stats gets its own rule.
+- Article cover: back-link and date on one line (`← Notes · 2025.05.09`) with a dot between them; the title keeps its own line.
+- Anchor scrolling is smooth, with a reduced-motion guard; heading `scroll-margin-top` 12px → 32px.
+- `sharp` is a declared dependency. `src/lib/images.ts` imports it to read intrinsic sizes, and it previously resolved only through Astro's optional-dependency hoisting — one npm layout away from a build failure on a fresh install.
+- CI: `.github/workflows/ci.yml` runs `astro check` then `build` on pushes to and PRs against `main`. The branch ruleset allowed no status checks, so a red build was mergeable.
 
 ### Fixed
 
@@ -39,14 +48,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 - Hero scrim: the kicker now sits on a dark ground. `2026 · 20 notes` lands at ~61% of the frame where the blossom is still bright (region average 146, peaks 236) — a 0.14→0.22 wash measured 2.7:1 for 12px white. Hold 0.48 through the kicker, deepen into the lede.
 - Phone date rail 3.5rem → 4rem. `2026/01` measures 42px; at 56px the month ran 1px past the 2px rule. 64px leaves a full gutter.
 - Phone nav gap 12px → 16px. Four links at 11–13px apart read as one word.
-
-### Changed
-
-- Hero and lead titles get `text-wrap: balance`.
-- Kicker tracking tightened from 0.2em to 0.16em (2.4px reads as scattered at 12px).
-- About pull-quote gets a bottom rule and real air below, so it stops colliding with the stack. Stack rows 12px → 16px padding, so the hairline works as a shelf. Stats gets its own rule.
-- Article cover: back-link and date on one line (`← Notes · 2025.05.09`) with a dot between them; the title keeps its own line.
-- Anchor scrolling is smooth, with a reduced-motion guard; heading `scroll-margin-top` 12px → 32px.
+- Phone fenced blocks gave no cue that code continued past the fold. On the live corpus one block measured 1700px of content inside a 348px column with `overflow-x: auto` and nothing saying so; the trailing edge now carries an inset shadow. Desktop is untouched.
 
 ### Added
 

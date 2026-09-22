@@ -54,7 +54,6 @@ declare module 'ume/config' {
     emptyTags: string;
     backToNotes: string;
     backToTags: string;
-    backToKinds: string;
     allNotes: string;
     allTagsCount: (n: number) => string;
     leadLabel: string;
@@ -70,7 +69,6 @@ declare module 'ume/config' {
     photoCount: (n: number) => string;
     aboutStats: (notes: number, tags: number, years: string) => string;
     noteCount: (n: number) => string;
-    shelfMore: (n: number) => string;
     pagerPrev: string;
     pagerNext: string;
     galleryLabel: string;

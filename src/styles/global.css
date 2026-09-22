@@ -837,18 +837,6 @@ ul, ol { list-style: none; padding: 0; }
 }
 .prose a[href^="http://"],
 .prose a[href^="https://"] { text-decoration-style: dashed; }
-.prose .footnotes {
-  margin-top: var(--sp-10);
-  padding-top: var(--sp-5);
-  border-top: var(--rule) solid var(--line);
-  font-size: var(--f-open);
-  color: var(--t2);
-}
-.prose .footnotes ol {
-  list-style: decimal;
-  padding-left: 1.2em;
-}
-.prose a[data-footnote-backref] { color: var(--ume); }
 
 .post-nav {
   display: flex;
@@ -1195,7 +1183,6 @@ ul, ol { list-style: none; padding: 0; }
   color: var(--t2);
 }
 
-.page-wide { max-width: var(--col); }
 /* Count in a year block header. Pushed to the row's trailing edge. */
 .book-count {
   margin-left: auto;
@@ -1606,6 +1593,11 @@ ul, ol { list-style: none; padding: 0; }
     gap: var(--sp-2);
     padding: var(--sp-4) 0;
   }
+  /* Phone: a fenced block measured as wide as 1700px against a 348px column,
+     and `overflow-x: auto` gives no visible cue that code continues. One inset
+     shadow at the trailing edge says "scroll" without a second scrollbar or a
+     tap target. Kept off the prose background, so nothing else is restyled. */
+  .prose pre { box-shadow: inset -0.75rem 0 0.5rem -0.5rem rgb(0 0 0 / 0.18); }
 }
 
 @media (prefers-reduced-motion: reduce) {
