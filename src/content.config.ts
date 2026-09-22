@@ -18,6 +18,8 @@ const blog = defineCollection({
     lang: z.string().optional(),
     cover: z.string().optional().default(''),
     images: z.array(z.string()).optional().default([]),
+    /** Set false to hide the table of contents on a note that has headings. */
+    toc: z.boolean().optional().default(true),
   }),
 });
 

@@ -862,10 +862,7 @@ ul, ol { list-style: none; padding: 0; }
   margin-bottom: 0.5em;
   line-height: var(--lh-title);
   position: relative;
-  padding-inline-start: var(--h2-hang);
 }
-.prose { counter-reset: umeh2; }
-.prose h2 { counter-increment: umeh2; }
 .prose h2::before,
 .toc-num {
   font-family: var(--serif);
@@ -876,14 +873,7 @@ ul, ol { list-style: none; padding: 0; }
   margin-right: 0.55em;
   font-variant-numeric: tabular-nums;
 }
-.prose h2::before {
-  content: counter(umeh2) ".";
-  position: absolute;
-  inset-inline-start: 0;
-  top: 0.42em;
-  margin-right: 0;
-  letter-spacing: 0;
-}
+
 .prose h3 {
   font-family: var(--serif);
   font-size: var(--f-h3);

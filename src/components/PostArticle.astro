@@ -55,7 +55,7 @@ const coverSize = cover ? await measure(cover) : { width: 1920, height: 1280 };
         ))}
       </ul>
     )}
-    <Toc headings={headings} />
+    {post.data.toc && <Toc headings={headings} />}
     {hasBody && <div class="prose"><Content /></div>}
     {gallery.length > 0 && <Gallery images={gallery} />}
     <nav class="post-nav" aria-label={ui.ariaAdjacent}>
