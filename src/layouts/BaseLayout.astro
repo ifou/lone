@@ -19,6 +19,29 @@ const noindex = Boolean(Astro.props.noindex);
 const type = Astro.props.type || 'website';
 const favicon = site.favicon || '/favicon.svg';
 const rssTitle = site.rssTitle || `${site.name} — ${site.motto}`;
+
+/**
+ * Site-level display face. A site only names the families; the weight and
+ * tracking that make a display face work at wordmark size come from the
+ * theme, so a site can swap the face without also having to know that
+ * 0.06em tracking and 700 are what the layout assumed.
+ *
+ * Only the keys the site actually set are emitted — an empty override must
+ * leave the theme's :root completely alone, not reset it with empty values.
+ */
+const display = {
+  family: (site.displayFont || '').trim(),
+  weight:
+    typeof site.displayWeight === 'number' && Number.isFinite(site.displayWeight)
+      ? site.displayWeight
+      : undefined,
+  tracking: (site.displayTracking || '').trim(),
+};
+const displayCss = display.family
+  ? `:root{--display:${display.family};` +
+    `${display.weight !== undefined ? `--display-weight:${display.weight};` : ''}` +
+    `${display.tracking ? `--display-tracking:${display.tracking};` : ''}}`
+  : '';
 ---
 <!doctype html>
 <html lang={site.lang}>
@@ -34,6 +57,11 @@ const rssTitle = site.rssTitle || `${site.name} — ${site.motto}`;
     <link rel="preload" href="/fonts/shippori-mincho-latin-700.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/zen-kaku-latin-400.woff2" as="font" type="font/woff2" crossorigin />
     <Fragment set:html={`<style>${fontsCss}</style>`} />
+    {/* The one place a site can move the display role. Inlined right after
+        the font stacks so it wins the cascade without needing !important and
+        without touching theme internals. Empty until the site sets
+        site.displayFont / displayWeight / displayTracking. */}
+    {displayCss && <Fragment set:html={`<style>${displayCss}</style>`} />}
     <title>{title}</title>
     <link rel="canonical" href={url} />
     <meta property="og:type" content={type} />

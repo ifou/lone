@@ -17,14 +17,29 @@
   --fw-body: 400;
   --fw-title: 700;
 
-  --ume: #00865b;
-  --ume-hot: #00734e;
-  --ume-deep: #006b49;
+  /* One green, three jobs. ume is the bright one — the #-mark, a kicker, a
+     hover. hot is what ume becomes on hover, and it has to stay darker than
+     the resting colour or the feedback reads as a change of mind rather
+     than a response. deep is the only one allowed under body-size text.
+
+     The re-cut is about contrast, not hue: the old ume (#00865b) measured
+     4.60:1 on white — legal for large type, thin for an 18px link. ume now
+     measures 5.90:1 and deep 8.02:1 (AAA), so a link in a paragraph can be
+     deep while a bright ume stays in display type only. The old pair
+     differed by 38% in luminance, the new pair by 37% — the ramp looks the
+     same, but both rungs now clear the floor they were being used for. */
+  --ume: #00734e;
+  --ume-hot: #00563a;
+  --ume-deep: #065c43;
   --ume-soft: #e7f6ef;
 
   --paper: #ffffff;
   --soft: #f5f5f5;
   --line: #e6e6e6;
+  /* The mast's floor line: 30 grey steps past --line (--line to --dash is 9).
+     Kept as its own token so the header's weight can be tuned without
+     touching every other hairline on the page. */
+  --mast-rule: #c8c8c8;
   --dash: #dddddd;
   --on-photo: #ffffff;
 
@@ -32,12 +47,20 @@
     "Source Han Serif SC", "Songti SC", "Hiragino Mincho ProN", serif;
   --text: "Source Serif 4", "Source Serif Fallback", "Noto Serif CJK SC",
     "Source Han Serif SC", "Songti SC", "Hiragino Mincho ProN", serif;
+  /* The display role is the wordmark and the h1 family — the face a reader
+     meets first. It defaults to the same mincho as --serif so a theme that
+     never touches it looks exactly as before; a site is free to point it at
+     a different face without overriding internals. --serif stays the face
+     of body headings (h2-h4), so the two roles can still diverge. */
+  --display: var(--serif);
+  --display-weight: 700;
+  --display-tracking: 0.06em;
   --sans: "Zen Kaku Gothic New", "Gothic Fallback", "PingFang SC",
     "Hiragino Sans", "Noto Sans SC", ui-sans-serif, system-ui, sans-serif;
   --mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
 
   --f-wordmark: 1.375rem;
-  --f-nav: 0.8125rem;
+  --f-nav: 0.875rem;
   --f-kicker: 0.75rem;
   --f-meta: 0.8125rem;
   --f-hero: 3.5rem;
@@ -51,9 +74,19 @@
   --f-page: 2.125rem;
   --f-lede: 1.125rem;
   --f-body: 1.125rem;
+  /* Heading ladder measured against an 18px body on a 66ch measure. h2 at
+     24px is a 1.33 ratio, already a real section break. The gap was h3: at
+     20px it was 1.11 — only 2px of Mincho 700 over an 18px Source Serif
+     body, which reads as a stray line rather than a subsection. h3 got the
+     step the ladder was missing; h4 keeps its 19px but stays separated by
+     family and weight, not by size alone. */
   --f-h2: 1.5rem;
-  --f-h3: 1.25rem;
-  --f-h4: 1.1875rem;
+  --f-h3: 1.3125rem;
+  /* h4 was 19px against an 18px body — one px, which only the Mincho face
+     change could carry, and in a CJK paragraph that swap is nearly
+     invisible. 20px gives it a two-px step off body while staying under
+     h3's 21px, which stays under h2's 24px. */
+  --f-h4: 1.25rem;
   --f-code: 0.875rem;
   --f-pager: 1.125rem;
 
@@ -61,6 +94,8 @@
   --lh-title: 1.35;
   --lh-lead: 1.4;
   --lh-body: 1.7;
+  /* Latin正文专用：拉丁字母有升部/降部自身的节奏，同字号下比中文用更紧的行高。 */
+  --lh-latin: 1.62;
   --lh-cjk: 1.9;
   --lh-open: 1.65;
   --lh-code: 1.6;
@@ -76,10 +111,17 @@
 
   --pad: 2rem;
   --col: 52rem;
-  --read: 40rem;
+  /* Reading measure. 40rem rendered 71ch of Source Serif 4 at 18px, past the
+     45–75ch comfort band; 37rem lands at 66ch. The stream and browse keep
+     --col so their columns are untouched. */
+  --read: 37rem;
   --hero-h: 28rem;
   --cover-h: 22rem;
-  --mast-h: 3.5rem;
+  /* A header has to hold its own edge. 56px against a 22px wordmark left the
+     bar reading as a floating strip, and a 13px nav barely out-sized the
+     meta text elsewhere. 4.75rem plus a floor line that is darker than the
+     body's hairlines gives the mast the weight of an opening rule. */
+  --mast-h: 4.75rem;
   --rail: 4.75rem;
   --lead-rail: 8.5rem;
   --thumb: 12.5rem;
@@ -109,13 +151,21 @@
     --f-lede: 1.125rem;
     --f-body: 1.125rem;
     --f-h2: 1.375rem;
-    --f-h3: 1.1875rem;
-    --f-h4: 1.0625rem;
+    /* Phone: h3 was 19px against an 18px body — one pixel. The section
+       step has to exist at 390 too, or every subsection reads as a lead-in
+       line rather than a heading. 1.3125rem puts it three px clear. */
+    --f-h3: 1.3125rem;
+    /* Phone h4 was 17px — smaller than the 18px body, an inverted step.
+       1.1875rem puts it three px clear of body while staying under h3. */
+    --f-h4: 1.1875rem;
     --f-code: 0.875rem;
     --f-pager: 1.0625rem;
 
     --lh-body: 1.75;
-    --lh-cjk: 2;
+    --lh-latin: 1.7;
+    /* Phone: a finger scrolls a narrower column, and the tighter Latin
+       leading has to grow with it or the lines merge. */
+    --lh-cjk: 1.95;
     --lh-open: 1.75;
 
     --pad: 1.25rem;
@@ -210,7 +260,11 @@ ul, ol { list-style: none; padding: 0; }
 
 .mast {
   background: var(--paper);
-  border-bottom: var(--rule) solid var(--line);
+  /* Darker than the body's hairlines (--line measures 0.79 relative
+     luminance against this white; --mast-rule sits at 0.58). That is still
+     roughly 8x lighter than t3 text at 0.068, so the rule opens the page
+     without competing with anything a reader is trying to read. */
+  border-bottom: var(--rule) solid var(--mast-rule);
 }
 .mast-inner {
   display: flex;
@@ -222,12 +276,12 @@ ul, ol { list-style: none; padding: 0; }
 }
 
 .wordmark {
-  font-family: var(--serif);
+  font-family: var(--display);
   font-size: var(--f-wordmark);
-  font-weight: 700;
+  font-weight: var(--display-weight);
   line-height: 1;
   color: var(--ume);
-  letter-spacing: 0.06em;
+  letter-spacing: var(--display-tracking);
 }
 .wordmark:hover { color: var(--ume-hot); }
 
@@ -296,9 +350,9 @@ ul, ol { list-style: none; padding: 0; }
   margin-bottom: var(--sp-4);
 }
 .hero-title {
-  font-family: var(--serif);
+  font-family: var(--display);
   font-size: var(--f-hero);
-  font-weight: 700;
+  font-weight: var(--display-weight);
   line-height: var(--lh-display);
   color: var(--on-photo);
   text-shadow: 0 1px 20px rgb(0 20 14 / 0.6), 0 0 34px rgb(0 20 14 / 0.32);
@@ -714,15 +768,30 @@ ul, ol { list-style: none; padding: 0; }
   color: var(--t1);
   text-wrap: pretty;
   overflow-wrap: break-word;
+  /* Source Serif 4 carries generous side bearings; at 18px the default
+     tracking reads a little loose in long Latin runs. */
+  letter-spacing: -0.003em;
 }
+/* Latin wants tighter leading than CJK at the same size — the ascender/
+   descender pattern gives the eye its own rhythm. Chinese has no x-height
+   band to lean on, so it takes the looser measure plus a hair of tracking
+   to keep hanzi from colliding at the same 18px. */
 .note[lang="en"] .prose {
-  line-height: var(--lh-body);
-  letter-spacing: 0;
+  line-height: var(--lh-latin);
+  letter-spacing: -0.003em;
 }
 .note[lang="zh"] .prose {
   line-height: var(--lh-cjk);
+  letter-spacing: 0.01em;
 }
 .prose > * + * { margin-top: 1.15em; }
+/* Paragraph rhythm is the primary paragraph separator here — there is no
+   first-line indent — so the gap has to do the whole job. 1.15em read as
+   23px against a 34.2px line on the Chinese notes: 0.67 line-heights, which
+   is where two adjacent paragraphs start to read as one broken one. The
+   looser CJK leading makes that ratio harsher, so Chinese carries a wider
+   gap; Latin keeps the original figure. */
+.note[lang="zh"] .prose > * + * { margin-top: 1.35em; }
 .prose > * + h2 { margin-top: 2.2em; }
 .prose > * + h3,
 .prose > * + h4 { margin-top: 1.8em; }
@@ -768,6 +837,10 @@ ul, ol { list-style: none; padding: 0; }
 .prose h5,
 .prose h6 {
   font-family: var(--serif);
+  /* h4 sat at 19px against an 18px body — a one-pixel step that only the
+     family change could carry, and in a CJK paragraph the family swap is
+     nearly invisible. It is a real level in the ladder, so it needs a real
+     size step, not just a different face. */
   font-size: var(--f-h4);
   font-weight: 700;
   color: var(--t0);
@@ -777,7 +850,10 @@ ul, ol { list-style: none; padding: 0; }
 .prose a {
   color: var(--ume-deep);
   text-decoration: underline;
-  text-underline-offset: 0.18em;
+  /* Astro's default 0.18em on an 18px body resolves to 3.24px, which
+     floats the rule clear of the descenders; on a 66ch line the rule and
+     the word read as two objects. Two points tucks it back under. */
+  text-underline-offset: 2px;
 }
 .prose a:hover { color: var(--ume-hot); }
 .prose strong { color: var(--t0); font-weight: 600; }
@@ -1198,15 +1274,23 @@ ul, ol { list-style: none; padding: 0; }
 
 .site-foot {
   margin-top: auto;
-  background: var(--ume-deep);
-  color: rgb(255 255 255 / 0.82);
+  /* A tinted paper band, not a slab and not another sheet of white. The
+     deep-green inversion was rejected as too loud; plain paper lost the
+     bottom of the page entirely — the reader had nothing to say "this is
+     where it ends". Soft tinted paper keeps the footer inside the document's
+     palette while shading it enough to read as a closed edge. */
+  border-top: var(--rule) solid var(--line);
+  background: var(--ume-soft);
+  color: var(--t2);
   font-size: var(--f-meta);
   letter-spacing: 0.04em;
   padding: var(--sp-10) 0 var(--sp-8);
 }
-.site-foot a:hover { color: var(--on-photo); }
+/* --ume on --ume-soft measures 4.13:1, under AA. Accents in here use the
+   darker steps that clear it (hot 5.28, deep 5.88). */
+.site-foot a:hover { color: var(--ume-hot); }
 .site-foot a:focus-visible {
-  outline: var(--rule) solid var(--on-photo);
+  outline: var(--rule) solid var(--ume-deep);
   outline-offset: 3px;
 }
 
@@ -1216,20 +1300,18 @@ ul, ol { list-style: none; padding: 0; }
   gap: var(--sp-6);
 }
 
-/* Two columns on desktop: brand left, a vertical door column right.
-   The right column is a list, not a scatter of loose words. */
-.foot-head {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) max-content;
-  align-items: center;
-  gap: var(--sp-8) var(--sp-12);
-}
-
+/* Desktop: brand sits as one row — mark on the left, motto beside it — with
+   the door links and the social row stacked underneath, all left-aligned so
+   the phone layout is the same composition with less room rather than a
+   different one. */
 .foot-brand {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--sp-5);
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+  /* Longhand, not `gap: var() var()` — see .foot-nav. */
+  row-gap: var(--sp-2);
+  column-gap: var(--sp-5);
   min-width: 0;
 }
 
@@ -1238,11 +1320,11 @@ ul, ol { list-style: none; padding: 0; }
   font-size: var(--f-wordmark);
   font-weight: 700;
   line-height: 1;
-  color: var(--on-photo);
+  color: var(--t0);
   letter-spacing: 0.06em;
   width: fit-content;
 }
-.foot-mark:hover { color: var(--on-photo); }
+.foot-mark:hover { color: var(--ume-hot); }
 
 .foot-motto {
   font-family: var(--text);
@@ -1250,7 +1332,7 @@ ul, ol { list-style: none; padding: 0; }
   font-weight: var(--fw-body);
   line-height: var(--lh-open);
   letter-spacing: 0;
-  color: rgb(255 255 255 / 0.86);
+  color: var(--t2);
   max-width: 22em;
   text-wrap: pretty;
 }
@@ -1276,37 +1358,44 @@ ul, ol { list-style: none; padding: 0; }
   content: "";
   width: 1.4em;
   height: var(--rule);
-  background: rgb(255 255 255 / 0.28);
+  background: var(--dash);
 }
 .foot-social a {
-  color: rgb(255 255 255 / 0.76);
+  color: var(--t2);
   display: inline-flex;
   align-items: center;
   min-height: var(--hit);
 }
-.foot-social a:hover { color: var(--on-photo); }
+.foot-social a:hover { color: var(--ume-deep); }
 
-/* Right column: one door per line, marker aligned to the label. */
+/* Door links as one horizontal row, left-aligned under the brand. The row
+   reads as a sentence of doors instead of a column pushed to the right
+   edge — the phone layout is the same row with the same rhythm. */
 .foot-nav {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  /* Split, not shorthand: a flex `gap` written as `var() var()` computes to
+     `normal` in Chrome, which is zero. The longhand form keeps the room
+     between doors. */
+  row-gap: var(--sp-2);
+  column-gap: var(--sp-5);
   font-size: var(--f-open);
   letter-spacing: 0.05em;
-  text-align: right;
+  text-align: left;
 }
 .foot-nav a {
-  color: rgb(255 255 255 / 0.86);
+  color: var(--t2);
   display: inline-flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
   gap: 0.55em;
   min-height: 2.25rem;
-  padding: 0 var(--sp-2);
+  padding: 0;
 }
 .foot-nav a[aria-current="page"] {
-  color: var(--on-photo);
+  color: var(--t0);
 }
 .foot-nav a[aria-current="page"]::after {
   content: "";
@@ -1322,16 +1411,18 @@ ul, ol { list-style: none; padding: 0; }
   height: 0;
   margin: 0;
   border: 0;
-  border-top: var(--rule) solid rgb(255 255 255 / 0.22);
+  border-top: var(--rule) solid var(--line);
 }
 
 .foot-colophon {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: var(--sp-3) var(--sp-8);
   flex-wrap: wrap;
-  color: rgb(255 255 255 / 0.78);
+  /* Longhand, not shorthand: see .foot-nav. */
+  row-gap: var(--sp-3);
+  column-gap: var(--sp-8);
+  color: var(--t2);
   font-variant-numeric: tabular-nums;
   line-height: var(--lh-open);
 }
@@ -1360,7 +1451,7 @@ ul, ol { list-style: none; padding: 0; }
 .foot-theme a,
 .foot-theme-name {
   position: relative;
-  color: var(--on-photo);
+  color: var(--ume-deep);
 }
 
 .foot-theme a::before {
@@ -1377,34 +1468,36 @@ ul, ol { list-style: none; padding: 0; }
 
 @media (max-width: 639px) {
   .site-foot { padding: var(--sp-8) 0 var(--sp-6); }
+  /* The footer is the same four left-aligned rows as on desktop, only with
+     less air between them. Nothing moves to the right and nothing switches
+     to a column, so the phone keeps one straight edge down the page. */
   .foot-inner { gap: var(--sp-5); }
-  /* Phone: brand on top, the doors become one left-aligned row under it. */
-  .foot-head {
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--sp-4);
+  .foot-brand {
+    /* Longhand, and it must beat the base rule: a shorthand here would
+       compute to `normal` in Chrome and erase the base column-gap. */
+    row-gap: var(--sp-2);
+    column-gap: var(--sp-4);
   }
-  .foot-brand { gap: var(--sp-4); }
+  .foot-motto { max-width: 24em; }
   .foot-nav {
+    /* Longhand, not the shorthand — see .foot-nav in the base rules. */
+    row-gap: var(--sp-1);
+    column-gap: var(--sp-4);
+    font-size: var(--f-nav);
+  }
+  .foot-nav a { min-height: var(--hit); }
+  .foot-social a { min-height: var(--hit); }
+  /* One colophon row on the phone: copyright left, theme credit right, the
+     same two ends as desktop. At 390 the pair measures 181px inside a 350px
+     row, so it holds on one line — and the credit stays a trailing note
+     beside the copyright rather than a second orphaned row under it. */
+  .foot-colophon {
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: flex-start;
-    column-gap: var(--sp-2);
-    row-gap: 0;
-    margin-top: var(--sp-3);
-    font-size: var(--f-nav);
-    text-align: left;
-  }
-  .foot-nav a {
-    justify-content: flex-start;
-    min-height: var(--hit);
-    padding: 0;
-    gap: 0;
-  }
-  .foot-colophon {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
+    align-items: baseline;
+    justify-content: space-between;
+    row-gap: var(--sp-1);
+    column-gap: var(--sp-4);
   }
 }
 
@@ -1472,6 +1565,17 @@ ul, ol { list-style: none; padding: 0; }
   content: "#";
   color: var(--ume);
 }
+/* Count sits after the name, small and quiet: it answers "how big is this
+   door" without turning the flow into a ranked list. `count` only renders
+   for >1, so a single-post tag stays a bare word. */
+.tag-count {
+  font-family: var(--sans);
+  font-size: var(--f-kicker);
+  font-variant-numeric: tabular-nums;
+  color: var(--t3);
+  margin-inline-start: 0.4em;
+  letter-spacing: 0;
+}
 .tag-flow a:hover { color: var(--ume); }
 .tag-flow a:focus-visible {
   outline: var(--rule) solid var(--ume);
@@ -1506,7 +1610,9 @@ ul, ol { list-style: none; padding: 0; }
 }
 .gallery-grid a {
   display: block;
-  aspect-ratio: 1 / 1;
+  /* No forced 1/1 here — the component sets a per-photo ratio from the
+     measured size, so a portrait frame stays a portrait instead of being
+     cropped to a square tile before the reader opens the lightbox. */
   overflow: hidden;
   background: var(--soft);
   outline: var(--rule) solid oklch(0 0 0 / 0.1);
@@ -1525,10 +1631,93 @@ ul, ol { list-style: none; padding: 0; }
 }
 
 @media (max-width: 639px) {
-  .mast-inner { flex-direction: column; align-items: flex-start; gap: var(--sp-2); }
-  /* Four links at 11-13px apart read as one word on a phone. Widen to a
-     real gutter; the 44px hit area stays, it just stops looking crowded. */
-  .topnav { justify-content: flex-start; gap: var(--sp-2) var(--sp-4); }
+  /* Phone mast spacing — one system, three values, read top to bottom:
+       screen edge → logo ......... 24   (outer, mirrors the base)
+       logo → hairline ............ 12
+       hairline → nav text ........ 12
+       nav → mast base ............ 24
+     The hairline sits 12px under the logo and 12px over the links, so it
+     belongs to neither and to both — the gap it creates measures the same
+     on either side, which is what makes it read as a rule rather than a
+     fold. The outer distances are equal top and bottom, and every value is
+     a rung of the page's own scale (--sp-6, --sp-3), not a number invented
+     for this block.
+
+     Note that the nav's spacing is declared on the nav itself. Declaring
+     the upper half on the parent's padding and the lower half on the nav
+     put the hairline between two values, so 16+1+12 measured as 29px of
+     empty air and the line looked adrift.
+
+     Stacking the mast this way is itself the fix for the old single-row
+     header: at 8px padding the wordmark sat 8px from the top of the screen,
+     which on a phone reads as touching the edge. */
+  /* No gap on this container: it stacks two bands whose spacing is declared
+     on the bands themselves. A flex gap would add to the nav's own margins
+     and there would be two places to look for one distance. */
+  .mast-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: var(--sp-6) 0;
+  }
+  /* The mast's base rule was tuned for the 77px desktop bar. On a phone the
+     header is 119px tall and the band already has the lighter --line above
+     the nav, so --mast-rule lands as a heavy black seam under the whole
+     block. Step it back to --dash (#ddd) at this width: it still closes the
+     mast, it just stops pressing on the page. Desktop keeps #c8c8c8. */
+  .mast { border-bottom-color: var(--dash); }
+  .wordmark {
+    max-width: 100%;
+    font-size: clamp(1.0625rem, calc(var(--f-wordmark) - 0.35vw), var(--f-wordmark));
+    overflow-wrap: break-word;
+  }
+  /* The nav band on a phone: one line, right-aligned, and no longer a tall
+     block. The 44px tap targets came from `min-height` on the links, which
+     inside a stacked nav gave this band 81px of height for one 13px line of
+     text — it read as an empty shelf. The target now lives on a ::before so
+     it stays finger-sized while the words keep a text-height line box, and
+     the band's own padding decides how much air is above and below.
+
+     One rule closes the mast, not two — but this band keeps its own hairline.
+     The `--line` above the nav is the divider the owner chose between the
+     wordmark band and the nav band; it is not a second border of the mast.
+     The mast's base rule (`--mast-rule`) is the heavier one, and it is that
+     weight — not this hairline — that reads too dark on a phone.
+
+     Spacing, top to bottom: 24 above the logo, 13 from the logo down to the
+     rule, 12 under the rule to the links, then the mast's 24 base
+     padding. The two outer distances match; the inner pair descends so the
+     rule sits closer to the nav it introduces than to the name above it.
+
+     Right-aligned: with the nav stacked under the wordmark, a left-aligned
+     row collapses the whole band into the corner and reads as a stray line
+     of small text. Pushing it to the far right makes it a deliberate second
+     layer under a sharp left corner, and at phone widths the room it leaves
+     beside it is part of the composition instead of dead space. */
+  .topnav {
+    width: 100%;
+    justify-content: flex-end;
+    gap: var(--sp-2) var(--sp-4);
+    margin-top: var(--sp-4);
+    padding-top: var(--sp-3);
+    padding-bottom: 0;
+    border-top: var(--rule) solid var(--line);
+  }
+  .topnav a {
+    position: relative;
+    min-height: 0;
+    padding: 0;
+  }
+  /* The 44x44 hit area, decoupled from the line box the nav occupies. */
+  .topnav a::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    width: var(--hit);
+    height: var(--hit);
+  }
 
   .lead {
     display: flex;

@@ -5,6 +5,14 @@ declare module 'ume/config' {
     name: string;
     wordmark: string;
     motto: string;
+    /**
+     * Face for the wordmark and h1 — the display role. A family name, or a
+     * full comma-separated stack. Omit and it stays on the theme's mincho.
+     */
+    displayFont?: string;
+    /** Weight and tracking for that face; both default to the theme's. */
+    displayWeight?: number;
+    displayTracking?: string;
     description: string;
     url: string;
     lang: string;

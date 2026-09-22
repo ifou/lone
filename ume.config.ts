@@ -4,7 +4,10 @@
  * Chrome is English. Article bodies keep their own lang.
  */
 export const site = {
+  /** Long-form site name for <title>, feeds and the About page. */
   name: 'ume',
+  /** The short mark in the mast and the footer. Changing it re-brands the
+      whole chrome; `name` above is the formal name and can stay long. */
   wordmark: 'ume',
   motto: 'Paper, ume green, and code.',
   description: 'Notes on software and travel. English and Chinese.',

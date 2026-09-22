@@ -145,10 +145,21 @@ body {
   font-family: "Zen Kaku Gothic New", "Gothic Fallback", "PingFang SC",
     "Hiragino Sans", "Noto Sans SC", ui-sans-serif, system-ui, sans-serif;
 }
-.wordmark, h1, h2, h3, h4,
+/* Same roles as the :root stacks in global.css, inlined so first paint
+   does not wait on Vite. These rules name the ROLE; the value lives in
+   :root, which the document's own cascade resolves — global.css is loaded
+   after this file, so its `--display` wins for anything this block sets
+   with a fallback. A site that overrides --display therefore moves the
+   wordmark and h1 without touching internals here.
+   CJK glyphs skip the latin faces (unicode-range) and land on the
+   system Songti / Gothic. */
+.wordmark, h1,
 .lead-title, .entry-title, .note-title, .hero-title {
-  font-family: "Shippori Mincho", "Mincho Fallback", "Noto Serif CJK SC",
-    "Source Han Serif SC", "Songti SC", "Hiragino Mincho ProN", serif;
+  font-family: var(--display, "Shippori Mincho");
+  font-weight: var(--display-weight, 700);
+}
+h2, h3, h4 {
+  font-family: var(--serif);
 }
 .prose, .lede, .lead-open, .entry-open, .hero-lede {
   font-family: "Source Serif 4", "Source Serif Fallback", "Noto Serif CJK SC",

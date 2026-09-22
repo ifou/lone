@@ -21,12 +21,22 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 
 ### Removed
 
+- `.foot-head`: the two-column footer grid. It made desktop and phone two different compositions — a stacked 122px phone brand block and a floating nav row — and the whole footer is now one row-based composition at every width.
+- The forced `aspect-ratio: 1/1` on `.gallery-grid a`, superseded by the per-photo measured ratio.
 - The poems page and its whole surface: `src/pages/poems.astro`, the `poems` content collection, every `book-*` / `poem-*` style block, the `--f-verse` / `--lh-verse` tokens, the `poems` config block, the `poems` / `emptyPoems` / `ariaYears` / `bookLabel` / `poemCount` UI strings, the robots `Disallow: /poems/`, the poems `noindex` rule, and the sitemap filter. `.book-count` stays — the archive year header uses it.
 - Dead UI keys `backToKinds` and `shelfMore` (defined in `ume.config.ts`, consumed nowhere) and the `.page-wide` rule that no markup carried.
 - `.prose .footnotes` / `.prose a[data-footnote-backref]`: no footnote plugin ships in this integration, so nothing could ever emit those nodes.
 
 ### Changed
 
+- Palette: the ume ramp is re-cut for contrast, not hue. `--ume` `#00865b` → `#00734e` (4.60:1 → 5.90:1), `--ume-hot` → `#00563a`, `--ume-deep` `#006b49` → `#065c43` (8.02:1, AAA). The old `ume` was legal for large type but thin for an 18px link; body-size text now uses `deep`.
+- Mast: taller and heavier. `--mast-h` 3.5rem → 4.75rem, nav 13px → 14px, and a dedicated `--mast-rule` (#c8c8c8) for the floor line — 30 grey steps past `--line`, where `--line` → `--dash` is only 9. At 639 the floor steps to `--dash` so a 119px phone header stops reading as a black seam.
+- Footer: a tinted paper band (`--ume-soft`) with a hairline, replacing both the deep-green inversion and the plain-paper version that lost the bottom of the page entirely.
+- Footer layout: brand — mark and motto on one baseline row — then a door row, a social row, hairline, colophon. One composition for desktop and phone instead of a two-column desktop grid that collapsed into a stacked phone block. On the phone the colophon is one row, copyright left and theme credit right.
+- Display role is configurable: `site.displayFont` / `displayWeight` / `displayTracking`. The wordmark and `h1` consume `--display`; `--serif` keeps h2–h4. Unset, the theme looks exactly as before.
+- Headings: `--f-h4` 19px → 20px (desktop) and 17px → 19px (phone, where it was *below* the 18px body); `--f-h3` 20px → 21px.
+- Reading measure `--read` 40rem → 37rem (71ch → 66ch on the live corpus); Latin leading 1.62, CJK 1.9 with a hair of tracking; Chinese paragraph gap 1.15em → 1.35em; link underline offset 0.18em → 2px.
+- Gallery cells drop the forced `aspect-ratio: 1/1`; each cell now carries its measured ratio (clamped 0.66–1.5), so a portrait frame survives instead of being cropped to a square.
 - Article table of contents: gothic chrome with a Contents label, so it no longer reads as the start of the body.
 - Home browse: By subject first (wide column), By kind on the right.
 - Language marks in chrome: `en` / `zh`.
@@ -43,6 +53,11 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 
 ### Fixed
 
+- Footer nav and copyright both advertised RSS: the config-filtered door list was followed by a hand-written `<a href="/rss.xml">`, so the same door appeared twice in one footer.
+- `.foot-nav` / `.foot-brand` / `.foot-colophon` declared `gap: var() var()`, which computes to `normal` — zero — in Chrome, leaving the links tight against each other. Rewritten as `row-gap` / `column-gap`. A media-query rule re-declaring the shorthand also erased a valid longhand set by the base rule.
+- The phone footer copyright read `site.author || site.name`, so renaming the site left the colophon on the old name. It now follows `site.wordmark`, with the two fields' roles documented in the config.
+- Phone mast spacing was four unpatterned values (20/40/12/16) accumulated one patch at a time. Now one system: 24 to the logo, 13 to the rule, 12 under it, 24 to the base — outer distances equal, inner pair descending.
+- Phone nav was an 81px-tall box for a single 13px line, because `min-height: var(--hit)` sat on the links inside a stacked flex nav. The tap target moved to a `::before`; the band is 36px and the target is still 44×44.
 - `/page/2/` and deeper repeated the whole hero and the featured note, so page two opened on ~500px of content identical to the front page. Deep pages now open on a quiet masthead (`Latest` left, `Page N` right) and go straight to the stream.
 - Home feature rule was a 136px ume bar over the date rail only, reading as a truncated fragment. One rule now spans the row above the eyebrow.
 - Hero scrim: the kicker now sits on a dark ground. `2026 · 20 notes` lands at ~61% of the frame where the blossom is still bright (region average 146, peaks 236) — a 0.14→0.22 wash measured 2.7:1 for 12px white. Hold 0.48 through the kicker, deepen into the lede.

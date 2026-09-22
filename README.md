@@ -4,7 +4,11 @@ A magazine-style Astro blog theme. Mincho titles, gothic body, ume green. Light 
 
 [简体中文](README.zh-CN.md)
 
-![Home](docs/screenshot.jpg)
+<img src="docs/screenshot.jpg" alt="Home on desktop" width="100%">
+
+<img src="docs/screenshot-mobile.jpg" alt="Home on a phone" width="220">
+
+*Screenshots show a live site built on this theme, so they carry that site's own name and posts. Your content and config go in `ume.config.ts`.*
 
 Use this repository as a GitHub template, or add it as a dependency and keep your own `ume.config.ts` at the site root.
 

@@ -5,6 +5,23 @@ import { fullOf, srcsetOf, measureAll } from '../lib/images';
 const { images } = Astro.props as { images: string[] };
 const items = (images ?? []).filter(Boolean);
 const sized = await measureAll(items);
+
+/**
+ * Real aspect ratio per photo, or a square fallback when the file could not
+ * be measured. The grid used to force every cell to 1/1 with `object-fit:
+ * cover`, which cropped portrait travel frames down to a square tile — half
+ * the shot lost before the reader ever opened the lightbox. The measured
+ * size was already being fetched for the lightbox; it just was not used for
+ * the cell.
+ */
+function ratioOf(src: string) {
+  const { width, height } = sized[src] ?? {};
+  if (!width || !height) return '1 / 1';
+  // Tame extremes so one 3:1 panorama does not stretch a 3-column row.
+  const r = width / height;
+  const clamped = Math.min(1.5, Math.max(0.66, r));
+  return `${clamped.toFixed(3)} / 1`;
+}
 ---
 
 {items.length > 0 && (
@@ -17,10 +34,20 @@ const sized = await measureAll(items);
           data-pswp-src={fullOf(src)}
           data-pswp-width={sized[src]?.width || 1600}
           data-pswp-height={sized[src]?.height || 1067}
+          style={{ aspectRatio: ratioOf(src) }}
           target="_blank"
           rel="noreferrer"
         >
-          <img src={src} srcset={srcsetOf(src)} sizes="(max-width: 639px) 33vw, 260px" alt="" width="400" height="400" loading="lazy" decoding="async" />
+          <img
+            src={src}
+            srcset={srcsetOf(src)}
+            sizes="(max-width: 639px) 33vw, 260px"
+            alt=""
+            width={sized[src]?.width || 400}
+            height={sized[src]?.height || 400}
+            loading="lazy"
+            decoding="async"
+          />
         </a>
       ))}
     </div>

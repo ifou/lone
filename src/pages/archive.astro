@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import IssueHead from '../components/IssueHead.astro';
-import { archive, tags, ui } from 'ume/config';
+import { archive, ui } from 'ume/config';
 import { published, hrefOf, formatDate, yearGroups } from '../lib/posts';
 
 const groups = yearGroups(await published());
@@ -10,7 +10,8 @@ const groups = yearGroups(await published());
   <div class="page">
     <IssueHead title={archive.title} lede={archive.lede}>
       <p class="about-links">
-        <a href="/tags/">{tags.title}</a>
+        <a href="/tags/">{ui.bySubject} →</a>
+        <a href="/categories/">{ui.byKind} →</a>
       </p>
     </IssueHead>
     {groups.length === 0

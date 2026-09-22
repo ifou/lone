@@ -4,7 +4,11 @@ Astro 博客主题。标题明朝、正文角哥、青梅绿。只有白天。
 
 [English](README.md)
 
-![首页](docs/screenshot.jpg)
+<img src="docs/screenshot.jpg" alt="桌面端首页" width="100%">
+
+<img src="docs/screenshot-mobile.jpg" alt="移动端首页" width="220">
+
+*截图来自一个用本主题搭建的站点，所以显示的是那个站自己的名字和文章。你的内容与配置写在 `ume.config.ts` 里。*
 
 用这个仓库当 GitHub 模板，或作为依赖，在站点根目录放自己的 `ume.config.ts`。
 
