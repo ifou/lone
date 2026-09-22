@@ -4,7 +4,7 @@ import HomeHead from '../components/HomeHead.astro';
 import NoteStream from '../components/NoteStream.astro';
 import Pager from '../components/Pager.astro';
 import HomeBrowse from '../components/HomeBrowse.astro';
-import { home, ui } from 'plum/config';
+import { home, ui } from 'ume/config';
 import { published, pageSizeOf, pageCount, pageOf, streamOf, leadOf } from '../lib/posts';
 
 const posts = await published();

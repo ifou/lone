@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import IssueHead from '../../components/IssueHead.astro';
 import TagFlow from '../../components/TagFlow.astro';
-import { tags as tagsCopy, ui } from 'plum/config';
+import { tags as tagsCopy, ui } from 'ume/config';
 import { published, tagsOf } from '../../lib/posts';
 
 const tags = tagsOf(await published());

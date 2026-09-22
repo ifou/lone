@@ -3,7 +3,7 @@
 /* @font-face is inlined from src/styles/fonts.css into <head> so first
    paint already has the faces. Stacks: webfont, metric fallback, system CJK. */
 
-/* plum — white paper, ume, mincho titles, gothic body. Light only.
+/* ume — white paper, ume, mincho titles, gothic body. Light only.
    Desktop values live in :root. Phone values live in the 639 block.
    One role, one size. Components consume tokens; do not add stray px. */
 
@@ -736,8 +736,8 @@ ul, ol { list-style: none; padding: 0; }
   position: relative;
   padding-inline-start: var(--h2-hang);
 }
-.prose { counter-reset: plumh2; }
-.prose h2 { counter-increment: plumh2; }
+.prose { counter-reset: umeh2; }
+.prose h2 { counter-increment: umeh2; }
 .prose h2::before,
 .toc-num {
   font-family: var(--serif);
@@ -749,7 +749,7 @@ ul, ol { list-style: none; padding: 0; }
   font-variant-numeric: tabular-nums;
 }
 .prose h2::before {
-  content: counter(plumh2) ".";
+  content: counter(umeh2) ".";
   position: absolute;
   inset-inline-start: 0;
   top: 0.42em;

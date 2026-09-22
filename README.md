@@ -6,7 +6,7 @@ A magazine-style Astro blog theme. Mincho titles, gothic body, ume green. Light 
 
 ![Home](docs/screenshot.jpg)
 
-Use this repository as a GitHub template, or add it as a dependency and keep your own `plum.config.ts` at the site root.
+Use this repository as a GitHub template, or add it as a dependency and keep your own `ume.config.ts` at the site root.
 
 ## Features
 
@@ -15,14 +15,14 @@ Use this repository as a GitHub template, or add it as a dependency and keep you
 - Notes at `/notes/<slug>/`
 - Archive by year, kinds (`/categories/`), tags, pagination
 - About, RSS, 404, sitemap
-- One config file: `plum.config.ts`
+- One config file: `ume.config.ts`
 - Light theme
 
 ## Quick start
 
 ```bash
-git clone https://github.com/hareai/plum.git
-cd plum
+git clone https://github.com/fennlee/ume.git
+cd ume
 npm install
 npm run dev
 ```
@@ -33,7 +33,7 @@ Node 22+.
 
 ```text
 /
-├── plum.config.ts        # site, home, about, archive
+├── ume.config.ts        # site, home, about, archive
 ├── src/
 │   ├── content/blog/     # posts
 │   ├── pages/
@@ -47,7 +47,7 @@ Posts use `title`, `date`, `description`, `category` (`note` | `travel`), option
 
 ## Configuration
 
-Edit [`plum.config.ts`](plum.config.ts):
+Edit [`ume.config.ts`](ume.config.ts):
 
 | Key | |
 |---|---|

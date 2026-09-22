@@ -1,6 +1,6 @@
 /// <reference types="astro/client" />
 
-declare module 'plum/config' {
+declare module 'ume/config' {
   export const site: {
     name: string;
     wordmark: string;
@@ -18,6 +18,8 @@ declare module 'plum/config' {
   };
 
   export const nav: { href: string; label: string }[];
+
+  export const social: { href: string; label: string }[];
 
   export const home: {
     title: string;

@@ -11,10 +11,13 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
   what the page is painted in. Presentation layer only — `site.name`,
   `wordmark`, `home.title`, `ui.footTheme`, and the motto
   `Paper, ume green, and code.`.
-- Engineering identifiers deliberately unchanged: npm package name, the `plum`
-  integration name, the `plum.config.ts` filename and the `plum/config` import
-  path. Downstream sites pin `github:hareai/plum` and import `plum/config`;
-  renaming those breaks every consumer at once. Repo rename is separate.
+- Engineering identifiers are now `ume` as well, so the name is consistent end
+  to end: npm package `ume`, the `ume` integration and `umeSrc()`, the
+  `ume.config.ts` filename, and the `ume/config` import path. The upstream repo
+  was already renamed to `fennlee/ume`, so the pin now resolves to a matching
+  name. Downstream consumers import `ume/config` and pin
+  `github:fennlee/ume`; the one existing consumer is updated in the same pass,
+  so nothing is left on the old identifier.
 
 ### Removed
 
@@ -51,4 +54,4 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 - Home: one full-bleed landscape, lead note, date-rail stream (thumb only with a cover).
 - Notes at `/notes/<slug>/`. Archive by year, kinds, tags, pagination.
 - About, RSS, 404, sitemap.
-- One config file (`plum.config.ts`) and a `plum` integration so another repo can depend on this theme.
+- One config file (`ume.config.ts`) and a `ume` integration so another repo can depend on this theme.

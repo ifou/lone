@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
-import plum from './src/integration';
-import { site } from './plum.config';
+import ume from './src/integration';
+import { site } from './ume.config';
 
 export default defineConfig({
   site: site.url,
@@ -12,7 +12,7 @@ export default defineConfig({
         !/\/page\/1\/?$/.test(page) &&
         !/\/categories\/?$/.test(page),
     }),
-    plum(),
+    ume(),
   ],
   prefetch: {
     prefetchAll: true,

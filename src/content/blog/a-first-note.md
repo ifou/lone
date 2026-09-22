@@ -7,4 +7,4 @@ tags: [notes]
 lang: en
 ---
 
-Edit `plum.config.ts`. Put writing in `src/content/blog/`. Keep the landscape on the home page.
+Edit `ume.config.ts`. Put writing in `src/content/blog/`. Keep the landscape on the home page.

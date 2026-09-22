@@ -1,4 +1,4 @@
-import { site } from 'plum/config';
+import { site } from 'ume/config';
 import { allPosts, feed } from '../lib/feed';
 
 export const prerender = true;

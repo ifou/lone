@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import fontsCss from '../styles/fonts.css?raw';
 import SiteFoot from '../components/SiteFoot.astro';
-import { site, nav, ui } from 'plum/config';
+import { site, nav, ui } from 'ume/config';
 
 const path = Astro.url.pathname;
 const title = Astro.props.title ? `${Astro.props.title} · ${site.name}` : `${site.name} — ${site.motto}`;

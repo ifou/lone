@@ -6,18 +6,18 @@ import { fileURLToPath } from 'node:url';
 const themeSrc = fileURLToPath(new URL('./', import.meta.url));
 
 /** Theme `src/` as a path relative to the site root. Pass to `srcDir`. */
-export function plumSrc(root: string = process.cwd()): string {
+export function umeSrc(root: string = process.cwd()): string {
   const rel = path.relative(root, themeSrc);
   return rel || './src';
 }
 
-export default function plum(): AstroIntegration {
+export default function ume(): AstroIntegration {
   return {
-    name: 'plum',
+    name: 'ume',
     hooks: {
       'astro:config:setup': ({ updateConfig, config }) => {
         const root = fileURLToPath(config.root);
-        const configFile = path.join(root, 'plum.config.ts');
+        const configFile = path.join(root, 'ume.config.ts');
         updateConfig({
           markdown: {
             shikiConfig: {
@@ -31,10 +31,10 @@ export default function plum(): AstroIntegration {
           vite: {
             plugins: [
               {
-                name: 'plum-config',
+                name: 'ume-config',
                 enforce: 'pre',
                 resolveId(id) {
-                  if (id === 'plum/config') return configFile;
+                  if (id === 'ume/config') return configFile;
                 },
               },
               tailwindcss(),

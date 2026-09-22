@@ -12,7 +12,7 @@ export const site = {
   lang: 'en',
   author: 'your name',
   email: 'you@example.com',
-  github: 'https://github.com/hareai/plum',
+  github: 'https://github.com/fennlee/ume',
   ogImage: '/images/hero.jpg',
   favicon: '/favicon.svg',
   rssTitle: '',
@@ -119,5 +119,5 @@ export const ui = {
   footCopyright: (years: string, name: string) => `© ${years} ${name}`,
   footThemeLabel: 'Theme',
   footTheme: 'ume',
-  footThemeHref: 'https://github.com/hareai/plum',
+  footThemeHref: 'https://github.com/fennlee/ume',
 };

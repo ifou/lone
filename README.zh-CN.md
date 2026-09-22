@@ -6,7 +6,7 @@ Astro 博客主题。标题明朝、正文角哥、青梅绿。只有白天。
 
 ![首页](docs/screenshot.jpg)
 
-用这个仓库当 GitHub 模板，或作为依赖，在站点根目录放自己的 `plum.config.ts`。
+用这个仓库当 GitHub 模板，或作为依赖，在站点根目录放自己的 `ume.config.ts`。
 
 ## 功能
 
@@ -15,14 +15,14 @@ Astro 博客主题。标题明朝、正文角哥、青梅绿。只有白天。
 - 笔记在 `/notes/<slug>/`
 - 按年归档、分类（`/categories/`）、标签、分页
 - About、RSS、404、sitemap
-- 一份配置：`plum.config.ts`
+- 一份配置：`ume.config.ts`
 - 浅色
 
 ## 快速开始
 
 ```bash
-git clone https://github.com/hareai/plum.git
-cd plum
+git clone https://github.com/fennlee/ume.git
+cd ume
 npm install
 npm run dev
 ```
@@ -33,7 +33,7 @@ Node 22+。
 
 ```text
 /
-├── plum.config.ts
+├── ume.config.ts
 ├── src/
 │   ├── content/blog/
 │   ├── pages/
@@ -45,7 +45,7 @@ Node 22+。
 
 ## 配置
 
-改 [`plum.config.ts`](plum.config.ts)：
+改 [`ume.config.ts`](ume.config.ts)：
 
 | 键 | |
 |---|---|
