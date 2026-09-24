@@ -91,6 +91,7 @@
   --thumb-h: 8rem;
   --lead-thumb: 11rem;
   --hit: 2.75rem;
+  --menu-ico: 1.25rem;
   --rule: 1px;
   --h2-hang: 1.6em;
   --gallery: 3;
@@ -321,14 +322,19 @@ ul, ol { list-style: none; padding: 0; }
 .drawer-panel a[aria-current="page"] { color: var(--ume); }
 html.menu-open { overflow: hidden; }
 
+/* The name sits left; the nav and the day/night pair sit right, as one column
+   of tools rather than three islands. `space-between` here spread two equal
+   160-180px chasms across the masthead and stranded the nav in the middle of
+   nowhere, so the nav is pushed right instead and the pair follows it at the
+   row's own rhythm. */
 .mast-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: var(--sp-6);
   min-height: var(--mast-h);
   padding: var(--sp-2) 0;
 }
+.mast-row .topnav { margin-left: auto; }
 
 .mast-brand {
   display: flex;
@@ -371,11 +377,14 @@ html.menu-open { overflow: hidden; }
   box-shadow: inset 0 calc(var(--rule) * -2) 0 var(--ume);
 }
 
+/* No pill. It was the only outlined thing in a masthead of bare words, so it
+   read as a control stuck onto the page rather than one of the row's words.
+   The bar between Day and Night already separates it; a box did not. */
 .mast-desk .theme-toggle {
   margin-left: var(--sp-5);
-  padding: 0 var(--sp-3);
-  border: var(--rule) solid var(--line);
-  border-radius: 999px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
 }
 .theme-toggle {
   display: inline-flex;
@@ -399,13 +408,21 @@ html.menu-open { overflow: hidden; }
   height: 0.85em;
   background: var(--mast-rule);
 }
+/* Hover lifts the *unlit* word toward ink; it must never repaint the lit one.
+   --ume-hot is a lighter green on the dark ramp (#7ed9b8 against the lit
+   #3dba8b), so brightening both words there makes them nearly the same green
+   and reads as "both lit".
+
+   Which word is lit depends on the theme, so each block names the lit word
+   explicitly and the hover rule targets only the other. An earlier attempt
+   used `:not([data-day])` twice and matched both, wiping the brand colour on
+   hover -- so this stays spelled out rather than clever. */
 .theme-opt { color: var(--t3); }
 .theme-opt[data-day] { color: var(--ume); }
 :root[data-theme='dark'] .theme-opt[data-day] { color: var(--t3); }
 :root[data-theme='dark'] .theme-opt[data-night] { color: var(--ume); }
-.theme-toggle:hover .theme-opt { color: var(--ume-hot); }
-.theme-toggle:hover .theme-opt[data-day],
-:root[data-theme='dark'] .theme-toggle:hover .theme-opt[data-night] { color: var(--ume); }
+:root[data-theme='light'] .theme-toggle:hover .theme-opt[data-night] { color: var(--t2); }
+:root[data-theme='dark'] .theme-toggle:hover .theme-opt[data-day] { color: var(--t2); }
 .hero {
   position: relative;
   min-height: var(--hero-h);
@@ -1583,6 +1600,42 @@ html.menu-open { overflow: hidden; }
     padding: var(--sp-6) 0;
   }
   .menu-btn { display: inline-flex; }
+  /* One row, right edge: the day/night pair and the menu icon read as a single
+     control rather than two. The pair keeps no border -- a pill beside a bare
+     icon makes the icon look dropped, and the rule above the masthead already
+     groups them. Spacing does the grouping; no hairline between them.
+
+     The gap is the *optical* one. The icon's button keeps the full --hit target
+     for touch, which leaves 12px of slack inside its box on each side, so
+     --sp-2 here measures --sp-5 from the word "Night" to the ink -- the same
+     rhythm as the rest of the mast, not the 28px --sp-4 would have given. */
+  .mast-tools {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+    margin-left: auto;
+  }
+  .mast-phone .theme-toggle {
+    margin-left: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+  }
+  /* Pull the button's slack out past the margin so the icon's ink lands on the
+     same 20px inset the wordmark sits on. Without it the toggle looks 12px shy
+     of the right edge while the wordmark is flush on the left. */
+  .menu-btn { margin-right: calc((var(--hit) - var(--menu-ico)) / -2); }
+  /* Heroicons bars-3, 24px outline, kept at its own stroke (1.5 round) rather
+     than the square pager stroke: this is the menu affordance a visitor already
+     knows, and thickening or squaring it is how it stops looking standard.
+     Sits at --menu-ico so its three bars hold against the Day | Night words. */
+  .menu-ico {
+    width: var(--menu-ico);
+    height: var(--menu-ico);
+    display: block;
+  }
+  .menu-btn { color: var(--t1); }
+  .menu-btn:hover { color: var(--ume); }
 
   .mast { border-bottom-color: var(--dash); }
 
