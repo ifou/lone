@@ -102,7 +102,6 @@ export const ui = {
   linkGithub: 'GitHub',
   linkRss: 'RSS',
   ariaNav: 'Primary',
-  ariaFoot: 'Footer',
   ariaPager: 'Pagination',
   ariaContents: 'Contents',
   ariaAdjacent: 'Adjacent notes',

@@ -54,8 +54,15 @@ export function truncate(text: string, max: number) {
     return `${cut}…`;
   }
 
-  let cut = s.slice(0, max);
-  cut = cut.replace(/[,.;:，。；：、的了和与或及而则在把被向着从对到]+$/, '');
+  // Chinese has no spaces, so the word-boundary branch never fires and the cut
+  // lands mid-word. Strip trailing punctuation, then a single trailing function
+  // word; never a run of them -- the old character class `的了和与或及而则在把被向着从对到`
+  // was a bare alternation with no word boundaries, so it ate whichever of those
+  // characters happened to end the slice, including the last character of a real
+  // word (`…写下来` came back as `…写下`). One word, one strip.
+  const ZH_STOP = /[的了和与或及而则在把被向着从对到]$/;
+  let cut = s.slice(0, max).replace(/[,.;:，。；：、]+$/, '');
+  cut = cut.replace(ZH_STOP, '');
   return `${cut}…`;
 }
 

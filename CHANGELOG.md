@@ -4,6 +4,47 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 
 ## [Unreleased]
 
+### Fixed
+
+- `opening()` truncated Chinese mid-word. The no-space fallback stripped
+  punctuation and function words with one glued character class
+  (`的了和与或及而则在把被向着从对到`) and no word boundary, so whichever of
+  those characters ended the slice was eaten — the last character of a real
+  word went with it (`…写下来` came back as `…写下`). Punctuation is stripped,
+  then at most one trailing function word. Latin notes are untouched: their cut
+  lands in the word-boundary branch above.
+
+### Changed
+
+- README (both languages) no longer list `social` as footer links. The footer
+  never rendered it; the table described a door that does not exist.
+- The phone media query no longer opens on a stray blank line and two
+  whitespace-only lines before its first rule.
+
+### Removed
+
+- `.menu-bars` and its two pseudo-elements. The phone mast draws heroicons
+  `bars-3` at its own stroke now; the CSS-made bars it replaced had no markup
+  left to style.
+- `.year-title a` and its hover. The archive year head is an `<h2>` with a
+  count, not a link.
+- `.prose h2::before`, the `position: relative` it needed, and the phone
+  override that reset it. Heading numbering had already been dropped; the rule
+  declared no `content`, so it could only ever have painted nothing.
+  `.toc-num` keeps the number in the contents list.
+- `--fw-title` and `--lh-cjk`. Neither was consumed — Chinese leading is set
+  directly on `.note[lang="zh"] .prose`.
+- `ui.ariaFoot`. The footer is a landmark and needs no label; the key was
+  defined in the config and typed in `env.d.ts` but read nowhere.
+- The gallery link opened a new tab (`target="_blank"`). PhotoSwipe already
+  claims the click; without the script the image opens in place, which is the
+  better fallback for a full-screen photo.
+
+### Changed
+
+- The phone media query no longer opens on a stray blank line and two
+  whitespace-only lines before its first rule.
+
 ### Changed
 
 - README and `package.json` describe light and dark. Sample copy no longer says light-only.

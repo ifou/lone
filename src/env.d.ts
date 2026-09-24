@@ -84,7 +84,6 @@ declare module 'ume/config' {
     linkGithub: string;
     linkRss: string;
     ariaNav: string;
-    ariaFoot: string;
     ariaPager: string;
     ariaContents: string;
     ariaAdjacent: string;

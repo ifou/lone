@@ -73,7 +73,6 @@ Edit [`ume.config.ts`](ume.config.ts):
 | `about` | about page |
 | `notFound` | 404 copy |
 | `ui` | chrome strings |
-| `social` | footer links; empty by default |
 
 Point `home.hero` and post covers at files in `public/`. Do not edit theme source to restyle a site.
 

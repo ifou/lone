@@ -8,7 +8,6 @@
   --t2: #363636;
   --t3: #4a4a4a;
   --fw-body: 400;
-  --fw-title: 700;
 
   --ume: #00734e;
   --ume-hot: #00563a;
@@ -64,7 +63,6 @@
   --lh-body: 1.7;
 
   --lh-latin: 1.62;
-  --lh-cjk: 1.9;
   --lh-open: 1.65;
   --lh-code: 1.6;
 
@@ -141,7 +139,6 @@
     --lh-body: 1.75;
     --lh-latin: 1.7;
 
-    --lh-cjk: 1.95;
     --lh-open: 1.75;
 
     --pad: 1.25rem;
@@ -252,25 +249,6 @@ ul, ol { list-style: none; padding: 0; }
   background: none;
   cursor: pointer;
 }
-.menu-bars,
-.menu-bars::before,
-.menu-bars::after {
-  display: block;
-  width: 18px;
-  height: 1.5px;
-  background: var(--t1);
-  border-radius: 1px;
-}
-.menu-bars { position: relative; }
-.menu-bars::before,
-.menu-bars::after {
-  content: "";
-  position: absolute;
-  left: 0;
-}
-.menu-bars::before { top: -6px; }
-.menu-bars::after { top: 6px; }
-
 .drawer[hidden] { display: none; }
 .drawer {
   position: fixed;
@@ -898,9 +876,7 @@ html.menu-open { overflow: hidden; }
   color: var(--t0);
   margin-bottom: 0.5em;
   line-height: var(--lh-title);
-  position: relative;
 }
-.prose h2::before,
 .toc-num {
   font-family: var(--serif);
   font-size: var(--f-kicker);
@@ -1196,8 +1172,6 @@ html.menu-open { overflow: hidden; }
   color: var(--t0);
   margin: 0 0 var(--sp-3);
 }
-.year-title a { color: inherit; }
-.year-title a:hover { color: var(--ume); }
 .year-list > li + li { border-top: var(--rule) solid var(--line); }
 .year-list a {
   display: grid;
@@ -1591,8 +1565,6 @@ html.menu-open { overflow: hidden; }
 }
 
 @media (max-width: 639px) {
-
-  
   .mast-desk { display: none; pointer-events: none; }
   .mast-phone {
     display: block;
@@ -1688,14 +1660,6 @@ html.menu-open { overflow: hidden; }
   .back.is-on-photo:hover { color: var(--ume-hot); }
   .cover-line { margin-bottom: var(--sp-3); }
   .cover-dot { color: var(--dash); }
-
-  .prose h2 { padding-inline-start: 0; }
-  .prose h2::before {
-    position: static;
-    display: inline;
-    margin-right: 0.4em;
-    top: auto;
-  }
 
   .toc { margin-bottom: var(--sp-6); padding-block: var(--sp-4); }
   .toc a { padding-block: 0.55rem; }

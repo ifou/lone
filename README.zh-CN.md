@@ -73,7 +73,6 @@ Node 22+。
 | `about` | 关于页 |
 | `notFound` | 404 |
 | `ui` | 固定界面文案 |
-| `social` | 页脚链接，默认空 |
 
 `home.hero` 和文章封面指向 `public/` 里的文件。换站点不要改主题源码。
 
