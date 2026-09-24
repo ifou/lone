@@ -1,20 +1,20 @@
 # ume
 
-Astro 博客主题。标题明朝、正文角哥、青梅绿。只有白天。
+Astro 博客主题。标题明朝、正文角哥、青梅绿。浅色 / 深色。
 
 [English](README.md)
 
-用这个仓库当 GitHub 模板，或作为依赖安装，在站点根目录放自己的 `ume.config.ts`。
+可以直接克隆当模板，或作为依赖安装，在站点根目录放自己的 `ume.config.ts`。
 
 ## 功能
 
 - Markdown 文章，放在 `src/content/blog/`
-- 首页一张全幅风景，下面是头条和带日期纵列的笔记流（有封面才出缩略图）
+- 首页一张全幅风景，下面是头条和带日期纵列的笔记流
 - 笔记在 `/notes/<slug>/`，带照片、目录、上一篇 / 下一篇
 - 按年归档、分类（`/categories/`）、标签、分页
 - About、RSS、404、sitemap
 - 一份配置：`ume.config.ts`
-- 浅色
+- 浅色 / 深色
 
 ## 快速开始
 
@@ -47,11 +47,18 @@ Node 22+。
 ├── src/
 │   ├── content/blog/
 │   ├── pages/
-│   └── styles/global.css
+│   ├── layouts/
+│   ├── components/
+│   ├── lib/
+│   └── styles/
+│       ├── fonts.css
+│       └── global.css
 └── public/
+    ├── fonts/
+    └── images/
 ```
 
-文章头需要 `title`、`date`、`description`、`category`（`note` 或 `travel`）。可选 `tags`、`lang`、`cover`、`images`。
+文章头需要 `title`、`date`、`description`、`category`（`note` 或 `travel`）。可选 `tags`、`lang`、`cover`、`images`、`toc`。
 
 ## 配置
 
@@ -61,7 +68,7 @@ Node 22+。
 |---|---|
 | `site` | 站名、字标、网址、作者、邮箱、GitHub、favicon、年份 |
 | `nav` | 顶栏 |
-| `home` | 标题、导语、头图、流标题、每页条数、pin（slug；空则最新一篇） |
+| `home` | 标题、导语、头图、流标题、每页条数、pin |
 | `archive` / `tags` / `categories` | 归档、标签、分类 |
 | `about` | 关于页 |
 | `notFound` | 404 |
@@ -81,6 +88,6 @@ Node 22+。
 | `npm run check` | 类型检查 |
 | `npm run preview` | 预览 `dist/` |
 
-## 许可
+## 许可证
 
 [MIT](LICENSE)

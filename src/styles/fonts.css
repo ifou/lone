@@ -1,9 +1,3 @@
-/* Latin files in /fonts. Inlined into <head> (not Vite) so @font-face
-   exists in the same document as the preloads, before first paint.
-   font-display: optional — miss the first paint, keep the metric-matched
-   fallback for the whole page. CJK is not in these faces; it stays on
-   the next family in --text / --serif / --sans. */
-
 @font-face {
   font-family: "Source Serif Fallback";
   font-style: normal;
@@ -132,9 +126,6 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-/* Critical stacks — same families as :root. In the head so first paint
-   does not wait on Vite's global.css. CJK glyphs skip the latin faces
-   (unicode-range) and land on the system Songti / Gothic. */
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -145,14 +136,7 @@ body {
   font-family: "Zen Kaku Gothic New", "Gothic Fallback", "PingFang SC",
     "Hiragino Sans", "Noto Sans SC", ui-sans-serif, system-ui, sans-serif;
 }
-/* Same roles as the :root stacks in global.css, inlined so first paint
-   does not wait on Vite. These rules name the ROLE; the value lives in
-   :root, which the document's own cascade resolves — global.css is loaded
-   after this file, so its `--display` wins for anything this block sets
-   with a fallback. A site that overrides --display therefore moves the
-   wordmark and h1 without touching internals here.
-   CJK glyphs skip the latin faces (unicode-range) and land on the
-   system Songti / Gothic. */
+
 .wordmark, h1,
 .lead-title, .entry-title, .note-title, .hero-title {
   font-family: var(--display, "Shippori Mincho");

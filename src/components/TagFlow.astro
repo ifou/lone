@@ -8,8 +8,6 @@ const { tags } = Astro.props as { tags: { tag: string; count?: number }[] };
     <li>
       <a href={tagHref(tag)} title={count && count > 1 ? `${count} notes` : undefined}>
         {tag}
-        {/* `tagsOf` counts every tag; the index used to drop it, so the page
-            gave no way to tell a two-post tag from a single mention. */}
         {count !== undefined && count > 1 && <span class="tag-count">{count}</span>}
       </a>
     </li>

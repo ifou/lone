@@ -1,12 +1,5 @@
 @import "tailwindcss";
 
-/* @font-face is inlined from src/styles/fonts.css into <head> so first
-   paint already has the faces. Stacks: webfont, metric fallback, system CJK. */
-
-/* ume — white paper, ume, mincho titles, gothic body.
-   Desktop values live in :root. Phone values live in the 639 block.
-   One role, one size. Components consume tokens; do not add stray px. */
-
 :root {
   color-scheme: light;
 
@@ -17,17 +10,6 @@
   --fw-body: 400;
   --fw-title: 700;
 
-  /* One green, three jobs. ume is the bright one — the #-mark, a kicker, a
-     hover. hot is what ume becomes on hover, and it has to stay darker than
-     the resting colour or the feedback reads as a change of mind rather
-     than a response. deep is the only one allowed under body-size text.
-
-     The re-cut is about contrast, not hue: the old ume (#00865b) measured
-     4.60:1 on white — legal for large type, thin for an 18px link. ume now
-     measures 5.90:1 and deep 8.02:1 (AAA), so a link in a paragraph can be
-     deep while a bright ume stays in display type only. The old pair
-     differed by 38% in luminance, the new pair by 37% — the ramp looks the
-     same, but both rungs now clear the floor they were being used for. */
   --ume: #00734e;
   --ume-hot: #00563a;
   --ume-deep: #065c43;
@@ -36,9 +18,7 @@
   --paper: #ffffff;
   --soft: #f5f5f5;
   --line: #e6e6e6;
-  /* The mast's floor line: 30 grey steps past --line (--line to --dash is 9).
-     Kept as its own token so the header's weight can be tuned without
-     touching every other hairline on the page. */
+
   --mast-rule: #c8c8c8;
   --dash: #dddddd;
   --on-photo: #ffffff;
@@ -47,11 +27,7 @@
     "Source Han Serif SC", "Songti SC", "Hiragino Mincho ProN", serif;
   --text: "Source Serif 4", "Source Serif Fallback", "Noto Serif CJK SC",
     "Source Han Serif SC", "Songti SC", "Hiragino Mincho ProN", serif;
-  /* The display role is the wordmark and the h1 family — the face a reader
-     meets first. It defaults to the same mincho as --serif so a theme that
-     never touches it looks exactly as before; a site is free to point it at
-     a different face without overriding internals. --serif stays the face
-     of body headings (h2-h4), so the two roles can still diverge. */
+
   --display: var(--serif);
   --display-weight: 700;
   --display-tracking: 0.06em;
@@ -74,18 +50,10 @@
   --f-page: 2.125rem;
   --f-lede: 1.125rem;
   --f-body: 1.125rem;
-  /* Heading ladder measured against an 18px body on a 66ch measure. h2 at
-     24px is a 1.33 ratio, already a real section break. The gap was h3: at
-     20px it was 1.11 — only 2px of Mincho 700 over an 18px Source Serif
-     body, which reads as a stray line rather than a subsection. h3 got the
-     step the ladder was missing; h4 keeps its 19px but stays separated by
-     family and weight, not by size alone. */
+
   --f-h2: 1.5rem;
   --f-h3: 1.3125rem;
-  /* h4 was 19px against an 18px body — one px, which only the Mincho face
-     change could carry, and in a CJK paragraph that swap is nearly
-     invisible. 20px gives it a two-px step off body while staying under
-     h3's 21px, which stays under h2's 24px. */
+
   --f-h4: 1.25rem;
   --f-code: 0.875rem;
   --f-pager: 1.125rem;
@@ -94,7 +62,7 @@
   --lh-title: 1.35;
   --lh-lead: 1.4;
   --lh-body: 1.7;
-  /* Latin正文专用：拉丁字母有升部/降部自身的节奏，同字号下比中文用更紧的行高。 */
+
   --lh-latin: 1.62;
   --lh-cjk: 1.9;
   --lh-open: 1.65;
@@ -111,16 +79,11 @@
 
   --pad: 2rem;
   --col: 52rem;
-  /* Reading measure. 40rem rendered 71ch of Source Serif 4 at 18px, past the
-     45–75ch comfort band; 37rem lands at 66ch. The stream and browse keep
-     --col so their columns are untouched. */
+
   --read: 37rem;
   --hero-h: 28rem;
   --cover-h: 22rem;
-  /* A header has to hold its own edge. 56px against a 22px wordmark left the
-     bar reading as a floating strip, and a 13px nav barely out-sized the
-     meta text elsewhere. 4.75rem plus a floor line that is darker than the
-     body's hairlines gives the mast the weight of an opening rule. */
+
   --mast-h: 4.75rem;
   --rail: 4.75rem;
   --lead-rail: 8.5rem;
@@ -133,8 +96,6 @@
   --gallery: 3;
 }
 
-/* Night. Same structure, inverted paper. The ume green is lifted so it
-   still reads as the accent on a near-black sheet. */
 :root[data-theme='dark'] {
   color-scheme: dark;
   --t0: #e8e8e8;
@@ -169,20 +130,16 @@
     --f-lede: 1.125rem;
     --f-body: 1.125rem;
     --f-h2: 1.375rem;
-    /* Phone: h3 was 19px against an 18px body — one pixel. The section
-       step has to exist at 390 too, or every subsection reads as a lead-in
-       line rather than a heading. 1.3125rem puts it three px clear. */
+
     --f-h3: 1.3125rem;
-    /* Phone h4 was 17px — smaller than the 18px body, an inverted step.
-       1.1875rem puts it three px clear of body while staying under h3. */
+
     --f-h4: 1.1875rem;
     --f-code: 0.875rem;
     --f-pager: 1.0625rem;
 
     --lh-body: 1.75;
     --lh-latin: 1.7;
-    /* Phone: a finger scrolls a narrower column, and the tighter Latin
-       leading has to grow with it or the lines merge. */
+
     --lh-cjk: 1.95;
     --lh-open: 1.75;
 
@@ -190,8 +147,7 @@
     --hero-h: 16rem;
     --cover-h: 14rem;
     --mast-h: auto;
-    /* 3.5rem (56px) left 2px of the month string ("2026/01" measures 42px)
-       with 1px over. 4rem puts a full 12px of air inside the rail. */
+
     --rail: 4rem;
     --lead-rail: 0;
     --thumb: 100%;
@@ -229,8 +185,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: geometricPrecision;
   font-synthesis: none;
-  /* Anchor jumps from the TOC should glide, not snap. Reduced motion turns
-     it back off further down. */
+
   scroll-behavior: smooth;
 }
 
@@ -278,10 +233,7 @@ ul, ol { list-style: none; padding: 0; }
 
 .mast {
   background: var(--paper);
-  /* Darker than the body's hairlines (--line measures 0.79 relative
-     luminance against this white; --mast-rule sits at 0.58). That is still
-     roughly 8x lighter than t3 text at 0.068, so the rule opens the page
-     without competing with anything a reader is trying to read. */
+
   border-bottom: var(--rule) solid var(--mast-rule);
 }
 .mast-desk { display: flex; }
@@ -471,10 +423,7 @@ html.menu-open { overflow: hidden; }
 .hero-scrim {
   position: absolute;
   inset: 0;
-  /* The kicker sits at ~61% of the frame, where the photo is still bright
-     (blossom averages 146, peaks 236). A 0.14→0.22 wash measured 2.7:1 for
-     12px white text. Hold 0.48 through the kicker, then deepen into the
-     lede so the copy always sits on a dark ground. */
+
   background: linear-gradient(180deg, rgb(0 0 0 / 0.18) 0%, rgb(0 20 14 / 0.48) 34%, rgb(0 20 14 / 0.62) 62%, rgb(0 30 20 / 0.74) 100%);
   pointer-events: none;
 }
@@ -521,8 +470,6 @@ html.menu-open { overflow: hidden; }
   margin: var(--sp-10) 0 var(--sp-4);
 }
 
-/* The feature is marked by the eyebrow and the larger title. A green rule
-   under the hero doubled that mark and cut the photo off. */
 .lead-note {
   padding: var(--sp-10) 0 var(--sp-2);
 }
@@ -599,9 +546,7 @@ html.menu-open { overflow: hidden; }
 .lead.no-thumb .lead-open { max-width: 40em; }
 
 .news { padding: var(--sp-2) 0 0; }
-/* Kind and tag pages have no browse band under the stream, so the last row
-   sat flush on the footer. Same bottom air as .page, without taking .page's
-   narrower measure — these rows carry thumbs. */
+
 .list-page { padding-bottom: var(--sp-12); }
 .stream { display: flex; flex-direction: column; }
 .stream > li + li { border-top: var(--rule) solid var(--line); }
@@ -641,9 +586,7 @@ html.menu-open { overflow: hidden; }
   font-family: var(--sans);
   font-size: var(--f-meta);
   color: var(--t3);
-  /* The rail is a fixed 56px column (64px with the 2px rule and 12px pad).
-     2025/05 at 12px + 0.06em tracking measures 45px — 45+14 = 59, over the
-     edge. Tracking to 0.02em pulls it to 44px and keeps the month inside. */
+
   letter-spacing: 0.02em;
   margin-top: var(--sp-2);
   font-variant-numeric: tabular-nums;
@@ -745,8 +688,6 @@ html.menu-open { overflow: hidden; }
 
 .empty { color: var(--t3); padding: var(--sp-8) 0; }
 
-/* Deeper pages: a quiet masthead instead of a second hero. Label left, page
-   mark right, rule under both. */
 .paged-head {
   display: flex;
   align-items: baseline;
@@ -809,8 +750,7 @@ html.menu-open { overflow: hidden; }
   text-shadow: 0 1px 14px rgb(0 20 16 / 0.55);
   margin-bottom: 0;
 }
-/* Back-link and date on one line: stacked, the date read as part of the link.
-   Inline keeps the 44px hit area and reads as one stamp. */
+
 .cover-line {
   display: flex;
   align-items: baseline;
@@ -915,14 +855,10 @@ html.menu-open { overflow: hidden; }
   color: var(--t1);
   text-wrap: pretty;
   overflow-wrap: break-word;
-  /* Source Serif 4 carries generous side bearings; at 18px the default
-     tracking reads a little loose in long Latin runs. */
+
   letter-spacing: -0.003em;
 }
-/* Latin wants tighter leading than CJK at the same size — the ascender/
-   descender pattern gives the eye its own rhythm. Chinese has no x-height
-   band to lean on, so it takes the looser measure plus a hair of tracking
-   to keep hanzi from colliding at the same 18px. */
+
 .note[lang="en"] .prose {
   line-height: var(--lh-latin);
   letter-spacing: -0.003em;
@@ -933,12 +869,7 @@ html.menu-open { overflow: hidden; }
   letter-spacing: 0.06em;
 }
 .prose > * + * { margin-top: 1.15em; }
-/* Paragraph rhythm is the primary paragraph separator here — there is no
-   first-line indent — so the gap has to do the whole job. 1.15em read as
-   23px against a 34.2px line on the Chinese notes: 0.67 line-heights, which
-   is where two adjacent paragraphs start to read as one broken one. The
-   looser CJK leading makes that ratio harsher, so Chinese carries a wider
-   gap; Latin keeps the original figure. */
+
 .note[lang="zh"] .prose > * + * { margin-top: 1.35em; }
 .prose > * + h2 { margin-top: 2.2em; }
 .prose > * + h3,
@@ -975,10 +906,7 @@ html.menu-open { overflow: hidden; }
 .prose h5,
 .prose h6 {
   font-family: var(--serif);
-  /* h4 sat at 19px against an 18px body — a one-pixel step that only the
-     family change could carry, and in a CJK paragraph the family swap is
-     nearly invisible. It is a real level in the ladder, so it needs a real
-     size step, not just a different face. */
+
   font-size: var(--f-h4);
   font-weight: 700;
   color: var(--t0);
@@ -988,9 +916,7 @@ html.menu-open { overflow: hidden; }
 .prose a {
   color: var(--ume-deep);
   text-decoration: underline;
-  /* Astro's default 0.18em on an 18px body resolves to 3.24px, which
-     floats the rule clear of the descenders; on a 66ch line the rule and
-     the word read as two objects. Two points tucks it back under. */
+
   text-underline-offset: 2px;
 }
 .prose a:hover { color: var(--ume-hot); }
@@ -1306,8 +1232,7 @@ html.menu-open { overflow: hidden; }
 
 .about-page .issue-head { margin-bottom: var(--sp-8); }
 .about-letter { max-width: 36em; }
-/* The quote is set off by size and weight, not by a ruled box. Rules belong
-   between the stack rows, where they separate items of the same kind. */
+
 .about-quote {
   font-family: var(--serif);
   font-size: var(--f-h3);
@@ -1322,8 +1247,7 @@ html.menu-open { overflow: hidden; }
   margin: var(--sp-8) 0 0;
   padding: 0;
 }
-/* 12px of row padding made each hairline sit 4-6px off the text. 16px lets
-   the rule work as a shelf instead of cutting into the row. */
+
 .about-stack-row {
   display: grid;
   grid-template-columns: 7.5rem minmax(0, 1fr);
@@ -1352,8 +1276,7 @@ html.menu-open { overflow: hidden; }
   color: var(--t3);
   font-weight: 400;
 }
-/* Stats sits under the stack's last hairline. Space separates it; another
-   rule would double the one the stack already drew. */
+
 .about-page .about-stats {
   margin-top: var(--sp-8);
 }
@@ -1393,7 +1316,6 @@ html.menu-open { overflow: hidden; }
   color: var(--t2);
 }
 
-/* Count in a year block header. Pushed to the row's trailing edge. */
 .book-count {
   margin-left: auto;
   font-family: var(--sans);
@@ -1403,9 +1325,6 @@ html.menu-open { overflow: hidden; }
   letter-spacing: 0.06em;
 }
 
-/* The footer is the mast's other end: the same white paper, closed by a rule
-   of the same weight. A tinted band made the bottom a different object from
-   the top, and a second nav repeated doors the mast already holds. */
 .site-foot {
   margin-top: auto;
   border-top: var(--rule) solid var(--mast-rule);
@@ -1421,8 +1340,6 @@ html.menu-open { overflow: hidden; }
   outline-offset: 3px;
 }
 
-/* Desktop: one row. Brand on the left, the colophon on the right — the same
-   two ends the mast uses for the wordmark and the nav. */
 .foot-inner {
   display: flex;
   flex-direction: row;
@@ -1521,8 +1438,7 @@ html.menu-open { overflow: hidden; }
 
 @media (max-width: 639px) {
   .site-foot { padding: var(--sp-4) 0; }
-  /* Two rows, both left-aligned: brand, then the colophon. Same paper, same
-     rule — not a tinted slab with its own nav. */
+
   .foot-inner {
     flex-direction: column;
     align-items: flex-start;
@@ -1596,9 +1512,7 @@ html.menu-open { overflow: hidden; }
   content: "#";
   color: var(--ume);
 }
-/* Count sits after the name, small and quiet: it answers "how big is this
-   door" without turning the flow into a ranked list. `count` only renders
-   for >1, so a single-post tag stays a bare word. */
+
 .tag-count {
   font-family: var(--sans);
   font-size: var(--f-kicker);
@@ -1641,9 +1555,7 @@ html.menu-open { overflow: hidden; }
 }
 .gallery-grid a {
   display: block;
-  /* No forced 1/1 here — the component sets a per-photo ratio from the
-     measured size, so a portrait frame stays a portrait instead of being
-     cropped to a square tile before the reader opens the lightbox. */
+
   overflow: hidden;
   background: var(--soft);
   outline: var(--rule) solid oklch(0 0 0 / 0.1);
@@ -1662,29 +1574,8 @@ html.menu-open { overflow: hidden; }
 }
 
 @media (max-width: 639px) {
-  /* Phone mast spacing — one system, three values, read top to bottom:
-       screen edge → logo ......... 24   (outer, mirrors the base)
-       logo → hairline ............ 12
-       hairline → nav text ........ 12
-       nav → mast base ............ 24
-     The hairline sits 12px under the logo and 12px over the links, so it
-     belongs to neither and to both — the gap it creates measures the same
-     on either side, which is what makes it read as a rule rather than a
-     fold. The outer distances are equal top and bottom, and every value is
-     a rung of the page's own scale (--sp-6, --sp-3), not a number invented
-     for this block.
 
-     Note that the nav's spacing is declared on the nav itself. Declaring
-     the upper half on the parent's padding and the lower half on the nav
-     put the hairline between two values, so 16+1+12 measured as 29px of
-     empty air and the line looked adrift.
-
-     Stacking the mast this way is itself the fix for the old single-row
-     header: at 8px padding the wordmark sat 8px from the top of the screen,
-     which on a phone reads as touching the edge. */
-  /* No gap on this container: it stacks two bands whose spacing is declared
-     on the bands themselves. A flex gap would add to the nav's own margins
-     and there would be two places to look for one distance. */
+  
   .mast-desk { display: none; pointer-events: none; }
   .mast-phone {
     display: block;
@@ -1692,14 +1583,9 @@ html.menu-open { overflow: hidden; }
     padding: var(--sp-6) 0;
   }
   .menu-btn { display: inline-flex; }
-  /* The mast's base rule was tuned for the 77px desktop bar. On a phone the
-     header is 119px tall and the band already has the lighter --line above
-     the nav, so --mast-rule lands as a heavy black seam under the whole
-     block. Step it back to --dash (#ddd) at this width: it still closes the
-     mast, it just stops pressing on the page. Desktop keeps #c8c8c8. */
+
   .mast { border-bottom-color: var(--dash); }
-  /* The footer closes with the same rule the mast does. On the phone that
-     rule is --dash, so the footer's top edge steps back with it. */
+
   .site-foot { border-top-color: var(--dash); }
   .mast-brand { width: 100%; }
   .wordmark {
@@ -1707,29 +1593,6 @@ html.menu-open { overflow: hidden; }
     font-size: clamp(1.0625rem, calc(var(--f-wordmark) - 0.35vw), var(--f-wordmark));
     overflow-wrap: break-word;
   }
-  /* The nav band on a phone: one line, right-aligned, and no longer a tall
-     block. The 44px tap targets came from `min-height` on the links, which
-     inside a stacked nav gave this band 81px of height for one 13px line of
-     text — it read as an empty shelf. The target now lives on a ::before so
-     it stays finger-sized while the words keep a text-height line box, and
-     the band's own padding decides how much air is above and below.
-
-     One rule closes the mast, not two — but this band keeps its own hairline.
-     The `--line` above the nav is the divider the owner chose between the
-     wordmark band and the nav band; it is not a second border of the mast.
-     The mast's base rule (`--mast-rule`) is the heavier one, and it is that
-     weight — not this hairline — that reads too dark on a phone.
-
-     Spacing, top to bottom: 24 above the logo, 13 from the logo down to the
-     rule, 12 under the rule to the links, then the mast's 24 base
-     padding. The two outer distances match; the inner pair descends so the
-     rule sits closer to the nav it introduces than to the name above it.
-
-     Right-aligned: with the nav stacked under the wordmark, a left-aligned
-     row collapses the whole band into the corner and reads as a stray line
-     of small text. Pushing it to the far right makes it a deliberate second
-     layer under a sharp left corner, and at phone widths the room it leaves
-     beside it is part of the composition instead of dead space. */
 
   .lead {
     display: flex;
@@ -1794,10 +1657,7 @@ html.menu-open { overflow: hidden; }
     gap: var(--sp-2);
     padding: var(--sp-4) 0;
   }
-  /* Phone: a fenced block measured as wide as 1700px against a 348px column,
-     and `overflow-x: auto` gives no visible cue that code continues. One inset
-     shadow at the trailing edge says "scroll" without a second scrollbar or a
-     tap target. Kept off the prose background, so nothing else is restyled. */
+
   .prose pre { box-shadow: inset -0.75rem 0 0.5rem -0.5rem rgb(0 0 0 / 0.18); }
 }
 

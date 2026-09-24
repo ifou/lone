@@ -7,7 +7,7 @@ tags: [reading]
 lang: en
 ---
 
-The theme is light only. Titles in Mincho, body in gothic. One landscape, then the notes.
+Titles in Mincho, body in gothic. One landscape on the home page, then the notes.
 
 ## A heading
 

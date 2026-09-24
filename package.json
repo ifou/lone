@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "A magazine-style Astro blog theme. Mincho titles, gothic body, ume green. Light only.",
+  "description": "An Astro blog theme. Mincho titles, gothic body, ume green.",
   "engines": {
     "node": ">=22"
   },
@@ -23,9 +23,6 @@
   "dependencies": {
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.4",
-    "@fontsource/shippori-mincho": "^5.2.5",
-    "@fontsource/source-serif-4": "^5.3.0",
-    "@fontsource/zen-kaku-gothic-new": "^5.2.5",
     "@tailwindcss/vite": "^4.1.13",
     "astro": "^5.0.0 || ^7.0.0",
     "photoswipe": "^5.4.4",

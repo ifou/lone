@@ -6,6 +6,8 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 
 ### Changed
 
+- README and `package.json` describe light and dark. Sample copy no longer says light-only.
+- Unused `@fontsource/*` packages were dropped. Fonts still load from `public/fonts/`.
 - The phone mast is one row. A menu button opens a drawer from the right;
   the links are no longer a second row. On a wide screen, Day / Night sits
   apart from the nav, in its own outline.

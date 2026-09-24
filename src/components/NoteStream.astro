@@ -8,10 +8,8 @@ const { posts, eager = false } = Astro.props as {
   eager?: boolean;
 };
 
-/** One vertical + up to two landscapes. Rest is +N on the last tile. */
 const TILES = 3;
 
-/** Real intrinsic sizes, so width/height reserve the right box on every tile. */
 const sized = await measureAll(posts.flatMap((p) => galleryOf(p).slice(0, TILES)));
 const labels = catsCopy.labels;
 ---

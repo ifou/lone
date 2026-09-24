@@ -5,12 +5,7 @@ declare module 'ume/config' {
     name: string;
     wordmark: string;
     motto: string;
-    /**
-     * Face for the wordmark and h1 — the display role. A family name, or a
-     * full comma-separated stack. Omit and it stays on the theme's mincho.
-     */
     displayFont?: string;
-    /** Weight and tracking for that face; both default to the theme's. */
     displayWeight?: number;
     displayTracking?: string;
     description: string;
@@ -23,7 +18,6 @@ declare module 'ume/config' {
     favicon: string;
     rssTitle: string;
     years: string;
-    /** Filing record. Leave href and text empty to hide it. */
     icp?: { href: string; text: string };
   };
 
@@ -38,7 +32,6 @@ declare module 'ume/config' {
     streamLabel: string;
     pageSize: number;
     tagPreview: number;
-    /** Note slug for the home feature. Empty = newest. */
     pin?: string;
   };
 
@@ -82,7 +75,6 @@ declare module 'ume/config' {
     pagerPrev: string;
     pagerNext: string;
     galleryLabel: string;
-    /** Visible TOC heading. Falls back to ariaContents. */
     tocLabel?: string;
     morePhotos: (n: number) => string;
     postNavOlder: string;

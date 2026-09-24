@@ -20,15 +20,6 @@ const type = Astro.props.type || 'website';
 const favicon = site.favicon || '/favicon.svg';
 const rssTitle = site.rssTitle || `${site.name} — ${site.motto}`;
 
-/**
- * Site-level display face. A site only names the families; the weight and
- * tracking that make a display face work at wordmark size come from the
- * theme, so a site can swap the face without also having to know that
- * 0.06em tracking and 700 are what the layout assumed.
- *
- * Only the keys the site actually set are emitted — an empty override must
- * leave the theme's :root completely alone, not reset it with empty values.
- */
 const display = {
   family: (site.displayFont || '').trim(),
   weight:
@@ -69,10 +60,6 @@ const displayCss = display.family
     <link rel="preload" href="/fonts/shippori-mincho-latin-700.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/zen-kaku-latin-400.woff2" as="font" type="font/woff2" crossorigin />
     <Fragment set:html={`<style>${fontsCss}</style>`} />
-    {/* The one place a site can move the display role. Inlined right after
-        the font stacks so it wins the cascade without needing !important and
-        without touching theme internals. Empty until the site sets
-        site.displayFont / displayWeight / displayTracking. */}
     {displayCss && <Fragment set:html={`<style>${displayCss}</style>`} />}
     <title>{title}</title>
     <link rel="canonical" href={url} />
@@ -89,14 +76,6 @@ const displayCss = display.family
     <link rel="alternate" type="application/rss+xml" title={rssTitle} href="/rss.xml" />
   </head>
   <body>
-    <!--
-      THESIS: One full-bleed landscape, then a readable note stream with a right-hand thumb. Refuses a split hero, shop, player.
-      OWN-WORLD: #fff / #00865b / #333. Mincho titles, gothic body.
-      STORY: Arrive in one picture, then read. Nav is notes / archive / about / rss.
-      FIRST VIEWPORT: White mast, one landscape, title and lede on it.
-      FORM: ume green + a single reading column. Not a halved magazine.
-      FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
-    -->
     <a class="skip-link" href="#main">{ui.skipToContent}</a>
     <div class="shell">
       <header class="mast">

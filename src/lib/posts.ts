@@ -13,7 +13,6 @@ export function hrefOf(p: Post) {
   return `/notes/${slugOf(p)}/`;
 }
 
-/** Calendar date in UTC — frontmatter dates are calendar days, not local midnights. */
 export function utcYmd(d: Date) {
   return {
     y: d.getUTCFullYear(),
@@ -27,7 +26,6 @@ export function formatDate(d: Date) {
   return `${y}.${m}.${day}`;
 }
 
-/** Opening a reader can actually read. Description first; else first paragraph. */
 export function opening(p: Post, max = 160) {
   const fromMeta = (p.data.description || '').trim();
   const source = fromMeta || firstParagraph(p.body ?? '');
@@ -45,17 +43,10 @@ function firstParagraph(body: string) {
   return para.replace(/\s+/g, ' ').trim();
 }
 
-/**
- * Truncate on a word boundary for Latin text and on a character boundary for
- * CJK, where there are no spaces to break on. A plain `/\s+\S*$/` never fires
- * on a run of Chinese, so a naive slice lands mid-word and mid-idea.
- */
 export function truncate(text: string, max: number) {
   const s = text.trim();
   if (s.length <= max) return s;
 
-  // Latin: walk back to the last space, but never give back more than 20% of
-  // the budget — a 40-char cut with a 20-char lookback is a lost line.
   const space = s.lastIndexOf(' ', max);
   if (space > max * 0.8) {
     let cut = s.slice(0, space).replace(/[,.;:，。；：、]+$/, '');
@@ -63,8 +54,6 @@ export function truncate(text: string, max: number) {
     return `${cut}…`;
   }
 
-  // CJK: cut at the boundary, then drop a trailing particle so the ellipsis
-  // does not follow a comma or a dangling 的 / 了.
   let cut = s.slice(0, max);
   cut = cut.replace(/[,.;:，。；：、的了和与或及而则在把被向着从对到]+$/, '');
   return `${cut}…`;
@@ -76,7 +65,6 @@ export async function published(): Promise<Post[]> {
     .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 }
 
-/** Featured note on home: `home.pin` slug, else the newest. Unknown pin falls back. */
 export function leadOf(posts: Post[], pin?: string) {
   const want = (pin || '').trim();
   if (want) {
@@ -86,7 +74,6 @@ export function leadOf(posts: Post[], pin?: string) {
   return posts[0] ?? null;
 }
 
-/** Home stream excludes the featured note. Pagination runs on this list only. */
 export function streamOf(posts: Post[], lead?: Post | null) {
   if (!lead) return posts;
   return posts.filter((p) => p.id !== lead.id);
@@ -96,7 +83,6 @@ export function coverOf(p: Post) {
   return p.data.cover || p.data.images?.[0] || '';
 }
 
-/** Unique images from frontmatter, cover first if present. */
 export function galleryOf(p: Post) {
   const cover = (p.data.cover || '').trim();
   const raw = (p.data.images ?? []).map((s) => s.trim()).filter(Boolean);
@@ -136,7 +122,7 @@ export function tagHref(tag: string) {
   return `/tags/${encodeURIComponent(tag.trim())}/`;
 }
 
-const CATEGORY = new Set(['note', 'tech', 'travel']);
+const CATEGORY = new Set(['note', 'travel']);
 const CATEGORY_ORDER = ['note', 'travel'];
 
 export function categoryOf(p: Post) {
@@ -169,7 +155,6 @@ export function langOf(p: Post) {
   return '';
 }
 
-/** Whole minutes. Latin ~200 wpm; CJK ~400 characters. Photos add ~12s each. */
 export function readMinutes(p: Post) {
   const raw = `${p.data.description || ''}\n${p.body ?? ''}`;
   const text = raw

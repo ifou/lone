@@ -1,13 +1,5 @@
-/**
- * ume — site identity and copy.
- * Posts live in src/content/blog/. Colors live in src/styles/global.css.
- * Chrome is English. Article bodies keep their own lang.
- */
 export const site = {
-  /** Long-form site name for <title>, feeds and the About page. */
   name: 'ume',
-  /** The short mark in the mast and the footer. Changing it re-brands the
-      whole chrome; `name` above is the formal name and can stay long. */
   wordmark: 'ume',
   motto: 'Paper, ume green, and code.',
   description: 'Notes on software and travel. English and Chinese.',
@@ -20,11 +12,9 @@ export const site = {
   favicon: '/favicon.svg',
   rssTitle: '',
   years: '2016–2026',
-  /** Filing record in the footer. Omit and the line is not rendered. */
   icp: { href: '', text: '' },
 };
 
-/** Footer social row. Empty by default; override per site. */
 export const social: { href: string; label: string }[] = [];
 
 export const nav = [
@@ -41,7 +31,6 @@ export const home = {
   streamLabel: 'Latest',
   pageSize: 10,
   tagPreview: 12,
-  /** Featured note slug. Empty = newest. */
   pin: '',
 };
 
@@ -79,7 +68,6 @@ export const notFound = {
   lede: 'That note is not here.',
 };
 
-/** UI copy. The one place every fixed string lives; keep it in site lang. */
 export const ui = {
   skipToContent: 'Skip to content',
   emptyStream: 'Nothing here yet.',
@@ -87,7 +75,6 @@ export const ui = {
   backToNotes: '← Notes',
   backToTags: '← Tags',
   allNotes: 'Archive →',
-  /** The teaser shows `home.tagPreview`; this names what is behind the door. */
   allTagsCount: (n: number) => `All ${n} tags →`,
   leadLabel: 'Latest note',
   pinLabel: 'Recommended',
