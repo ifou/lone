@@ -90,7 +90,7 @@ const displayCss = display.family
                     ? notesCurrent ? 'page' : undefined
                     : item.href !== '/rss.xml' && path.startsWith(item.href.replace(/\/$/, '')) ? 'page' : undefined
                 }
-              >{item.label}</a>
+              ><span class="nav-k">{item.label}</span></a>
             ))}
           </nav>
           <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Switch to night">
@@ -124,7 +124,7 @@ const displayCss = display.family
                     ? notesCurrent ? 'page' : undefined
                     : item.href !== '/rss.xml' && path.startsWith(item.href.replace(/\/$/, '')) ? 'page' : undefined
                 }
-              >{item.label}</a>
+              ><span class="nav-k">{item.label}</span></a>
             ))}
           </nav>
         </div>
