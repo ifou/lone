@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import fontsCss from '../styles/fonts.css?raw';
 import SiteFoot from '../components/SiteFoot.astro';
-import { site, nav, ui } from 'ume/config';
+import { site, nav, ui } from 'lone/config';
 
 const path = Astro.url.pathname;
 const title = Astro.props.title ? `${Astro.props.title} · ${site.name}` : `${site.name} — ${site.motto}`;
@@ -44,7 +44,7 @@ const displayCss = display.family
     <script is:inline>
       (function () {
         var saved = null;
-        try { saved = localStorage.getItem('ume-theme'); } catch (e) {}
+        try { saved = localStorage.getItem('lone-theme'); } catch (e) {}
         var theme = saved === 'dark' || saved === 'light'
           ? saved
           : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
@@ -150,7 +150,7 @@ const displayCss = display.family
       var dark = document.documentElement.dataset.theme !== 'dark';
       if (dark) document.documentElement.dataset.theme = 'dark';
       else delete document.documentElement.dataset.theme;
-      try { localStorage.setItem('ume-theme', dark ? 'dark' : 'light'); } catch (e) {}
+      try { localStorage.setItem('lone-theme', dark ? 'dark' : 'light'); } catch (e) {}
       var meta = document.querySelector('meta[name="theme-color"]');
       if (meta) meta.setAttribute('content', dark ? '#161616' : '#ffffff');
       paint();

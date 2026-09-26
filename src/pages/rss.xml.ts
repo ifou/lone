@@ -1,4 +1,4 @@
-import { site } from 'ume/config';
+import { site } from 'lone/config';
 import { allPosts, feed } from '../lib/feed';
 
 export const prerender = true;

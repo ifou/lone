@@ -1,13 +1,13 @@
 export const site = {
-  name: 'ume',
-  wordmark: 'ume',
+  name: 'lone',
+  wordmark: 'lone',
   motto: 'Paper, ume green, and code.',
   description: 'Notes on software and travel. English and Chinese.',
   url: 'https://example.com',
   lang: 'en',
   author: 'your name',
   email: 'you@example.com',
-  github: 'https://github.com/fennlee/ume',
+  github: 'https://github.com/llsi/lone',
   ogImage: '/images/hero.jpg',
   favicon: '/favicon.svg',
   rssTitle: '',
@@ -25,7 +25,7 @@ export const nav = [
 ];
 
 export const home = {
-  title: 'ume',
+  title: 'lone',
   lede: 'A blank page, a touch of ume. Code, and walks.',
   hero: '/images/hero.jpg',
   streamLabel: 'Latest',
@@ -107,6 +107,6 @@ export const ui = {
   ariaAdjacent: 'Adjacent notes',
   footCopyright: (years: string, name: string) => `© ${years} ${name}`,
   footThemeLabel: 'Theme',
-  footTheme: 'ume',
-  footThemeHref: 'https://github.com/fennlee/ume',
+  footTheme: 'lone',
+  footThemeHref: 'https://github.com/llsi/lone',
 };

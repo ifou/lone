@@ -1,10 +1,10 @@
-# ume
+# lone
 
 Astro 博客主题。标题明朝、正文角哥、青梅绿。浅色 / 深色。
 
 [English](README.md)
 
-可以直接克隆当模板，或作为依赖安装，在站点根目录放自己的 `ume.config.ts`。
+可以直接克隆当模板，或作为依赖安装，在站点根目录放自己的 `lone.config.ts`。
 
 ## 功能
 
@@ -13,14 +13,14 @@ Astro 博客主题。标题明朝、正文角哥、青梅绿。浅色 / 深色�
 - 笔记在 `/notes/<slug>/`，带照片、目录、上一篇 / 下一篇
 - 按年归档、分类（`/categories/`）、标签、分页
 - About、RSS、404、sitemap
-- 一份配置：`ume.config.ts`
+- 一份配置：`lone.config.ts`
 - 浅色 / 深色
 
 ## 快速开始
 
 ```bash
-git clone https://github.com/fennlee/ume.git
-cd ume
+git clone https://github.com/llsi/lone.git
+cd lone
 npm install
 npm run dev
 ```
@@ -32,18 +32,18 @@ Node 22+。
 ```json
 {
   "dependencies": {
-    "ume": "github:fennlee/ume"
+    "lone": "github:llsi/lone"
   }
 }
 ```
 
-在 `astro.config` 里从 `ume`（或 `ume/src`）引入。站点根目录放 `ume.config.ts`，主题以 `ume/config` 读取。文章写在站点自己的 `src/content/blog/`，照片放在站点自己的 `public/`。
+在 `astro.config` 里从 `lone`（或 `lone/src`）引入。站点根目录放 `lone.config.ts`，主题以 `lone/config` 读取。文章写在站点自己的 `src/content/blog/`，照片放在站点自己的 `public/`。
 
 ## 目录
 
 ```text
 /
-├── ume.config.ts
+├── lone.config.ts
 ├── src/
 │   ├── content/blog/
 │   ├── pages/
@@ -62,7 +62,7 @@ Node 22+。
 
 ## 配置
 
-改 [`ume.config.ts`](ume.config.ts)：
+改 [`lone.config.ts`](lone.config.ts)：
 
 | 键 | |
 |---|---|

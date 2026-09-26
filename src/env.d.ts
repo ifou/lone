@@ -1,6 +1,6 @@
 /// <reference types="astro/client" />
 
-declare module 'ume/config' {
+declare module 'lone/config' {
   export const site: {
     name: string;
     wordmark: string;

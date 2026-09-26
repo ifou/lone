@@ -7,4 +7,4 @@ tags: [notes]
 lang: en
 ---
 
-Edit `ume.config.ts`. Put writing in `src/content/blog/`. Keep the landscape on the home page.
+Edit `lone.config.ts`. Put writing in `src/content/blog/`. Keep the landscape on the home page.

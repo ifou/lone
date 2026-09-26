@@ -5,18 +5,18 @@ import { fileURLToPath } from 'node:url';
 
 const themeSrc = fileURLToPath(new URL('./', import.meta.url));
 
-export function umeSrc(root: string = process.cwd()): string {
+export function loneSrc(root: string = process.cwd()): string {
   const rel = path.relative(root, themeSrc);
   return rel || './src';
 }
 
-export default function ume(): AstroIntegration {
+export default function lone(): AstroIntegration {
   return {
-    name: 'ume',
+    name: 'lone',
     hooks: {
       'astro:config:setup': ({ updateConfig, config }) => {
         const root = fileURLToPath(config.root);
-        const configFile = path.join(root, 'ume.config.ts');
+        const configFile = path.join(root, 'lone.config.ts');
         updateConfig({
           markdown: {
             shikiConfig: {
@@ -31,10 +31,10 @@ export default function ume(): AstroIntegration {
           vite: {
             plugins: [
               {
-                name: 'ume-config',
+                name: 'lone-config',
                 enforce: 'pre',
                 resolveId(id) {
-                  if (id === 'ume/config') return configFile;
+                  if (id === 'lone/config') return configFile;
                 },
               },
               tailwindcss(),

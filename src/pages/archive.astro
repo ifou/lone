@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import IssueHead from '../components/IssueHead.astro';
-import { archive, ui } from 'ume/config';
+import { archive, ui } from 'lone/config';
 import { published, hrefOf, formatDate, yearGroups } from '../lib/posts';
 
 const groups = yearGroups(await published());

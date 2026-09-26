@@ -1,5 +1,5 @@
 import rss from '@astrojs/rss';
-import { site } from 'ume/config';
+import { site } from 'lone/config';
 import { published, hrefOf, opening, type Post } from './posts';
 
 export const allPosts = published;

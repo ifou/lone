@@ -5,7 +5,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "ume/config": ["./ume.config.ts"]
+      "lone/config": ["./lone.config.ts"]
     }
   }
 }

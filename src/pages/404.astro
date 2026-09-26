@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import IssueHead from '../components/IssueHead.astro';
-import { notFound, ui } from 'ume/config';
+import { notFound, ui } from 'lone/config';
 import { published, hrefOf, opening } from '../lib/posts';
 
 const newest = (await published())[0] ?? null;

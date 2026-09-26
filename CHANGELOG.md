@@ -4,6 +4,12 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 
 ## [Unreleased]
 
+### Changed
+
+- Private fork of `ume`, renamed end to end: package `lone`, `loneSrc()`,
+  `lone.config.ts`, and `lone/config`. Palette tokens are `--lone*` with the
+  same hex values until a new scheme lands.
+
 ### Fixed
 
 - `opening()` truncated Chinese mid-word. The no-space fallback stripped

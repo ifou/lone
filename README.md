@@ -1,10 +1,10 @@
-# ume
+# lone
 
 An Astro blog theme. Mincho titles, gothic body, ume green. Light and dark.
 
 [简体中文](README.zh-CN.md)
 
-Clone this repo as a starter, or add it as a dependency and keep your own `ume.config.ts` at the site root.
+Clone this repo as a starter, or add it as a dependency and keep your own `lone.config.ts` at the site root.
 
 ## Features
 
@@ -13,14 +13,14 @@ Clone this repo as a starter, or add it as a dependency and keep your own `ume.c
 - Notes at `/notes/<slug>/`, with photos, a contents list, and older/newer links
 - Archive by year, kinds (`/categories/`), tags, and pagination
 - About, RSS, 404, sitemap
-- One config file: `ume.config.ts`
+- One config file: `lone.config.ts`
 - Light and dark mode
 
 ## Quick start
 
 ```bash
-git clone https://github.com/fennlee/ume.git
-cd ume
+git clone https://github.com/llsi/lone.git
+cd lone
 npm install
 npm run dev
 ```
@@ -32,18 +32,18 @@ Node 22+.
 ```json
 {
   "dependencies": {
-    "ume": "github:fennlee/ume"
+    "lone": "github:llsi/lone"
   }
 }
 ```
 
-Import `ume` from `ume` (or `ume/src`) in `astro.config`. Put `ume.config.ts` at the site root — the theme reads it as `ume/config`. Write posts in the site's `src/content/blog/`. Put photos in the site's `public/`.
+Import `lone` from `lone` (or `lone/src`) in `astro.config`. Put `lone.config.ts` at the site root — the theme reads it as `lone/config`. Write posts in the site's `src/content/blog/`. Put photos in the site's `public/`.
 
 ## Project structure
 
 ```text
 /
-├── ume.config.ts
+├── lone.config.ts
 ├── src/
 │   ├── content/blog/
 │   ├── pages/
@@ -62,7 +62,7 @@ A post needs `title`, `date`, `description`, and `category` (`note` or `travel`)
 
 ## Configuration
 
-Edit [`ume.config.ts`](ume.config.ts):
+Edit [`lone.config.ts`](lone.config.ts):
 
 | Key | |
 |---|---|

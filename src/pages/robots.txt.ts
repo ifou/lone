@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { site } from 'ume/config';
+import { site } from 'lone/config';
 
 export const prerender = true;
 
