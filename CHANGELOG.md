@@ -6,9 +6,11 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 
 ### Changed
 
+- Palette is white paper and charcoal. The old ume green is gone. `--mark`
+  `#b5a898` is the only hue, and only on tiny marks (nav underline, pager
+  tick, tag hash). Home stays a readable stream.
 - Private fork of `ume`, renamed end to end: package `lone`, `loneSrc()`,
-  `lone.config.ts`, and `lone/config`. Palette tokens are `--lone*` with the
-  same hex values until a new scheme lands.
+  `lone.config.ts`, and `lone/config`.
 
 ### Fixed
 

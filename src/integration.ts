@@ -7,7 +7,10 @@ const themeSrc = fileURLToPath(new URL('./', import.meta.url));
 
 export function loneSrc(root: string = process.cwd()): string {
   const rel = path.relative(root, themeSrc);
-  return rel || './src';
+  if (!rel || rel.startsWith('..') || path.isAbsolute(rel)) {
+    return path.join('node_modules', 'lone', 'src');
+  }
+  return rel;
 }
 
 export default function lone(): AstroIntegration {

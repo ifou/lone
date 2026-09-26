@@ -1,7 +1,7 @@
 export const site = {
   name: 'lone',
   wordmark: 'lone',
-  motto: 'Paper, ume green, and code.',
+  motto: 'Paper, charcoal, and code.',
   description: 'Notes on software and travel. English and Chinese.',
   url: 'https://example.com',
   lang: 'en',
@@ -26,7 +26,7 @@ export const nav = [
 
 export const home = {
   title: 'lone',
-  lede: 'A blank page, a touch of ume. Code, and walks.',
+  lede: 'A blank page. Code, and walks.',
   hero: '/images/hero.jpg',
   streamLabel: 'Latest',
   pageSize: 10,

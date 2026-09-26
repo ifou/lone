@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "An Astro blog theme. Mincho titles, gothic body, ume green.",
+  "description": "An Astro blog theme. Mincho titles, gothic body, white paper.",
   "engines": {
     "node": ">=22"
   },

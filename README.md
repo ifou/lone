@@ -1,6 +1,6 @@
 # lone
 
-An Astro blog theme. Mincho titles, gothic body, ume green. Light and dark.
+An Astro blog theme. Mincho titles, gothic body, white paper. Light and dark.
 
 [简体中文](README.zh-CN.md)
 
