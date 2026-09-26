@@ -50,7 +50,7 @@ const displayCss = display.family
           : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
         if (theme === 'dark') document.documentElement.dataset.theme = 'dark';
         var meta = document.querySelector('meta[name="theme-color"]');
-        if (meta) meta.setAttribute('content', theme === 'dark' ? '#161616' : '#ffffff');
+        if (meta) meta.setAttribute('content', theme === 'dark' ? '#161310' : '#ffffff');
       })();
     </script>
     <meta name="color-scheme" content="light dark" />
@@ -152,7 +152,7 @@ const displayCss = display.family
       else delete document.documentElement.dataset.theme;
       try { localStorage.setItem('lone-theme', dark ? 'dark' : 'light'); } catch (e) {}
       var meta = document.querySelector('meta[name="theme-color"]');
-      if (meta) meta.setAttribute('content', dark ? '#161616' : '#ffffff');
+      if (meta) meta.setAttribute('content', dark ? '#161310' : '#ffffff');
       paint();
     }); });
   })();

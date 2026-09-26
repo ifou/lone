@@ -6,6 +6,9 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 
 ### Changed
 
+- Ink and rules warm toward dusk. Paper stays `#ffffff`. `--mark` is `#a67c52`,
+  still only on tiny marks. Night paper is `#161310`.
+
 - Palette is white paper and charcoal. The old ume green is gone. `--mark`
   `#b5a898` is the only hue, and only on tiny marks (nav underline, pager
   tick, tag hash). Home stays a readable stream.

@@ -3,30 +3,30 @@
 :root {
   color-scheme: light;
 
-  --t0: #2c2c2c;
-  --t1: #333333;
-  --t2: #4a4a4a;
-  --t3: #6b6b6b;
+  --t0: #2a241e;
+  --t1: #3a322b;
+  --t2: #5c534a;
+  --t3: #7a6f64;
   --fw-body: 400;
 
-  /* Charcoal stands in for the old green so leftover selectors stay ink.
-     --mark is the only hue: sunset dust, tiny marks only. */
-  --lone: #2c2c2c;
-  --lone-hot: #141414;
-  --lone-deep: #2c2c2c;
-  --lone-soft: #e5e5e5;
-  --mark: #b5a898;
+  /* Warm ink stands in for the old green so leftover selectors stay ink.
+     --mark is the only hue: dusk, tiny marks only. */
+  --lone: #2a241e;
+  --lone-hot: #1a1511;
+  --lone-deep: #2a241e;
+  --lone-soft: #e6dfd6;
+  --mark: #a67c52;
 
   /* The cover's hand-drawn wave. Worn as a mask so its colour stays a token:
      charcoal at rest, --mark on a door that is current or under the cursor. */
   --wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='5'%3E%3Cpath d='M0 3C2 .9 4 4.4 6 2.8S10 .6 13 3.2 17 4.5 20 2.6 24 .7 27 3.1 31 4.3 34 2.7' fill='none' stroke='%23000' stroke-width='1.15' stroke-linecap='round'/%3E%3C/svg%3E");
 
   --paper: #ffffff;
-  --soft: #f5f5f5;
-  --line: #e6e6e6;
+  --soft: #f6f1ea;
+  --line: #e4dcd2;
 
-  --mast-rule: #c8c8c8;
-  --dash: #dddddd;
+  --mast-rule: #cbbfae;
+  --dash: #ddd4c8;
   --on-photo: #ffffff;
 
   --serif: "Shippori Mincho", "Mincho Fallback", "Noto Serif CJK SC",
@@ -104,19 +104,19 @@
 
 :root[data-theme='dark'] {
   color-scheme: dark;
-  --t0: #e8e8e8;
-  --t1: #d4d4d4;
-  --t2: #a8a8a8;
-  --t3: #8a8a8a;
-  --lone: #e8e8e8;
+  --t0: #f3ece4;
+  --t1: #e4d9cc;
+  --t2: #b5a696;
+  --t3: #8f8274;
+  --lone: #f3ece4;
   --lone-hot: #ffffff;
-  --lone-deep: #d4d4d4;
-  --mark: #b5a898;
-  --line: #2c2c2c;
-  --dash: #2a2a2a;
-  --mast-rule: #3a3a3a;
-  --paper: #161616;
-  --soft: #1e1e1e;
+  --lone-deep: #e4d9cc;
+  --mark: #c4926a;
+  --line: #3a322b;
+  --dash: #322b25;
+  --mast-rule: #4a4038;
+  --paper: #161310;
+  --soft: #211c18;
 }
 
 @media (max-width: 639px) {
@@ -213,7 +213,7 @@ a:focus-visible {
   outline-offset: 3px;
 }
 
-::selection { background: #e5e5e5; color: #111111; }
+::selection { background: #e6dfd6; color: #1a1511; }
 
 h1, h2, h3, h4, h5, h6, p, ul, ol { margin: 0; }
 h1, h2, h3, h4, h5, h6 { text-wrap: balance; }
