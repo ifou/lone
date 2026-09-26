@@ -431,11 +431,11 @@ html.menu-open { overflow: hidden; }
   font-size: var(--f-nav);
   letter-spacing: 0.06em;
 }
-.theme-toggle { gap: 0.7em; }
+.theme-toggle { gap: 0.55em; }
 .theme-bar {
-  width: var(--rule);
-  height: 0.85em;
-  background: var(--mast-rule);
+  width: 2px;
+  height: 0.7em;
+  background: var(--t3);
 }
 /* Hover lifts the *unlit* word toward ink; it must never repaint the lit one.
    Which word is lit depends on the theme, so each block names the lit word
