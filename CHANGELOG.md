@@ -9,6 +9,9 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 - Palette is white paper and charcoal. The old ume green is gone. `--mark`
   `#b5a898` is the only hue, and only on tiny marks (nav underline, pager
   tick, tag hash). Home stays a readable stream.
+- Cover wave (`--wave`) under doors: topnav, drawer current, pager now,
+  and prose links. Ink stays charcoal; the wave takes `--mark` when the
+  door is current or under the cursor.
 - Private fork of `ume`, renamed end to end: package `lone`, `loneSrc()`,
   `lone.config.ts`, and `lone/config`.
 

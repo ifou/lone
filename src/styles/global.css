@@ -17,6 +17,10 @@
   --lone-soft: #e5e5e5;
   --mark: #b5a898;
 
+  /* The cover's hand-drawn wave. Worn as a mask so its colour stays a token:
+     charcoal at rest, --mark on a door that is current or under the cursor. */
+  --wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='5'%3E%3Cpath d='M0 3C2 .9 4 4.4 6 2.8S10 .6 13 3.2 17 4.5 20 2.6 24 .7 27 3.1 31 4.3 34 2.7' fill='none' stroke='%23000' stroke-width='1.15' stroke-linecap='round'/%3E%3C/svg%3E");
+
   --paper: #ffffff;
   --soft: #f5f5f5;
   --line: #e6e6e6;
@@ -302,6 +306,25 @@ ul, ol { list-style: none; padding: 0; }
 }
 .drawer-panel a:hover,
 .drawer-panel a[aria-current="page"] { color: var(--t0); }
+.drawer-panel .nav-k { position: relative; display: inline-block; }
+.drawer-panel .nav-k::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.35em;
+  height: 5px;
+  background-color: var(--mark);
+  opacity: 0;
+  -webkit-mask-image: var(--wave);
+  mask-image: var(--wave);
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+  -webkit-mask-size: 36px 5px;
+  mask-size: 36px 5px;
+}
+.drawer-panel a[aria-current="page"] .nav-k::after,
+.drawer-panel a:hover .nav-k::after { opacity: 1; }
 html.menu-open { overflow: hidden; }
 
 /* The name sits left; the nav and the day/night pair sit right, as one column
@@ -354,9 +377,33 @@ html.menu-open { overflow: hidden; }
   padding: 0 var(--sp-2);
 }
 .topnav a:hover { color: var(--t0); }
-.topnav a[aria-current="page"] {
-  color: var(--t0);
-  box-shadow: inset 0 calc(var(--rule) * -2) 0 var(--mark);
+.topnav a[aria-current="page"] { color: var(--t0); }
+.nav-k {
+  position: relative;
+  display: inline-block;
+}
+.nav-k::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.45em;
+  height: 5px;
+  background-color: currentColor;
+  opacity: 0.4;
+  -webkit-mask-image: var(--wave);
+  mask-image: var(--wave);
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+  -webkit-mask-size: 36px 5px;
+  mask-size: 36px 5px;
+  transition: opacity 120ms ease-out, background-color 120ms ease-out;
+}
+.topnav a:hover .nav-k::after,
+.topnav a:focus-visible .nav-k::after,
+.topnav a[aria-current="page"] .nav-k::after {
+  background-color: var(--mark);
+  opacity: 1;
 }
 
 /* No pill. It was the only outlined thing in a masthead of bare words, so it
@@ -904,11 +951,35 @@ html.menu-open { overflow: hidden; }
   line-height: var(--lh-title);
 }
 .prose a {
+  position: relative;
   color: var(--t1);
-  text-decoration: underline;
-  text-underline-offset: 2px;
+  text-decoration: none;
+  padding-bottom: 0.35em;
+}
+.prose a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 5px;
+  background-color: currentColor;
+  opacity: 0.4;
+  pointer-events: none;
+  -webkit-mask-image: var(--wave);
+  mask-image: var(--wave);
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+  -webkit-mask-size: 36px 5px;
+  mask-size: 36px 5px;
+  transition: opacity 120ms ease-out, background-color 120ms ease-out;
 }
 .prose a:hover { color: var(--t0); }
+.prose a:hover::after,
+.prose a:focus-visible::after {
+  background-color: var(--mark);
+  opacity: 1;
+}
 .prose strong { color: var(--t0); font-weight: 600; }
 .prose ul, .prose ol { padding-left: 1.2em; }
 .prose ul { list-style: disc; }
@@ -969,8 +1040,7 @@ html.menu-open { overflow: hidden; }
   color: var(--t0);
   font-weight: 700;
 }
-.prose a[href^="http://"],
-.prose a[href^="https://"] { text-decoration-style: dashed; }
+
 
 .post-nav {
   display: flex;
@@ -1139,10 +1209,18 @@ html.menu-open { overflow: hidden; }
   content: "";
   position: absolute;
   left: 50%;
-  bottom: -0.32em;
-  width: 0.55em;
-  height: var(--rule);
-  background: var(--mark);
+  bottom: -0.45em;
+  width: 1.1em;
+  height: 5px;
+  background-color: var(--mark);
+  -webkit-mask-image: var(--wave);
+  mask-image: var(--wave);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 36px 5px;
+  mask-size: 36px 5px;
+  -webkit-mask-position: center;
+  mask-position: center;
   transform: translateX(-50%);
 }
 .pager-dir:hover { color: var(--t0); }
@@ -1679,7 +1757,9 @@ html.menu-open { overflow: hidden; }
   html { scroll-behavior: auto; }
   .pager-n,
   .pager-dir,
-  .tag-flow a {
+  .tag-flow a,
+  .nav-k::after,
+  .prose a::after {
     transition: none;
   }
 }
