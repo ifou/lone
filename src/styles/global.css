@@ -11,10 +11,6 @@
 
   /* Warm ink stands in for the old green so leftover selectors stay ink.
      --mark is the only hue: dusk, tiny marks only. */
-  --lone: #2a241e;
-  --lone-hot: #1a1511;
-  --lone-deep: #2a241e;
-  --lone-soft: #e6dfd6;
   --mark: #a67c52;
 
   /* The cover's hand-drawn wave. Worn as a mask so its colour stays a token:
@@ -101,7 +97,6 @@
   --hit: 2.5rem;
   --menu-ico: 1.25rem;
   --rule: 1px;
-  --h2-hang: 1.6em;
   --gallery: 3;
 }
 
@@ -111,9 +106,6 @@
   --t1: #e4d9cc;
   --t2: #b5a696;
   --t3: #8f8274;
-  --lone: #f3ece4;
-  --lone-hot: #ffffff;
-  --lone-deep: #e4d9cc;
   --mark: #c4926a;
   --line: #3a322b;
   --dash: #322b25;
@@ -162,26 +154,8 @@
     --thumb: 100%;
     --thumb-h: auto;
     --lead-thumb: 100%;
-    --h2-hang: 0;
     --gallery: 3;
   }
-}
-
-@theme inline {
-  --color-paper: var(--paper);
-  --color-soft: var(--soft);
-  --color-line: var(--line);
-  --color-t0: var(--t0);
-  --color-t1: var(--t1);
-  --color-t2: var(--t2);
-  --color-t3: var(--t3);
-  --color-lone: var(--t0);
-  --color-lone-hot: var(--t0);
-  --font-serif: var(--serif);
-  --font-text: var(--text);
-  --font-sans: var(--sans);
-  --font-geo: var(--geo);
-  --font-mono: var(--mono);
 }
 
 * { box-sizing: border-box; }
@@ -843,9 +817,12 @@ html.menu-open { overflow: hidden; }
   font-weight: 400;
   margin-right: 0.08em;
 }
+/* The list-page masthead is a door onto the stream, not a reading page: it
+   keeps the stream's own --col measure so the title, the count line, and the
+   rows below all share one right edge. */
 .news > .issue-head {
   margin: var(--sp-10) 0 var(--sp-4);
-  max-width: var(--read);
+  max-width: none;
 }
 .back {
   display: inline-flex;
@@ -916,7 +893,6 @@ html.menu-open { overflow: hidden; }
 
 .note[lang="zh"] .prose > * + * { margin-top: 1.4em; }
 .prose p + p { margin-top: 1.15em; }
-.note[lang="zh"] .prose p + p { margin-top: 1.15em; }
 .prose > * + h2 { margin-top: 1.8em; }
 .prose > * + h3,
 .prose > * + h4 { margin-top: 1.5em; }
@@ -1020,7 +996,6 @@ html.menu-open { overflow: hidden; }
 }
 .prose pre code { background: none; padding: 0; }
 .prose pre code span { color: var(--shiki-light, inherit); }
-:root[data-theme='dark'] .prose pre code span { color: var(--shiki-dark, inherit); }
 :root[data-theme='dark'] .prose pre code span { color: var(--shiki-dark, inherit); }
 .prose hr { border: 0; border-top: var(--rule) solid var(--line); margin: 2em 0; }
 .prose img {

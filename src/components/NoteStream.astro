@@ -48,7 +48,7 @@ const labels = catsCopy.labels;
               {tiles.map((src, j) => {
                 const s = sized[src];
                 return (
-                  <span class={j === 0 ? 'is-vert' : 'is-wide'}>
+                  <span class={j === 0 ? 'is-vert' : undefined}>
                     <img
                       src={src}
                       srcset={srcsetOf(src)}
