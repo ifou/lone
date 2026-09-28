@@ -874,6 +874,22 @@ html.menu-open { overflow: hidden; }
   margin: 0 0 var(--sp-5);
   text-wrap: pretty;
 }
+/* A note with no body: the description is the only voice, set as a quote.
+   Same register as .prose blockquote — indent, quieter ink, no rule.
+   Latin italics; Chinese stays upright gothic. */
+.lede.is-voice {
+  margin: 0 0 var(--sp-6) 2.5rem;
+  padding: 0;
+  border: 0;
+  font-size: var(--f-open);
+  line-height: var(--lh-open);
+  font-style: italic;
+}
+.note[lang="zh"] .lede.is-voice {
+  font-family: var(--sans);
+  font-style: normal;
+  letter-spacing: 0.04em;
+}
 
 .prose {
   font-family: var(--text);
