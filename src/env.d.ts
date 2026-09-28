@@ -55,6 +55,8 @@ declare module 'lone/config' {
     skipToContent: string;
     emptyStream: string;
     emptyTags: string;
+    noBody: string;
+    noBodyZh: string;
     backToNotes: string;
     backToTags: string;
     allNotes: string;

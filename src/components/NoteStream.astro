@@ -34,7 +34,7 @@ const labels = catsCopy.labels;
           </time>
           <span class="row-text">
             <h3 class="entry-title" lang={p.data.lang || undefined}>{p.data.title}</h3>
-            <p class="entry-open">{opening(p, n ? 140 : 180)}</p>
+            <p class="entry-open" lang={p.data.lang || undefined}>{opening(p, n ? 140 : 180)}</p>
             <span class="row-facts">
               {kind && <span class="is-kind">{kind}</span>}
               <span>{ui.readMin(mins)}</span>

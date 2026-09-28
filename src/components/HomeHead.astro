@@ -47,7 +47,7 @@ const leadPhotos = lead ? galleryOf(lead).length : 0;
         </span>
         <span class="lead-body">
           <h2 class="lead-title" lang={lead.data.lang || undefined}>{lead.data.title}</h2>
-          <p class="lead-open">{opening(lead, 180)}</p>
+          <p class="lead-open" lang={lead.data.lang || undefined}>{opening(lead, 180)}</p>
           <span class="lead-facts">
             {leadKind && <span class="is-kind">{leadKind}</span>}
             <span>{ui.readMin(leadMins)}</span>

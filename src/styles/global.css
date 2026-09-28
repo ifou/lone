@@ -5,13 +5,13 @@
 
   --t0: #2a241e;
   --t1: #3a322b;
-  --t2: #5c534a;
-  --t3: #7a6f64;
+  --t2: #52483f;
+  --t3: #6d6257;
   --fw-body: 400;
 
   /* Warm ink stands in for the old green so leftover selectors stay ink.
      --mark is the only hue: dusk, tiny marks only. */
-  --mark: #a67c52;
+  --mark: #9c6f45;
 
   /* The cover's hand-drawn wave. Worn as a mask so its colour stays a token:
      charcoal at rest, --mark on a door that is current or under the cursor. */
@@ -370,7 +370,7 @@ html.menu-open { overflow: hidden; }
   bottom: -0.45em;
   height: 5px;
   background-color: currentColor;
-  opacity: 0.4;
+  opacity: 0;
   -webkit-mask-image: var(--wave);
   mask-image: var(--wave);
   -webkit-mask-repeat: repeat-x;
@@ -540,6 +540,15 @@ html.menu-open { overflow: hidden; }
   max-width: 34em;
   text-wrap: pretty;
 }
+/* A Chinese opening is gothic, the same track the article body uses. The
+   stream sits outside `.note`, so the `[lang]` attribute travels with the
+   teaser itself instead of coming from a wrapping page. */
+.lead-open[lang^="zh"],
+.entry-open[lang^="zh"] {
+  font-family: var(--sans);
+  line-height: var(--lh-body);
+  letter-spacing: 0.04em;
+}
 .lead-read {
   display: none;
 }
@@ -704,6 +713,18 @@ html.menu-open { overflow: hidden; }
 
 .empty { color: var(--t3); padding: var(--sp-8) 0; }
 
+/* A note with no prose: say so where the body would have been, instead of
+   dropping from the cover straight into the gallery. Same quiet ink as
+   `.empty`, but tighter padding — the photos follow immediately. */
+.no-body {
+  color: var(--t3);
+  font-family: var(--sans);
+  font-size: var(--f-open);
+  line-height: var(--lh-open);
+  padding: var(--sp-4) 0 var(--sp-6);
+}
+.no-body[lang="zh"] { letter-spacing: 0.04em; }
+
 .paged-head {
   display: flex;
   align-items: baseline;
@@ -853,15 +874,21 @@ html.menu-open { overflow: hidden; }
   text-wrap: pretty;
 }
 /* A note with no body: the description is the only voice, set as a quote.
-   Same register as .prose blockquote — indent, quieter ink, no rule.
-   Latin italics; Chinese stays upright gothic. */
+   Quieter than the body and set off by a hairline. Latin italics; Chinese
+   stays upright gothic.
+   It must read as an *epigraph*, not as the article's own lede. `.lede` (the
+   version a note carries when it also has prose) is 16px at --t2; the voice
+   drops to --f-open at --t3 and gains a hairline so a short line alone in the
+   column cannot be mistaken for a paragraph that lost its body. */
 .lede.is-voice {
   margin: 0 0 var(--sp-6) 2.5rem;
-  padding: 0;
-  border: 0;
+  padding: 0 0 0 var(--sp-4);
+  border-left: calc(var(--rule) * 2) solid var(--line);
+  max-width: var(--read);
   font-size: var(--f-open);
   line-height: var(--lh-open);
   font-style: italic;
+  color: var(--t3);
 }
 .note[lang="zh"] .lede.is-voice {
   font-family: var(--sans);
