@@ -17,6 +17,8 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
   sit on the paper, same as a note without a cover.
 - A note with no body sets its description as a quote: indented,
   quieter, the same register as a blockquote. Chinese stays upright.
+- About drops the notes/tags/years count line. `ui.aboutStats` and
+  `.about-stats` go with it.
 
 - Consecutive paragraph gap (`.prose p + p`) 2.5em → 1.35em.
   Chinese uses the same gap. Line-height is unchanged.

@@ -1297,14 +1297,6 @@ html.menu-open { overflow: hidden; }
   min-height: var(--hit);
 }
 
-.about-stats {
-  margin-top: var(--sp-6);
-  font-size: var(--f-meta);
-  color: var(--t2);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.04em;
-}
-
 .about-page .issue-head { margin-bottom: var(--sp-8); }
 .about-letter { max-width: 36em; }
 
@@ -1350,10 +1342,6 @@ html.menu-open { overflow: hidden; }
 .about-sep {
   color: var(--t3);
   font-weight: 400;
-}
-
-.about-page .about-stats {
-  margin-top: var(--sp-8);
 }
 
 .lost-note {
