@@ -5,13 +5,13 @@
 
   --t0: #2a241e;
   --t1: #3a322b;
-  --t2: #5c534a;
-  --t3: #7a6f64;
+  --t2: #52483f;
+  --t3: #6d6257;
   --fw-body: 400;
 
   /* Warm ink stands in for the old green so leftover selectors stay ink.
      --mark is the only hue: dusk, tiny marks only. */
-  --mark: #a67c52;
+  --mark: #9c6f45;
 
   /* The cover's hand-drawn wave. Worn as a mask so its colour stays a token:
      charcoal at rest, --mark on a door that is current or under the cursor. */
@@ -370,7 +370,7 @@ html.menu-open { overflow: hidden; }
   bottom: -0.45em;
   height: 5px;
   background-color: currentColor;
-  opacity: 0.4;
+  opacity: 0;
   -webkit-mask-image: var(--wave);
   mask-image: var(--wave);
   -webkit-mask-repeat: repeat-x;
@@ -539,6 +539,15 @@ html.menu-open { overflow: hidden; }
   color: var(--t2);
   max-width: 34em;
   text-wrap: pretty;
+}
+/* A Chinese opening is gothic, the same track the article body uses. The
+   stream sits outside `.note`, so the `[lang]` attribute travels with the
+   teaser itself instead of coming from a wrapping page. */
+.lead-open[lang^="zh"],
+.entry-open[lang^="zh"] {
+  font-family: var(--sans);
+  line-height: var(--lh-body);
+  letter-spacing: 0.04em;
 }
 .lead-read {
   display: none;
