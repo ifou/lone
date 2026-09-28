@@ -6,6 +6,37 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 
 ### Changed
 
+- A note with no body says so. Where the body would have been there is now a
+  quiet line — `ui.noBody` / `ui.noBodyZh`, picked by the note's own `lang` —
+  instead of falling straight from the cover into the gallery. It falls back to
+  `ui.emptyStream` because `lone/config` resolves to the consumer's config, so
+  a site without the keys would otherwise render an empty paragraph.
+- That note's epigraph is now distinguishable from body copy. It was 14px in
+  `--t2`, the same ink `.lede` uses, one step under the body, with only a 40px
+  indent to separate it. It steps to `--t3` and takes a 2px `--line` rule on
+  the left. `.lede` (the version a note carries alongside prose) stays 16px at
+  `--t2` so the two roles do not converge.
+- Masthead wave is state-only. Every nav item carried the hand-drawn line at
+  `opacity: 0.4` in `--t1`, so the current item's `--mark` line read as the
+  only one. The base now starts at `opacity: 0`, matching the drawer.
+- Ink lifted for legibility: `--t2` `#5c534a` → `#52483f` (7.52 → 8.91:1),
+  `--t3` `#7a6f64` → `#6d6257` (4.90 → 5.94:1), `--mark` `#a67c52` →
+  `#9c6f45` (3.73 → 4.40:1). The night ramp is inverted separately and is
+  untouched.
+- Stream openings, tag/kind mastheads, and `/page/N/` all share one measure
+  with home. The list masthead was capped at `--read` inside a `--col`
+  stream; `/page/N/` used `.page` where home uses `.wrap`; and Chinese
+  openings fell to a serif because `.entry-open` sets a latin-only face and
+  the stream never sits inside `.note`. Openings now carry the post's `lang`
+  and switch to `--sans` at CJK leading.
+- One token chain owns a role's font. `fonts.css` is inlined before the
+  compiled stylesheet, so its duplicated `font-family` rules won every
+  cascade and the roles resolved off the duplicate rather than off
+  `--display` / `--text` / `--geo`. The block is gone; `.hero-lede`, which had
+  no `font-family` at all and inherited the apparatus face, reads `--text`.
+- `b-covered-walk.md`: a demo note with a cover and no body, in English, so
+  this shape ships with the theme. The three existing samples all have prose.
+
 - Homeroom pass, to sit closer to the cover sheet: body 18px → 16px,
   CJK leading 2.2 → 1.8, Latin 2.05 → 1.6, measure 40.625rem → 36rem,
   mast 4.75rem → 3.5rem, consecutive paragraph gap 1.35em → 1.15em.
