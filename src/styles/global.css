@@ -728,12 +728,6 @@ html.menu-open { overflow: hidden; }
 }
 
 .empty { color: var(--t3); padding: var(--sp-8) 0; }
-.empty.is-body {
-  padding: var(--sp-6) 0;
-  font-family: var(--geo);
-  font-size: var(--f-meta);
-  letter-spacing: 0.04em;
-}
 
 .paged-head {
   display: flex;

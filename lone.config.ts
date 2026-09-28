@@ -72,7 +72,6 @@ export const ui = {
   skipToContent: 'Skip to content',
   emptyStream: 'Nothing here yet.',
   emptyTags: 'No tags yet.',
-  emptyBody: 'No writing on this page.',
   backToNotes: '← Notes',
   backToTags: '← Tags',
   allNotes: 'Archive →',

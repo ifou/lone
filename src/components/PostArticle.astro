@@ -60,9 +60,7 @@ const coverSize = cover ? await measure(cover) : { width: 1920, height: 1280 };
       </ul>
     )}
     {post.data.toc && <Toc headings={headings} />}
-    {hasBody
-      ? <div class="prose"><Content /></div>
-      : <p class="empty is-body">{ui.emptyBody || 'No writing on this page.'}</p>}
+    {hasBody && <div class="prose"><Content /></div>}
     {gallery.length > 0 && <Gallery images={gallery} />}
     <nav class="post-nav" aria-label={ui.ariaAdjacent}>
       <div class="post-nav-adj">
