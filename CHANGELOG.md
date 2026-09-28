@@ -6,6 +6,9 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 
 ### Changed
 
+- Consecutive paragraph gap (`.prose p + p`) 2.5em → 1.35em.
+  Chinese uses the same gap. Line-height is unchanged.
+
 - Ink and rules warm toward dusk. Paper stays `#ffffff`. `--mark` is `#a67c52`,
   still only on tiny marks. Night paper is `#161310`.
 
