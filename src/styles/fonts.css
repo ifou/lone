@@ -154,26 +154,3 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-html {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: geometricPrecision;
-  font-synthesis: none;
-}
-body {
-  font-family: "Zen Kaku Gothic New", "Gothic Fallback", "PingFang SC",
-    "Hiragino Sans", "Noto Sans SC", ui-sans-serif, system-ui, sans-serif;
-}
-
-.wordmark, h1,
-.lead-title, .entry-title, .note-title, .hero-title {
-  font-family: var(--display, "Shippori Mincho");
-  font-weight: var(--display-weight, 700);
-}
-h2, h3, h4 {
-  font-family: var(--serif);
-}
-.prose, .lede, .lead-open, .entry-open, .hero-lede {
-  font-family: "Source Serif 4", "Source Serif Fallback", "Noto Serif CJK SC",
-    "Source Han Serif SC", "Songti SC", "Hiragino Mincho ProN", serif;
-}

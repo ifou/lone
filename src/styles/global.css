@@ -476,6 +476,7 @@ html.menu-open { overflow: hidden; }
 }
 .hero-lede {
   margin-top: var(--sp-3);
+  font-family: var(--text);
   font-size: var(--f-hero-lede);
   line-height: var(--lh-open);
   color: rgb(255 255 255 / 0.92);
