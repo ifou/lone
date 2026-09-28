@@ -26,7 +26,7 @@ const slice = pageOf(stream, n, size);
 const label = home.streamLabel;
 ---
 <BaseLayout title={`${label} · ${n}`} description={home.lede}>
-  <div class="page">
+  <div class="wrap list-page">
     <header class="paged-head">
       <h2 class="block-title">{label}</h2>
       <p class="paged-mark">{ui.pagerPage(n)}</p>
