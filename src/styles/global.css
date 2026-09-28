@@ -908,8 +908,8 @@ html.menu-open { overflow: hidden; }
 .prose > * + * { margin-top: 1.6em; }
 
 .note[lang="zh"] .prose > * + * { margin-top: 1.8em; }
-.prose p + p { margin-top: 2.5em; }
-.note[lang="zh"] .prose p + p { margin-top: 2.5em; }
+.prose p + p { margin-top: 1.35em; }
+.note[lang="zh"] .prose p + p { margin-top: 1.35em; }
 .prose > * + h2 { margin-top: 2.2em; }
 .prose > * + h3,
 .prose > * + h4 { margin-top: 1.8em; }
