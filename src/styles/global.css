@@ -98,6 +98,7 @@
   --menu-ico: 1.25rem;
   --rule: 1px;
   --gallery: 3;
+  --gallery-h: 9rem;
 }
 
 :root[data-theme='dark'] {
@@ -155,6 +156,7 @@
     --thumb-h: auto;
     --lead-thumb: 100%;
     --gallery: 3;
+    --gallery-h: 6.5rem;
   }
 }
 
@@ -1612,14 +1614,20 @@ html.menu-open { overflow: hidden; }
   color: var(--t3);
   margin-bottom: var(--sp-3);
 }
+/* Every cell is one fixed height, so a row never ends with a ragged gap where
+   a tall frame dwarfed its neighbours. Cropping, not stretching — each image
+   keeps its own ratio under `object-fit: cover` and the shape is only lost at
+   the two ends of the frame. */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(var(--gallery), 1fr);
+  grid-template-columns: repeat(var(--gallery), minmax(0, 1fr));
+  grid-auto-rows: var(--gallery-h);
   gap: var(--sp-2);
 }
 .gallery-grid a {
   display: block;
-
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   background: var(--soft);
   outline: var(--rule) solid oklch(0 0 0 / 0.1);
