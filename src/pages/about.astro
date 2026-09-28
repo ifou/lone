@@ -2,10 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import IssueHead from '../components/IssueHead.astro';
 import { about, site, ui } from 'lone/config';
-import { published, tagsOf } from '../lib/posts';
 
-const posts = await published();
-const tagN = tagsOf(posts).length;
 const body = about.body ?? [];
 const quote = about.quote ?? '';
 const stack = about.stack ?? [];
@@ -36,7 +33,6 @@ const stack = about.stack ?? [];
         ))}
       </dl>
     )}
-    <p class="about-stats">{ui.aboutStats(posts.length, tagN, site.years)}</p>
     <p class="about-links">
       {site.email && <a href={`mailto:${site.email}`}>{ui.linkEmail}</a>}
       {site.github && <a href={site.github}>{ui.linkGithub}</a>}

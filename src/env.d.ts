@@ -70,7 +70,6 @@ declare module 'lone/config' {
     langZh: string;
     readMin: (n: number) => string;
     photoCount: (n: number) => string;
-    aboutStats: (notes: number, tags: number, years: string) => string;
     noteCount: (n: number) => string;
     pagerPrev: string;
     pagerNext: string;

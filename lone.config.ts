@@ -87,8 +87,6 @@ export const ui = {
   langZh: 'zh',
   readMin: (n: number) => (n === 1 ? '1 min' : `${n} min`),
   photoCount: (n: number) => (n === 1 ? '1 photo' : `${n} photos`),
-  aboutStats: (notes: number, tags: number, years: string) =>
-    `${notes} notes · ${tags} tags · ${years}`,
   noteCount: (n: number) => (n === 1 ? '1 note' : `${n} notes`),
   pagerPrev: 'Previous page',
   pagerNext: 'Next page',

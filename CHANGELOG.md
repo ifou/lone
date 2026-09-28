@@ -6,6 +6,20 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 
 ### Changed
 
+- Homeroom pass, to sit closer to the cover sheet: body 18px → 16px,
+  CJK leading 2.2 → 1.8, Latin 2.05 → 1.6, measure 40.625rem → 36rem,
+  mast 4.75rem → 3.5rem, consecutive paragraph gap 1.35em → 1.15em.
+- Apparatus (nav, meta, dates, footer) is Jost, with a metric-matched
+  local fallback. Latin subset, `font-display: optional`, not preloaded.
+  Titles stay Mincho; Chinese body stays gothic; Latin body stays
+  Source Serif 4.
+- Photo covers no longer overlay the title. Date, title, and facts
+  sit on the paper, same as a note without a cover.
+- A note with no body sets its description as a quote: indented,
+  quieter, the same register as a blockquote. Chinese stays upright.
+- About drops the notes/tags/years count line. `ui.aboutStats` and
+  `.about-stats` go with it.
+
 - Consecutive paragraph gap (`.prose p + p`) 2.5em → 1.35em.
   Chinese uses the same gap. Line-height is unchanged.
 

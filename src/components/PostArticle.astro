@@ -40,7 +40,11 @@ const coverSize = cover ? await measure(cover) : { width: 1920, height: 1280 };
     </div>
   </header>
   <div class="page">
-    {post.data.description && <p class="lede">{post.data.description}</p>}
+    {post.data.description && (
+      hasBody
+        ? <p class="lede">{post.data.description}</p>
+        : <blockquote class="lede is-voice">{post.data.description}</blockquote>
+    )}
     <p class="note-facts">
       {kind && <span class="is-kind">{kind}</span>}
       <span>{ui.readMin(mins)}</span>
