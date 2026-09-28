@@ -20,6 +20,11 @@ const tags = (post.data.tags ?? []).map((t) => t.trim()).filter(Boolean);
 const hasBody = Boolean((post.body ?? '').trim());
 const kind = catsCopy.labels[categoryOf(post)] || '';
 const lang = langOf(post);
+// Fall back to the generic empty-state copy: `lone/config` resolves to the
+// CONSUMER's config, so a site that has not added these keys renders an empty
+// paragraph otherwise. Same pattern as ui.tocLabel in Toc.astro.
+const noBody =
+  (lang === 'zh' ? ui.noBodyZh : ui.noBody) || ui.emptyStream;
 const mins = readMinutes(post);
 const photos = shots.length;
 const coverSize = cover ? await measure(cover) : { width: 1920, height: 1280 };
@@ -60,7 +65,7 @@ const coverSize = cover ? await measure(cover) : { width: 1920, height: 1280 };
       </ul>
     )}
     {post.data.toc && <Toc headings={headings} />}
-    {hasBody && <div class="prose"><Content /></div>}
+    {hasBody ? <div class="prose"><Content /></div> : <p class="no-body" lang={post.data.lang || undefined}>{noBody}</p>}
     {gallery.length > 0 && <Gallery images={gallery} />}
     <nav class="post-nav" aria-label={ui.ariaAdjacent}>
       <div class="post-nav-adj">

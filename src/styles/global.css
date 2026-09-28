@@ -713,6 +713,18 @@ html.menu-open { overflow: hidden; }
 
 .empty { color: var(--t3); padding: var(--sp-8) 0; }
 
+/* A note with no prose: say so where the body would have been, instead of
+   dropping from the cover straight into the gallery. Same quiet ink as
+   `.empty`, but tighter padding — the photos follow immediately. */
+.no-body {
+  color: var(--t3);
+  font-family: var(--sans);
+  font-size: var(--f-open);
+  line-height: var(--lh-open);
+  padding: var(--sp-4) 0 var(--sp-6);
+}
+.no-body[lang="zh"] { letter-spacing: 0.04em; }
+
 .paged-head {
   display: flex;
   align-items: baseline;
@@ -862,15 +874,21 @@ html.menu-open { overflow: hidden; }
   text-wrap: pretty;
 }
 /* A note with no body: the description is the only voice, set as a quote.
-   Same register as .prose blockquote — indent, quieter ink, no rule.
-   Latin italics; Chinese stays upright gothic. */
+   Quieter than the body and set off by a hairline. Latin italics; Chinese
+   stays upright gothic.
+   It must read as an *epigraph*, not as the article's own lede. `.lede` (the
+   version a note carries when it also has prose) is 16px at --t2; the voice
+   drops to --f-open at --t3 and gains a hairline so a short line alone in the
+   column cannot be mistaken for a paragraph that lost its body. */
 .lede.is-voice {
   margin: 0 0 var(--sp-6) 2.5rem;
-  padding: 0;
-  border: 0;
+  padding: 0 0 0 var(--sp-4);
+  border-left: calc(var(--rule) * 2) solid var(--line);
+  max-width: var(--read);
   font-size: var(--f-open);
   line-height: var(--lh-open);
   font-style: italic;
+  color: var(--t3);
 }
 .note[lang="zh"] .lede.is-voice {
   font-family: var(--sans);

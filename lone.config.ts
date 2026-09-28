@@ -72,6 +72,11 @@ export const ui = {
   skipToContent: 'Skip to content',
   emptyStream: 'Nothing here yet.',
   emptyTags: 'No tags yet.',
+  /* Shown where the body would be, so a note with no prose says so instead of
+     falling from its cover straight into the gallery. Ships both languages;
+     the component picks by the note's own `lang`. */
+  noBody: 'No words for this one — the photos are the note.',
+  noBodyZh: '这一篇没有文字，看图就好。',
   backToNotes: '← Notes',
   backToTags: '← Tags',
   allNotes: 'Archive →',
