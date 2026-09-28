@@ -98,6 +98,7 @@
   --menu-ico: 1.25rem;
   --rule: 1px;
   --gallery: 3;
+  --gallery-h: 9rem;
 }
 
 :root[data-theme='dark'] {
@@ -155,6 +156,7 @@
     --thumb-h: auto;
     --lead-thumb: 100%;
     --gallery: 3;
+    --gallery-h: 6.5rem;
   }
 }
 
@@ -714,16 +716,15 @@ html.menu-open { overflow: hidden; }
 .empty { color: var(--t3); padding: var(--sp-8) 0; }
 
 /* A note with no prose: say so where the body would have been, instead of
-   dropping from the cover straight into the gallery. Same quiet ink as
-   `.empty`, but tighter padding — the photos follow immediately. */
+   dropping from the cover straight into the gallery. One step under the
+   epigraph so the two never read as the same line twice. */
 .no-body {
   color: var(--t3);
   font-family: var(--sans);
-  font-size: var(--f-open);
+  font-size: var(--f-meta);
   line-height: var(--lh-open);
-  padding: var(--sp-4) 0 var(--sp-6);
+  margin: var(--sp-2) 0 0;
 }
-.no-body[lang="zh"] { letter-spacing: 0.04em; }
 
 .paged-head {
   display: flex;
@@ -873,18 +874,17 @@ html.menu-open { overflow: hidden; }
   margin: 0 0 var(--sp-5);
   text-wrap: pretty;
 }
-/* A note with no body: the description is the only voice, set as a quote.
-   Quieter than the body and set off by a hairline. Latin italics; Chinese
-   stays upright gothic.
-   It must read as an *epigraph*, not as the article's own lede. `.lede` (the
-   version a note carries when it also has prose) is 16px at --t2; the voice
-   drops to --f-open at --t3 and gains a hairline so a short line alone in the
-   column cannot be mistaken for a paragraph that lost its body. */
+/* A note with no body carries its description as an epigraph — a lead-in, not
+   a block of prose. It sits directly under the title at one step down
+   (--f-open in --t3) so the page still descends 28px title → 14px epigraph →
+   11px facts instead of stepping off a cliff, and it keeps the article's
+   measure with no rule and no indent: an extra hairline here would turn one
+   short line into an orphaned patch between the title and the facts, which is
+   what made this note read as broken. Latin italics; Chinese upright gothic. */
 .lede.is-voice {
-  margin: 0 0 var(--sp-6) 2.5rem;
-  padding: 0 0 0 var(--sp-4);
-  border-left: calc(var(--rule) * 2) solid var(--line);
+  margin: 0 0 var(--sp-3);
   max-width: var(--read);
+  font-family: var(--text);
   font-size: var(--f-open);
   line-height: var(--lh-open);
   font-style: italic;
@@ -1614,14 +1614,20 @@ html.menu-open { overflow: hidden; }
   color: var(--t3);
   margin-bottom: var(--sp-3);
 }
+/* Every cell is one fixed height, so a row never ends with a ragged gap where
+   a tall frame dwarfed its neighbours. Cropping, not stretching — each image
+   keeps its own ratio under `object-fit: cover` and the shape is only lost at
+   the two ends of the frame. */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(var(--gallery), 1fr);
+  grid-template-columns: repeat(var(--gallery), minmax(0, 1fr));
+  grid-auto-rows: var(--gallery-h);
   gap: var(--sp-2);
 }
 .gallery-grid a {
   display: block;
-
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   background: var(--soft);
   outline: var(--rule) solid oklch(0 0 0 / 0.1);

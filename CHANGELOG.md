@@ -6,6 +6,22 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 
 ### Changed
 
+- Photo galleries are a fixed-height grid. Each cell was sized from its own
+  image ratio (0.66–1.5, measured at build), so a portrait frame next to
+  landscape frames made its row 249px tall and left a 109px hole beside it.
+  Cells now share one height — `--gallery-h`, 9rem desktop / 6.5rem phone —
+  at three equal columns, and crop rather than stretch, so the shape is only
+  lost at the two ends of a frame. `ratioOf` and the inline `aspectRatio` it
+  fed are gone. Measured after: ten cells, one distinct size, even row pitch.
+- A note with no prose: the description now sits as a plain standfirst under
+  the title instead of an indented blockquote. The previous pass gave it a
+  2px left rule and a 40px indent to distinguish it from body copy, but on a
+  note whose only content is a cover and photos that rule reads as an orphaned
+  patch between the title and the facts. It keeps one step down (`--f-open` in
+  `--t3`) so the page still descends 28px title → 14px standfirst → 11px
+  facts, and it shares the article's left edge with everything else. The
+  "no words here" line steps to `--f-meta` so the two are no longer the same
+  size and ink. Latin italics; Chinese upright gothic.
 - A note with no body says so. Where the body would have been there is now a
   quiet line — `ui.noBody` / `ui.noBodyZh`, picked by the note's own `lang` —
   instead of falling straight from the cover into the gallery. It falls back to
