@@ -6,6 +6,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 
 ### Changed
 
+- Clone and pin URLs point at `hipness/lone`.
 - Photo galleries are a fixed-height grid. Each cell was sized from its own
   image ratio (0.66–1.5, measured at build), so a portrait frame next to
   landscape frames made its row 249px tall and left a 109px hole beside it.
