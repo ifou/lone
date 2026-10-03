@@ -19,7 +19,7 @@ Astro 博客主题。标题明朝、正文角哥、白纸。浅色 / 深色。
 ## 快速开始
 
 ```bash
-git clone https://github.com/llsi/lone.git
+git clone https://github.com/hipness/lone.git
 cd lone
 npm install
 npm run dev
@@ -32,7 +32,7 @@ Node 22+。
 ```json
 {
   "dependencies": {
-    "lone": "github:llsi/lone"
+    "lone": "github:hipness/lone"
   }
 }
 ```
